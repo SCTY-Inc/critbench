@@ -73,3 +73,43 @@ judging:
   temperature: 0.7
   n_samples: 5
   consensus_threshold: 0.6  # Majority vote threshold
+
+# Debate configuration (for resolving disagreements)
+debate:
+  enabled: false  # Enable via score() parameter
+  disagreement_threshold: 0.3  # Score spread that triggers debate
+  confidence_threshold: 0.7  # Confidence below this triggers debate
+  max_rounds: 2
+  consensus_threshold: 0.15  # Score spread considered consensus
+
+# Bias detection configuration
+bias_detection:
+  enabled: true
+  length_bias_threshold: 0.5  # Correlation threshold
+  self_enhancement_threshold: 0.1  # Score diff threshold
+  position_bias_threshold: 0.15
+  leniency_spread_threshold: 0.2
+
+# Reliability metrics configuration
+reliability:
+  enabled: true
+  alpha_good_threshold: 0.80
+  alpha_acceptable_threshold: 0.67
+  flag_low_reliability: true
+
+# Anonymization configuration
+anonymization:
+  enabled: false  # Enable via score() parameter
+  anonymize_models: true
+  anonymize_providers: true
+  anonymize_versions: true
+  shuffle_order: true
+
+# Anti-contamination rotation
+rotation:
+  enabled: false  # Enable via score_with_rotation()
+  track_usage: true
+  max_reuse_per_model: 3
+  rotate_company_names: true
+  rotate_industries: true
+  rotate_constraints: true
