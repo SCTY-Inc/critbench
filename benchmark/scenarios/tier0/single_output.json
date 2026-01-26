@@ -1,0 +1,72 @@
+{
+  "scenario_id": "tier0_single_001",
+  "tier": "tier_0",
+  "title": "Single Headline Generation",
+  "brand": {
+    "name": "CodeFlow",
+    "voice": "technically credible, understated, no hype",
+    "audience": "senior engineers at Series B+ startups",
+    "constraints": ["no 'revolutionary'", "no fake metrics"],
+    "competitors": ["LinearB", "Swarmia"],
+    "banned_phrases": ["10x developer", "rockstar", "best-in-class"]
+  },
+  "turns": [
+    {
+      "turn_number": 1,
+      "stage": "execution",
+      "user_message": "Write a launch headline for CodeFlow, a developer productivity tool that shows real git/PR data instead of surveys. Target audience is engineering managers frustrated with gut-feel decisions.",
+      "expected_behaviors": [
+        "Headline matches brand voice (understated, credible)",
+        "Connects to data-driven differentiator",
+        "Relevant to eng manager audience",
+        "No banned phrases"
+      ],
+      "autofail_triggers": [
+        "Uses 'revolutionary' or similar hype",
+        "Uses banned phrases like '10x developer'",
+        "Generic headline that could apply to any tool"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "voice_match",
+          "description": "Headline matches brand voice",
+          "max_points": 2,
+          "dimension": "voice",
+          "scoring_guide": {
+            "2": "Understated, credible tone matching brand spec",
+            "1": "Acceptable but slightly off-brand",
+            "0": "Hype-driven or violates voice"
+          }
+        },
+        {
+          "criterion_id": "differentiator_connection",
+          "description": "Headline connects to data-driven differentiator",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Clearly emphasizes real data over surveys/gut-feel",
+            "1": "Mentions productivity but not the specific angle",
+            "0": "Generic, doesn't connect to differentiator"
+          }
+        },
+        {
+          "criterion_id": "audience_relevance",
+          "description": "Headline resonates with eng managers",
+          "max_points": 1,
+          "dimension": "judgment",
+          "scoring_guide": {
+            "1": "Speaks to eng manager pain points",
+            "0": "Generic or wrong audience"
+          }
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "category": "single_output",
+    "difficulty": "easy",
+    "estimated_cost": 0.02,
+    "author": "amadad",
+    "version": "1.0"
+  }
+}

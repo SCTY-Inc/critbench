@@ -1,0 +1,239 @@
+{
+  "scenario_id": "tier1_campaign_001",
+  "tier": "tier_1",
+  "title": "B2B SaaS Launch - Developer Audience",
+  "brand": {
+    "name": "CodeFlow",
+    "voice": "technically credible, understated, no hype",
+    "audience": "senior engineers at Series B+ startups",
+    "constraints": [
+      "no 'revolutionary' or 'game-changing'",
+      "no fake metrics",
+      "no enterprise jargon"
+    ],
+    "competitors": ["LinearB", "Swarmia"],
+    "banned_phrases": ["10x developer", "rockstar", "best-in-class", "industry-leading"]
+  },
+  "turns": [
+    {
+      "turn_number": 1,
+      "stage": "brief_intake",
+      "user_message": "We're launching CodeFlow, a developer productivity tool that helps engineering teams understand where time goes. Budget is $50k, timeline is 6 weeks, target is Series B+ startups. What do you need to know before we start?",
+      "expected_behaviors": [
+        "Asks clarifying questions about audience",
+        "Asks about current positioning or differentiation",
+        "Asks about success metrics",
+        "Does not jump straight to tactics"
+      ],
+      "autofail_triggers": [
+        "Immediately suggests campaign tactics without questions",
+        "Assumes knowledge not provided in brief"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "brief_comprehension",
+          "description": "Demonstrates understanding of brief and asks relevant clarifying questions",
+          "max_points": 3,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "3": "Asks 3+ relevant clarifying questions that would meaningfully inform strategy",
+            "2": "Asks 1-2 relevant questions",
+            "1": "Asks generic questions not specific to this brief",
+            "0": "Jumps to tactics without questions"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 2,
+      "stage": "insight_generation",
+      "user_message": "Good questions. Our main differentiator is we show actual data from git/PR activity, not surveys. Our ICP is engineering managers who are frustrated with gut-feel decisions about team productivity. What insights should drive this campaign?",
+      "expected_behaviors": [
+        "Surfaces non-obvious insights about the audience",
+        "Connects insights to the data-driven differentiator",
+        "Identifies tensions or pain points",
+        "Insights are actionable (lead to creative)"
+      ],
+      "autofail_triggers": [
+        "Generic insights that apply to any B2B SaaS",
+        "Insights that contradict the brief"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "insight_depth",
+          "description": "Quality and depth of audience insights",
+          "max_points": 3,
+          "dimension": "originality",
+          "scoring_guide": {
+            "3": "Surfaces non-obvious tension or behavior pattern specific to eng managers",
+            "2": "Valid insight but commonly known in the space",
+            "1": "Generic B2B insight not specific to audience",
+            "0": "Wrong or irrelevant insight"
+          }
+        },
+        {
+          "criterion_id": "insight_actionability",
+          "description": "Insights lead clearly to creative direction",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Each insight has clear creative implications",
+            "1": "Insights are interesting but unclear how to act on them",
+            "0": "Insights are abstract or not actionable"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 3,
+      "stage": "strategy",
+      "user_message": "I like the insight about engineering managers being caught between exec pressure for velocity and team pushback on burnout. Based on this, what's our positioning?",
+      "expected_behaviors": [
+        "Positioning flows from the insight",
+        "Differentiates from competitors",
+        "Relevant to the target audience",
+        "Avoids generic positioning language"
+      ],
+      "autofail_triggers": [
+        "Positioning contradicts the insight",
+        "Uses banned phrases like 'best-in-class'",
+        "Generic positioning that could apply to any tool"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "insight_to_strategy_coherence",
+          "description": "Positioning clearly ladders to the insight",
+          "max_points": 3,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "3": "Positioning directly addresses the tension identified in insight",
+            "2": "Positioning is related but connection is loose",
+            "1": "Positioning is valid but doesn't connect to insight",
+            "0": "Positioning contradicts or ignores insight"
+          }
+        },
+        {
+          "criterion_id": "differentiation",
+          "description": "Positioning differentiates from competitors",
+          "max_points": 2,
+          "dimension": "judgment",
+          "scoring_guide": {
+            "2": "Clear differentiation from LinearB/Swarmia with specific angle",
+            "1": "Some differentiation but could apply to competitors too",
+            "0": "No meaningful differentiation"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 4,
+      "stage": "idea_generation",
+      "user_message": "Good positioning. Now give me 5 campaign concepts that bring this to life.",
+      "expected_behaviors": [
+        "Generates 5 distinct concepts (not variations)",
+        "Concepts ladder to the positioning",
+        "Range of approaches (not all the same territory)",
+        "Respects brand voice constraints"
+      ],
+      "autofail_triggers": [
+        "Fewer than 5 concepts",
+        "Concepts are variations of the same idea",
+        "Uses banned phrases or violates voice",
+        "Concepts contradict positioning"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "idea_volume",
+          "description": "Generated requested number of concepts",
+          "max_points": 1,
+          "dimension": "judgment",
+          "scoring_guide": {
+            "1": "5 distinct concepts provided",
+            "0": "Fewer than 5 or concepts are variations"
+          }
+        },
+        {
+          "criterion_id": "idea_range",
+          "description": "Concepts explore different territories",
+          "max_points": 2,
+          "dimension": "originality",
+          "scoring_guide": {
+            "2": "Concepts span 3+ different creative territories",
+            "1": "Some range but 2+ concepts are similar",
+            "0": "All concepts are essentially the same approach"
+          }
+        },
+        {
+          "criterion_id": "strategy_ladder",
+          "description": "Concepts connect to positioning",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "All concepts clearly ladder to positioning",
+            "1": "Most concepts connect, 1-2 feel disconnected",
+            "0": "Concepts don't connect to positioning"
+          }
+        },
+        {
+          "criterion_id": "voice_compliance",
+          "description": "Concepts respect brand voice",
+          "max_points": 2,
+          "dimension": "voice",
+          "scoring_guide": {
+            "2": "All concepts match understated, credible tone",
+            "1": "Most comply, 1-2 feel off-brand",
+            "0": "Concepts violate voice (hype, banned phrases)"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 5,
+      "stage": "idea_selection",
+      "user_message": "Which 2 are strongest and why? Be specific about your reasoning.",
+      "expected_behaviors": [
+        "Selects 2 concepts with clear reasoning",
+        "Reasoning connects to strategy and audience",
+        "Acknowledges trade-offs",
+        "Doesn't just pick the safest options"
+      ],
+      "autofail_triggers": [
+        "No reasoning provided",
+        "Reasoning contradicts earlier strategy",
+        "Selects concepts that violate brand guidelines"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "selection_reasoning",
+          "description": "Quality of reasoning for selections",
+          "max_points": 3,
+          "dimension": "judgment",
+          "scoring_guide": {
+            "3": "Clear, strategic reasoning that connects to audience and positioning",
+            "2": "Reasoning is valid but generic",
+            "1": "Weak reasoning or just states preference",
+            "0": "No reasoning or contradictory reasoning"
+          }
+        },
+        {
+          "criterion_id": "selection_quality",
+          "description": "Selected concepts are actually the strongest",
+          "max_points": 2,
+          "dimension": "judgment",
+          "scoring_guide": {
+            "2": "Selections are defensibly the best options",
+            "1": "Selections are reasonable but not obviously best",
+            "0": "Selections are clearly not the strongest concepts"
+          }
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "category": "campaign_development",
+    "difficulty": "medium",
+    "estimated_cost": 0.15,
+    "author": "amadad",
+    "version": "1.0"
+  }
+}

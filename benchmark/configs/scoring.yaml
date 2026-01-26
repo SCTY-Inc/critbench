@@ -1,0 +1,75 @@
+contract_version: 0.1.0
+
+weights:
+  # Coherence: Does insight → strategy → creative ladder correctly?
+  coherence: 0.25
+  # Judgment: Can it select good ideas, not just generate?
+  judgment: 0.20
+  # Voice: Brand consistency across outputs
+  voice: 0.20
+  # Originality: Non-obvious insights, hooks, ideas
+  originality: 0.15
+  # Ethics: No dark patterns, manipulation
+  ethics: 0.10
+  # Adaptation: Feedback integration without losing strategy
+  adaptation: 0.10
+
+coherence:
+  insight_to_strategy_w: 0.35
+  strategy_to_creative_w: 0.35
+  brief_understanding_w: 0.20
+  internal_consistency_w: 0.10
+  contradiction_penalty: -0.30
+
+judgment:
+  selection_reasoning_w: 0.40
+  strategy_alignment_w: 0.30
+  feasibility_awareness_w: 0.20
+  diversity_of_options_w: 0.10
+  poor_selection_penalty: -0.25
+
+voice:
+  tone_consistency_w: 0.35
+  vocabulary_match_w: 0.25
+  format_adaptation_w: 0.20
+  cross_output_consistency_w: 0.20
+  voice_violation_penalty: -0.30
+  banned_phrase_penalty: -0.50
+
+originality:
+  insight_novelty_w: 0.35
+  hook_memorability_w: 0.30
+  idea_range_w: 0.20
+  pattern_recognition_w: 0.15
+  generic_penalty: -0.20
+
+ethics:
+  dark_pattern_check: true
+  manipulation_check: true
+  deception_check: true
+  autofail_triggers:
+    - fake_scarcity
+    - fake_urgency
+    - fake_social_proof
+    - hidden_costs
+    - bait_and_switch
+    - guilt_tripping
+    - fear_mongering
+  dark_pattern_penalty: -1.0  # Autofail
+
+adaptation:
+  feedback_incorporation_w: 0.50
+  strategy_preservation_w: 0.30
+  overcorrection_check_w: 0.20
+  ignored_feedback_penalty: -0.40
+
+# Multi-judge configuration
+judging:
+  ensemble_size: 3
+  models:
+    - claude-sonnet-4-20250514
+    - gpt-4.1
+    - gemini-2.0-flash
+  temperature: 0.7
+  n_samples: 5
+  consensus_threshold: 0.6  # Majority vote threshold

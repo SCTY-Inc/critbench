@@ -1,0 +1,62 @@
+# CodeFlow - Example brand spec for CritBench scenarios
+
+name: CodeFlow
+tagline: "Developer productivity, measured."
+
+voice:
+  tone: technically credible, understated, no hype
+  personality: smart colleague, not salesperson
+  vocabulary: technical but accessible
+  patterns:
+    - Show, don't tell
+    - Data over claims
+    - Respect developer intelligence
+
+audience:
+  primary: Senior engineers at Series B+ startups
+  secondary: Engineering managers
+  psychographics:
+    - Skeptical of marketing claims
+    - Values time and efficiency
+    - Prefers tools that stay out of the way
+    - Community-oriented (OSS contributors)
+
+constraints:
+  - No "revolutionary" or "game-changing"
+  - No fake metrics or unsubstantiated claims
+  - No enterprise jargon ("leverage", "synergy")
+  - No exclamation points in headlines
+  - Maximum 2 emojis per post (if any)
+
+competitors:
+  - LinearB
+  - Swarmia
+  - Jellyfish
+  - Pluralsight Flow
+
+banned_phrases:
+  - "10x developer"
+  - "rockstar"
+  - "ninja"
+  - "crushing it"
+  - "move fast and break things"
+  - "best-in-class"
+  - "industry-leading"
+  - "cutting-edge"
+
+tone_keywords:
+  - precise
+  - measured
+  - credible
+  - technical
+  - understated
+  - confident
+  - helpful
+
+examples:
+  good_headline: "Ship 40% faster. Here's the data."
+  bad_headline: "Revolutionary AI-Powered Developer Platform!!!"
+  good_cta: "See the docs"
+  bad_cta: "Start your journey today!"
+  good_social: "We analyzed 10M commits. Teams with clear PR templates merge 2x faster. Here's what we found:"
+  bad_social: "Stop wasting time on slow code reviews! CodeFlow is the GAME-CHANGER your team needs!"
