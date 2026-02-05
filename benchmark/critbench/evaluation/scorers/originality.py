@@ -35,3 +35,22 @@ def score(
         },
         "evidence": ["Originality scorer not yet implemented"],
     }
+
+
+async def score_async(
+    transcript: List[Dict[str, Any]],
+    scenario: Dict[str, Any],
+    brand: Dict[str, Any],
+    api_client: Optional[Any] = None,
+    models: Optional[List[str]] = None,
+    allow_llm: bool = True,
+) -> Dict[str, Any]:
+    """Async score creative originality."""
+    return score(
+        transcript,
+        scenario,
+        brand,
+        api_client=api_client,
+        models=models,
+        allow_llm=allow_llm,
+    )
