@@ -111,6 +111,30 @@ async def _score_llm_dimensions_async(
                 models=judge_models,
                 allow_llm=enable_llm,
             ),
+            "originality": originality.score_async(
+                transcript,
+                scenario,
+                brand,
+                api_client=api_client,
+                models=judge_models,
+                allow_llm=enable_llm,
+            ),
+            "ethics": ethics.score_async(
+                transcript,
+                scenario,
+                brand,
+                api_client=api_client,
+                models=judge_models,
+                allow_llm=enable_llm,
+            ),
+            "adaptation": adaptation.score_async(
+                transcript,
+                scenario,
+                brand,
+                api_client=api_client,
+                models=judge_models,
+                allow_llm=enable_llm,
+            ),
         }
         results = await asyncio.gather(*tasks.values())
 
@@ -249,36 +273,34 @@ def score(
             models=judge_models,
             allow_llm=enable_llm,
         )
+        dimension_results["originality"] = originality.score(
+            transcript, scenario, brand,
+            models=judge_models,
+            allow_llm=enable_llm,
+        )
+        dimension_results["ethics"] = ethics.score(
+            transcript, scenario, brand,
+            models=judge_models,
+            allow_llm=enable_llm,
+        )
+        dimension_results["adaptation"] = adaptation.score(
+            transcript, scenario, brand,
+            models=judge_models,
+            allow_llm=enable_llm,
+        )
 
     for dim in ["coherence", "judgment", "voice"]:
         if dim in dimension_results:
             _collect_scores(dimension_results[dim], dim, all_scores_by_dimension, judge_models)
             _analyze_cot(dimension_results[dim], dim, cot_analyzer, judge_models)
 
-    # Originality
-    dimension_results["originality"] = originality.score(
-        transcript, scenario, brand,
-        models=judge_models,
-        allow_llm=enable_llm,
-    )
-    _collect_scores(dimension_results["originality"], "originality", all_scores_by_dimension, judge_models)
+    for dim in ["originality", "adaptation"]:
+        if dim in dimension_results:
+            _collect_scores(dimension_results[dim], dim, all_scores_by_dimension, judge_models)
 
     # Ethics (autofail dimension)
-    dimension_results["ethics"] = ethics.score(
-        transcript, scenario, brand,
-        models=judge_models,
-        allow_llm=enable_llm,
-    )
-    if dimension_results["ethics"].get("autofail"):
+    if dimension_results.get("ethics", {}).get("autofail"):
         autofail_reasons.append("Dark patterns detected")
-
-    # Adaptation
-    dimension_results["adaptation"] = adaptation.score(
-        transcript, scenario, brand,
-        models=judge_models,
-        allow_llm=enable_llm,
-    )
-    _collect_scores(dimension_results["adaptation"], "adaptation", all_scores_by_dimension, judge_models)
 
     # Calculate weighted overall score
     weights = scoring_config.get("weights", {
