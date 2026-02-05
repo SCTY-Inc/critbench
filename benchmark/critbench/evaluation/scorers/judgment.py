@@ -6,10 +6,11 @@ that existing benchmarks don't measure.
 """
 from __future__ import annotations
 
+import asyncio
 import statistics
 from typing import Any, Dict, List, Optional
 
-from critbench.api import ModelAPIClient
+from critbench.api import AsyncModelAPIClient, ModelAPIClient
 from critbench.utils.llm_mode import llm_enabled
 
 
@@ -108,6 +109,104 @@ def score(
     overall = sum(final_scores[k] * weights[k] for k in weights)
 
     # Penalty for poor reasoning
+    if final_scores["selection_reasoning"] < 0.4:
+        overall = max(0, overall - 0.25)
+        result["evidence"].append("PENALTY: Poor selection reasoning")
+
+    result["score"] = overall
+    result["breakdown"] = final_scores
+
+    return result
+
+
+async def score_async(
+    transcript: List[Dict[str, Any]],
+    scenario: Dict[str, Any],
+    brand: Dict[str, Any],
+    api_client: Optional[AsyncModelAPIClient] = None,
+    models: Optional[List[str]] = None,
+    allow_llm: bool = True,
+) -> Dict[str, Any]:
+    """Async score idea selection and judgment quality."""
+    result = {
+        "score": 1.0,
+        "breakdown": {},
+        "evidence": [],
+    }
+
+    ideas_generated = _extract_ideas(transcript, scenario)
+    selection_response = _extract_selection(transcript, scenario)
+
+    if not ideas_generated or not selection_response:
+        result["score"] = 0.0
+        result["evidence"].append("Missing idea generation or selection turns")
+        return result
+
+    if not llm_enabled(allow_llm):
+        result["evidence"].append("LLM judgment evaluation skipped (offline mode)")
+        _evaluate_judgment_deterministic(ideas_generated, selection_response, result)
+        return result
+
+    if api_client is None:
+        try:
+            api_client = AsyncModelAPIClient()
+        except ValueError as e:
+            result["evidence"].append(f"ERROR: Cannot initialize API - {e}")
+            _evaluate_judgment_deterministic(ideas_generated, selection_response, result)
+            return result
+
+    judge_models = models or [
+        "claude-sonnet-4-20250514",
+        "gpt-4.1",
+        "gemini-2.0-flash",
+    ]
+
+    all_scores = {
+        "selection_reasoning": [],
+        "strategy_alignment": [],
+        "feasibility_awareness": [],
+        "selection_quality": [],
+    }
+
+    positioning = _extract_positioning(transcript, scenario)
+
+    tasks = [
+        _evaluate_with_model_async(
+            ideas_generated,
+            selection_response,
+            positioning,
+            brand,
+            api_client,
+            model,
+        )
+        for model in judge_models
+    ]
+    results = await asyncio.gather(*tasks, return_exceptions=True)
+
+    for model, outcome in zip(judge_models, results):
+        if isinstance(outcome, Exception):
+            result["evidence"].append(f"Judge {model} failed: {outcome}")
+            continue
+        model_scores = outcome
+        for key, value in model_scores.items():
+            all_scores[key].append(value)
+
+    final_scores = {}
+    for key, scores in all_scores.items():
+        if scores:
+            final_scores[key] = statistics.mean(scores)
+        else:
+            final_scores[key] = 0.5
+
+    weights = {
+        "selection_reasoning": 0.40,
+        "strategy_alignment": 0.30,
+        "feasibility_awareness": 0.20,
+        "selection_quality": 0.10,
+    }
+
+    overall = sum(final_scores[k] * weights[k] for k in weights)
+
     if final_scores["selection_reasoning"] < 0.4:
         overall = max(0, overall - 0.25)
         result["evidence"].append("PENALTY: Poor selection reasoning")
@@ -226,6 +325,80 @@ EVIDENCE:
 - Quality: [Are these the best picks?]"""
 
     response = api_client.call_model(
+        model=model,
+        messages=[{"role": "user", "content": prompt}],
+        temperature=0.7,
+        max_tokens=1500,
+    )
+
+    return _parse_judgment_evaluation(response["response"])
+
+
+async def _evaluate_with_model_async(
+    ideas: str,
+    selection: str,
+    positioning: Optional[str],
+    brand: Dict[str, Any],
+    api_client: AsyncModelAPIClient,
+    model: str,
+) -> Dict[str, float]:
+    """Evaluate judgment using a single judge model (async)."""
+
+    prompt = f"""You are evaluating CREATIVE JUDGMENT - the ability to select the best ideas.
+
+**BRAND:**
+- Name: {brand.get('name', 'Unknown')}
+- Audience: {brand.get('audience', 'Not specified')}
+
+**POSITIONING:**
+{positioning or 'Not provided'}
+
+**IDEAS GENERATED:**
+{ideas}
+
+**SELECTION & REASONING:**
+{selection}
+
+**EVALUATE JUDGMENT:**
+
+1. **SELECTION_REASONING (0.0-1.0):**
+   Is the rationale for selections clear and strategic?
+   - 1.0 = Clear reasoning that connects to audience and positioning
+   - 0.5 = Generic reasoning or just states preference
+   - 0.0 = No reasoning or contradictory reasoning
+
+2. **STRATEGY_ALIGNMENT (0.0-1.0):**
+   Do the selected ideas support the positioning?
+   - 1.0 = Selections clearly ladder to positioning
+   - 0.5 = Selections are related but connection is loose
+   - 0.0 = Selections contradict or ignore positioning
+
+3. **FEASIBILITY_AWARENESS (0.0-1.0):**
+   Does reasoning consider practical constraints?
+   - 1.0 = Acknowledges budget, timeline, resources
+   - 0.5 = Some awareness of constraints
+   - 0.0 = Ignores practical considerations
+
+4. **SELECTION_QUALITY (0.0-1.0):**
+   Are the selected ideas actually the strongest from the set?
+   - 1.0 = Defensibly the best options
+   - 0.5 = Reasonable but not obviously best
+   - 0.0 = Clearly not the strongest concepts
+
+**Respond in this exact format:**
+
+SELECTION_REASONING: [0.0-1.0]
+STRATEGY_ALIGNMENT: [0.0-1.0]
+FEASIBILITY_AWARENESS: [0.0-1.0]
+SELECTION_QUALITY: [0.0-1.0]
+
+EVIDENCE:
+- Reasoning: [Quality of rationale]
+- Alignment: [Connection to positioning]
+- Feasibility: [Awareness of constraints]
+- Quality: [Are these the best picks?]"""
+
+    response = await api_client.call_model(
         model=model,
         messages=[{"role": "user", "content": prompt}],
         temperature=0.7,

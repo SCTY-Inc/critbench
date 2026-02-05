@@ -12,11 +12,12 @@ Implements multi-judge ensemble scoring with:
 """
 from __future__ import annotations
 
+import asyncio
 import re
 import statistics
 from typing import Any, Dict, List, Optional, Set
 
-from critbench.api import ModelAPIClient
+from critbench.api import AsyncModelAPIClient, ModelAPIClient
 from critbench.utils.llm_mode import llm_enabled
 
 
@@ -152,6 +153,126 @@ def score(
     return result
 
 
+async def score_async(
+    transcript: List[Dict[str, Any]],
+    scenario: Dict[str, Any],
+    brand: Dict[str, Any],
+    api_client: Optional[AsyncModelAPIClient] = None,
+    models: Optional[List[str]] = None,
+    allow_llm: bool = True,
+) -> Dict[str, Any]:
+    """Async score brand voice consistency."""
+    result = {
+        "score": 0.5,
+        "breakdown": {},
+        "evidence": [],
+    }
+
+    responses = _extract_responses(transcript)
+    if not responses:
+        result["evidence"].append("No assistant responses found")
+        return result
+
+    banned_phrases = brand.get("banned_phrases", [])
+    banned_found = _check_banned_phrases(responses, banned_phrases)
+
+    if banned_found:
+        result["evidence"].append(f"BANNED PHRASES FOUND: {banned_found}")
+        result["breakdown"]["banned_phrases_found"] = banned_found
+
+    if not llm_enabled(allow_llm):
+        result["evidence"].append("LLM voice evaluation skipped (offline mode)")
+        _evaluate_voice_deterministic(responses, brand, banned_found, result)
+        return result
+
+    if api_client is None:
+        try:
+            api_client = AsyncModelAPIClient()
+        except ValueError as e:
+            result["evidence"].append(f"ERROR: Cannot initialize API - {e}")
+            _evaluate_voice_deterministic(responses, brand, banned_found, result)
+            return result
+
+    judge_models = models or [
+        "claude-sonnet-4-20250514",
+        "gpt-4.1",
+        "gemini-2.0-flash",
+    ]
+
+    all_scores = {
+        "tone_consistency": [],
+        "vocabulary_match": [],
+        "format_adaptation": [],
+        "cross_output_consistency": [],
+    }
+
+    all_reasoning = {}
+
+    tasks = [
+        _evaluate_with_model_async(
+            responses, brand, scenario, api_client, model
+        )
+        for model in judge_models
+    ]
+    results = await asyncio.gather(*tasks, return_exceptions=True)
+
+    for model, outcome in zip(judge_models, results):
+        if isinstance(outcome, Exception):
+            result["evidence"].append(f"Judge {model} error: {outcome}")
+            result["evidence"].append(f"Judge {model} failed: {outcome}")
+            continue
+        model_scores, evidence_entry, reasoning = outcome
+        result["evidence"].append(evidence_entry)
+        for key, value in model_scores.items():
+            all_scores[key].append(value)
+        all_reasoning[model] = reasoning
+
+    final_scores = {}
+    confidences = {}
+
+    for key, scores in all_scores.items():
+        if scores:
+            final_scores[key] = statistics.mean(scores)
+            confidences[key] = 1.0 - (statistics.stdev(scores) if len(scores) > 1 else 0.0)
+        else:
+            final_scores[key] = 0.5
+            confidences[key] = 0.0
+
+    weights = {
+        "tone_consistency": 0.35,
+        "vocabulary_match": 0.25,
+        "format_adaptation": 0.20,
+        "cross_output_consistency": 0.20,
+    }
+
+    overall = sum(final_scores[k] * weights[k] for k in weights)
+
+    if banned_found:
+        penalty = min(0.50, len(banned_found) * 0.10)
+        overall = max(0, overall - penalty)
+        result["evidence"].append(f"PENALTY: -{penalty:.2f} for banned phrases")
+
+    if final_scores["tone_consistency"] < 0.4:
+        overall = max(0, overall - 0.30)
+        result["evidence"].append("PENALTY: Significant voice inconsistency detected")
+
+    result["score"] = overall
+    result["breakdown"] = {
+        "tone_consistency": final_scores["tone_consistency"],
+        "vocabulary_match": final_scores["vocabulary_match"],
+        "format_adaptation": final_scores["format_adaptation"],
+        "cross_output_consistency": final_scores["cross_output_consistency"],
+        "banned_phrases_found": banned_found,
+        "confidences": confidences,
+        "n_judges": len(judge_models),
+        "judges_succeeded": sum(1 for s in all_scores["tone_consistency"] if s is not None),
+    }
+
+    result["_reasoning"] = all_reasoning
+
+    return result
+
+
 def _extract_responses(transcript: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     """Extract assistant responses with turn context."""
     responses = []
@@ -270,6 +391,90 @@ EVIDENCE:
     except Exception as e:
         evidence.append(f"Judge {model} error: {e}")
         raise
+
+
+async def _evaluate_with_model_async(
+    responses: List[Dict[str, Any]],
+    brand: Dict[str, Any],
+    scenario: Dict[str, Any],
+    api_client: AsyncModelAPIClient,
+    model: str,
+) -> tuple[Dict[str, float], str, str]:
+    """Evaluate voice using a single judge model (async)."""
+
+    response_texts = []
+    for i, resp in enumerate(responses[:5]):  # Limit to first 5 turns
+        response_texts.append(f"Turn {resp['turn']}:\n{resp['content'][:800]}")
+
+    responses_block = "\n\n---\n\n".join(response_texts)
+
+    tone_keywords = brand.get("tone_keywords", [])
+    tone_desc = brand.get("voice", "Not specified")
+    audience = brand.get("audience", "Not specified")
+    constraints = brand.get("constraints", [])
+
+    prompt = f"""You are evaluating BRAND VOICE CONSISTENCY across multiple outputs.
+
+**BRAND SPECIFICATIONS:**
+- Brand Voice: {tone_desc}
+- Target Audience: {audience}
+- Tone Keywords: {', '.join(tone_keywords) if tone_keywords else 'Not specified'}
+- Constraints: {', '.join(constraints) if constraints else 'None specified'}
+
+**OUTPUTS TO EVALUATE:**
+
+{responses_block}
+
+**EVALUATE VOICE CONSISTENCY:**
+
+1. **TONE_CONSISTENCY (0.0-1.0):**
+   Does the tone match the brand specification across ALL outputs?
+   - 1.0 = Perfectly matches brand voice throughout
+   - 0.5 = Generally appropriate but inconsistent
+   - 0.0 = Completely off-brand or wildly inconsistent
+
+2. **VOCABULARY_MATCH (0.0-1.0):**
+   Is the vocabulary appropriate for the target audience?
+   - 1.0 = Perfect register for audience, appropriate jargon level
+   - 0.5 = Mostly appropriate, some misfits
+   - 0.0 = Wrong register (too technical, too casual, etc.)
+
+3. **FORMAT_ADAPTATION (0.0-1.0):**
+   Does the voice adapt to different contexts while staying on-brand?
+   - 1.0 = Naturally adapts format while maintaining voice
+   - 0.5 = Some adaptation, but voice wavers
+   - 0.0 = Either rigid or loses brand identity when adapting
+
+4. **CROSS_OUTPUT_CONSISTENCY (0.0-1.0):**
+   Is the voice consistent from turn to turn?
+   - 1.0 = Could be from the same person/brand throughout
+   - 0.5 = Some drift but recognizable
+   - 0.0 = Feels like different writers/personalities
+
+**Respond in this exact format:**
+
+TONE_CONSISTENCY: [0.0-1.0]
+VOCABULARY_MATCH: [0.0-1.0]
+FORMAT_ADAPTATION: [0.0-1.0]
+CROSS_OUTPUT_CONSISTENCY: [0.0-1.0]
+
+EVIDENCE:
+- Tone: [How well does tone match brand?]
+- Vocabulary: [Is language appropriate for audience?]
+- Adaptation: [How does voice adapt across outputs?]
+- Consistency: [Is voice stable across turns?]"""
+
+    response = await api_client.call_model(
+        model=model,
+        messages=[{"role": "user", "content": prompt}],
+        temperature=0.7,
+        max_tokens=1500,
+    )
+    analysis = response["response"]
+    evidence_entry = f"Judge {model}:\n{analysis[:500]}..."
+
+    scores = _parse_voice_evaluation(analysis)
+    return scores, evidence_entry, analysis
 
 
 def _parse_voice_evaluation(analysis: str) -> Dict[str, float]:

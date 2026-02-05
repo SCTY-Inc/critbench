@@ -5,10 +5,11 @@ process maintains logical coherence across stages, not just output quality.
 """
 from __future__ import annotations
 
+import asyncio
 import statistics
 from typing import Any, Dict, List, Optional
 
-from critbench.api import ModelAPIClient, resolve_scorer_model
+from critbench.api import AsyncModelAPIClient, ModelAPIClient, resolve_scorer_model
 from critbench.utils.llm_mode import llm_enabled
 
 
@@ -100,6 +101,105 @@ def score(
     overall = sum(final_scores[k] * weights[k] for k in weights)
 
     # Check for contradictions (hard penalty)
+    if final_scores["internal_consistency"] < 0.5:
+        overall = max(0, overall - 0.30)
+        result["evidence"].append("PENALTY: Internal contradictions detected")
+
+    result["score"] = overall
+    result["breakdown"] = {
+        "brief_understanding": final_scores["brief_understanding"],
+        "insight_to_strategy": final_scores["insight_to_strategy"],
+        "strategy_to_creative": final_scores["strategy_to_creative"],
+        "internal_consistency": final_scores["internal_consistency"],
+        "confidences": confidences,
+        "n_judges": len(judge_models),
+        "judges_succeeded": sum(1 for s in all_scores["brief_understanding"] if s is not None),
+    }
+
+    return result
+
+
+async def score_async(
+    transcript: List[Dict[str, Any]],
+    scenario: Dict[str, Any],
+    brand: Dict[str, Any],
+    api_client: Optional[AsyncModelAPIClient] = None,
+    models: Optional[List[str]] = None,
+    allow_llm: bool = True,
+) -> Dict[str, Any]:
+    """Async score coherence across creative process stages."""
+    result = {
+        "score": 1.0,
+        "breakdown": {},
+        "evidence": [],
+    }
+
+    stages = _extract_stages(transcript, scenario)
+
+    if not llm_enabled(allow_llm):
+        result["evidence"].append("LLM coherence evaluation skipped (offline mode)")
+        _evaluate_coherence_deterministic(stages, brand, result)
+        return result
+
+    if api_client is None:
+        try:
+            api_client = AsyncModelAPIClient()
+        except ValueError as e:
+            result["evidence"].append(f"ERROR: Cannot initialize API - {e}")
+            _evaluate_coherence_deterministic(stages, brand, result)
+            return result
+
+    judge_models = models or [
+        "claude-sonnet-4-20250514",
+        "gpt-4.1",
+        "gemini-2.0-flash",
+    ]
+
+    all_scores = {
+        "brief_understanding": [],
+        "insight_to_strategy": [],
+        "strategy_to_creative": [],
+        "internal_consistency": [],
+    }
+
+    tasks = [
+        _evaluate_with_model_async(
+            stages, brand, scenario, api_client, model
+        )
+        for model in judge_models
+    ]
+    results = await asyncio.gather(*tasks, return_exceptions=True)
+
+    for model, outcome in zip(judge_models, results):
+        if isinstance(outcome, Exception):
+            result["evidence"].append(f"Judge {model} error: {outcome}")
+            result["evidence"].append(f"Judge {model} failed: {outcome}")
+            continue
+        model_scores, evidence_entry = outcome
+        result["evidence"].append(evidence_entry)
+        for key, value in model_scores.items():
+            all_scores[key].append(value)
+
+    final_scores = {}
+    confidences = {}
+
+    for key, scores in all_scores.items():
+        if scores:
+            final_scores[key] = statistics.mean(scores)
+            confidences[key] = 1.0 - (statistics.stdev(scores) if len(scores) > 1 else 0.0)
+        else:
+            final_scores[key] = 0.5
+            confidences[key] = 0.0
+
+    weights = {
+        "brief_understanding": 0.20,
+        "insight_to_strategy": 0.35,
+        "strategy_to_creative": 0.35,
+        "internal_consistency": 0.10,
+    }
+
+    overall = sum(final_scores[k] * weights[k] for k in weights)
+
     if final_scores["internal_consistency"] < 0.5:
         overall = max(0, overall - 0.30)
         result["evidence"].append("PENALTY: Internal contradictions detected")
@@ -231,6 +331,90 @@ EVIDENCE:
     except Exception as e:
         evidence.append(f"Judge {model} error: {e}")
         raise
+
+
+async def _evaluate_with_model_async(
+    stages: Dict[str, str],
+    brand: Dict[str, Any],
+    scenario: Dict[str, Any],
+    api_client: AsyncModelAPIClient,
+    model: str,
+) -> tuple[Dict[str, float], str]:
+    """Evaluate coherence using a single judge model (async)."""
+
+    prompt = f"""You are evaluating the COHERENCE of a creative process.
+
+**BRAND CONTEXT:**
+- Name: {brand.get('name', 'Unknown')}
+- Voice: {brand.get('voice', 'Not specified')}
+- Audience: {brand.get('audience', 'Not specified')}
+
+**CREATIVE PROCESS OUTPUTS:**
+
+Brief Understanding (Turn 1):
+{stages.get('brief_intake', 'Not provided')}
+
+Insights Generated (Turn 2):
+{stages.get('insight_generation', 'Not provided')}
+
+Strategy/Positioning (Turn 3):
+{stages.get('strategy', 'Not provided')}
+
+Campaign Ideas (Turn 4):
+{stages.get('idea_generation', 'Not provided')}
+
+Idea Selection (Turn 5):
+{stages.get('idea_selection', 'Not provided')}
+
+**EVALUATE COHERENCE:**
+
+1. **BRIEF_UNDERSTANDING (0.0-1.0):**
+   Did the model demonstrate understanding of the brief before proceeding?
+   - 1.0 = Asked clarifying questions, showed comprehension
+   - 0.5 = Adequate understanding but missed nuances
+   - 0.0 = Jumped to tactics without understanding
+
+2. **INSIGHT_TO_STRATEGY (0.0-1.0):**
+   Does the positioning/strategy logically flow from the insights?
+   - 1.0 = Strategy directly addresses tensions identified in insights
+   - 0.5 = Related but connection is loose
+   - 0.0 = Strategy ignores or contradicts insights
+
+3. **STRATEGY_TO_CREATIVE (0.0-1.0):**
+   Do the campaign ideas ladder to the positioning?
+   - 1.0 = All ideas clearly express the positioning
+   - 0.5 = Most ideas connect, some feel disconnected
+   - 0.0 = Ideas don't support the positioning
+
+4. **INTERNAL_CONSISTENCY (0.0-1.0):**
+   Are there contradictions across the process?
+   - 1.0 = Fully consistent, no contradictions
+   - 0.5 = Minor inconsistencies
+   - 0.0 = Major contradictions
+
+**Respond in this exact format:**
+
+BRIEF_UNDERSTANDING: [0.0-1.0]
+INSIGHT_TO_STRATEGY: [0.0-1.0]
+STRATEGY_TO_CREATIVE: [0.0-1.0]
+INTERNAL_CONSISTENCY: [0.0-1.0]
+
+EVIDENCE:
+- Brief: [How well was the brief understood?]
+- Insight→Strategy: [Does positioning flow from insights?]
+- Strategy→Creative: [Do ideas ladder to positioning?]
+- Contradictions: [Any contradictions found, or "none"]"""
+
+    response = await api_client.call_model(
+        model=model,
+        messages=[{"role": "user", "content": prompt}],
+        temperature=0.7,
+        max_tokens=1500,
+    )
+    analysis = response["response"]
+    evidence_entry = f"Judge {model}:\n{analysis[:500]}..."
+
+    return _parse_coherence_evaluation(analysis), evidence_entry
 
 
 def _parse_coherence_evaluation(analysis: str) -> Dict[str, float]:

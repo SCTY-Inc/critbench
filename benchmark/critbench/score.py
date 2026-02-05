@@ -23,13 +23,16 @@ Enhanced features:
 """
 from __future__ import annotations
 
+import asyncio
 import json
+import os
+import threading
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 import yaml
 
-from critbench.api import ModelAPIClient
+from critbench.api import AsyncModelAPIClient, ModelAPIClient
 from critbench.evaluation.scorers import (
     coherence,
     judgment,
@@ -47,6 +50,71 @@ from critbench.evaluation.debate.orchestrator import DebateOrchestrator
 # Default paths
 _PACKAGE_ROOT = Path(__file__).parent.parent.parent
 _DEFAULT_SCORING_CONFIG = _PACKAGE_ROOT / "configs" / "scoring.yaml"
+
+
+def _run_coroutine(coro_factory):
+    """Run a coroutine from sync code, even if an event loop is already running."""
+    try:
+        asyncio.get_running_loop()
+    except RuntimeError:
+        return asyncio.run(coro_factory())
+
+    result: Dict[str, Any] = {}
+    error: Dict[str, BaseException] = {}
+
+    def runner():
+        try:
+            result["value"] = asyncio.run(coro_factory())
+        except BaseException as exc:
+            error["exc"] = exc
+
+    thread = threading.Thread(target=runner)
+    thread.start()
+    thread.join()
+
+    if "exc" in error:
+        raise error["exc"]
+
+    return result.get("value")
+
+
+async def _score_llm_dimensions_async(
+    transcript: List[Dict[str, Any]],
+    scenario: Dict[str, Any],
+    brand: Dict[str, Any],
+    judge_models: List[str],
+    enable_llm: bool,
+) -> Dict[str, Dict[str, Any]]:
+    async with AsyncModelAPIClient() as api_client:
+        tasks = {
+            "coherence": coherence.score_async(
+                transcript,
+                scenario,
+                brand,
+                api_client=api_client,
+                models=judge_models,
+                allow_llm=enable_llm,
+            ),
+            "judgment": judgment.score_async(
+                transcript,
+                scenario,
+                brand,
+                api_client=api_client,
+                models=judge_models,
+                allow_llm=enable_llm,
+            ),
+            "voice": voice.score_async(
+                transcript,
+                scenario,
+                brand,
+                api_client=api_client,
+                models=judge_models,
+                allow_llm=enable_llm,
+            ),
+        }
+        results = await asyncio.gather(*tasks.values())
+
+    return dict(zip(tasks.keys(), results))
 
 
 def score(
@@ -113,13 +181,9 @@ def score(
     with open(scoring_config_path) as f:
         scoring_config = yaml.safe_load(f)
 
-    # Initialize API client if LLM enabled
-    api_client = None
-    if enable_llm:
-        try:
-            api_client = ModelAPIClient()
-        except ValueError:
-            enable_llm = False
+    # Disable LLM scoring if API key is missing
+    if enable_llm and not os.getenv("OPENROUTER_API_KEY"):
+        enable_llm = False
 
     # Anonymize transcript if enabled
     anonymizer = None
@@ -130,7 +194,14 @@ def score(
     # Initialize analysis tools
     bias_detector = BiasDetector() if enable_bias_detection else None
     cot_analyzer = CoTAnalyzer() if enable_cot_analysis else None
-    debate_orchestrator = DebateOrchestrator(api_client) if enable_debate and api_client else None
+    debate_client = None
+    if enable_debate and enable_llm:
+        try:
+            debate_client = ModelAPIClient()
+        except ValueError:
+            debate_client = None
+            enable_debate = False
+    debate_orchestrator = DebateOrchestrator(debate_client) if enable_debate and debate_client else None
 
     # Get judge models from config
     judge_models = scoring_config.get("judging", {}).get("models", [
@@ -145,40 +216,48 @@ def score(
     all_scores_by_dimension: Dict[str, Dict[str, List[float]]] = {}
     debate_results = {}
 
-    # Coherence
-    dimension_results["coherence"] = coherence.score(
-        transcript, scenario, brand,
-        api_client=api_client,
-        models=judge_models,
-        allow_llm=enable_llm,
-    )
-    _collect_scores(dimension_results["coherence"], "coherence", all_scores_by_dimension, judge_models)
-    _analyze_cot(dimension_results["coherence"], "coherence", cot_analyzer, judge_models)
+    llm_results = None
+    if enable_llm:
+        try:
+            llm_results = _run_coroutine(
+                lambda: _score_llm_dimensions_async(
+                    transcript,
+                    scenario,
+                    brand,
+                    judge_models,
+                    enable_llm,
+                )
+            )
+        except ValueError:
+            enable_llm = False
 
-    # Judgment
-    dimension_results["judgment"] = judgment.score(
-        transcript, scenario, brand,
-        api_client=api_client,
-        models=judge_models,
-        allow_llm=enable_llm,
-    )
-    _collect_scores(dimension_results["judgment"], "judgment", all_scores_by_dimension, judge_models)
-    _analyze_cot(dimension_results["judgment"], "judgment", cot_analyzer, judge_models)
+    if enable_llm and llm_results:
+        dimension_results.update(llm_results)
+    else:
+        dimension_results["coherence"] = coherence.score(
+            transcript, scenario, brand,
+            models=judge_models,
+            allow_llm=enable_llm,
+        )
+        dimension_results["judgment"] = judgment.score(
+            transcript, scenario, brand,
+            models=judge_models,
+            allow_llm=enable_llm,
+        )
+        dimension_results["voice"] = voice.score(
+            transcript, scenario, brand,
+            models=judge_models,
+            allow_llm=enable_llm,
+        )
 
-    # Voice
-    dimension_results["voice"] = voice.score(
-        transcript, scenario, brand,
-        api_client=api_client,
-        models=judge_models,
-        allow_llm=enable_llm,
-    )
-    _collect_scores(dimension_results["voice"], "voice", all_scores_by_dimension, judge_models)
-    _analyze_cot(dimension_results["voice"], "voice", cot_analyzer, judge_models)
+    for dim in ["coherence", "judgment", "voice"]:
+        if dim in dimension_results:
+            _collect_scores(dimension_results[dim], dim, all_scores_by_dimension, judge_models)
+            _analyze_cot(dimension_results[dim], dim, cot_analyzer, judge_models)
 
     # Originality
     dimension_results["originality"] = originality.score(
         transcript, scenario, brand,
-        api_client=api_client,
         models=judge_models,
         allow_llm=enable_llm,
     )
@@ -187,7 +266,6 @@ def score(
     # Ethics (autofail dimension)
     dimension_results["ethics"] = ethics.score(
         transcript, scenario, brand,
-        api_client=api_client,
         models=judge_models,
         allow_llm=enable_llm,
     )
@@ -197,7 +275,6 @@ def score(
     # Adaptation
     dimension_results["adaptation"] = adaptation.score(
         transcript, scenario, brand,
-        api_client=api_client,
         models=judge_models,
         allow_llm=enable_llm,
     )
@@ -243,9 +320,9 @@ def score(
     if cot_analyzer:
         cot_report = cot_analyzer.get_report()
 
-    # Close API client
-    if api_client:
-        api_client.close()
+    # Close debate client
+    if debate_client:
+        debate_client.close()
 
     result = {
         "overall_percentage": overall * 100,
