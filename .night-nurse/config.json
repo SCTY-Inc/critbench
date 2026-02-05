@@ -1,0 +1,16 @@
+{
+  "name": "critbench",
+  "path": "/home/deploy/scty-repos/critbench",
+  "agents": {
+    "review": "claude",
+    "implement": "codex"
+  },
+  "maxIterations": 25,
+  "priorities": {
+    "sources": [
+      "sentry",
+      "specs",
+      "backlog"
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+🔮 Nightly Improvement Agent: critbench
+   Date: 2026-01-27
+📝 Running code review...
+🔬 Running research agent...
+✨ Running feature discovery...
+🤖 AI Code Review: critbench (using claude)
+Running Claude Code review...
+✅ Review saved: /home/deploy/projects/critbench/reports/ai-review-2026-01-27.md
+
+📋 Quick wins found:
+🤖 AI Code Review: critbench (using claude)
+📖 Loaded nightly brief for context
+Running Claude Code review...
+✅ Review saved: /home/deploy/scty-repos/critbench/reports/ai-review-2026-01-28.md
+
+📋 Quick wins found:
+- 001: LLM-based detection for ethics
+- 002: `_collect_scores` defeats multi-judge reliability
+- 003: Confidence calculation can go negative
+- 004: Redundant no-op in `parse_coherence_evaluation`
+- 005: No tests for `score.py`
+- 006: No tests for the 6 scorers
+- 007: No tests for `client.py`
+
+---
+/bin/sh: 1: /home/deploy/clawd/skills/ralph-wiggum/scripts/ai-review.sh: not found
+/bin/sh: 1: /home/deploy/clawd/skills/ralph-wiggum/scripts/ai-review.sh: not found
+/bin/sh: 1: /home/deploy/clawd/skills/ralph-wiggum/scripts/ai-review.sh: not found

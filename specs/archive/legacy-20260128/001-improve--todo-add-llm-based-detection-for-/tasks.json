@@ -1,0 +1,75 @@
+{
+  "spec": "001-improve--todo-add-llm-based-detection-for-",
+  "tasks": [
+    {
+      "id": "T-001",
+      "title": "Investigate ethics scorer structure and TODO context",
+      "description": "Read the ethics.py scorer file to understand the current manipulation detection logic, the TODO at line 89, and how the scorer integrates with the rest of the evaluation framework. Identify what 'subtle manipulation' means in this context, what LLM client/utilities are already available in the codebase, and what patterns other scorers use for LLM-based evaluation.",
+      "acceptanceCriteria": [
+        "Run `cat ./benchmark/critbench/evaluation/scorers/ethics.py` — exits with code 0",
+        "Run `find ./benchmark/critbench -name '*.py' | head -30` — exits with code 0"
+      ],
+      "passes": false
+    },
+    {
+      "id": "T-002",
+      "title": "Identify existing LLM client utilities and scorer patterns",
+      "description": "Search the critbench codebase for existing LLM API client wrappers, prompt utilities, and other scorers that already use LLM-based evaluation. This determines what infrastructure is available to reuse for the new detection capability.",
+      "acceptanceCriteria": [
+        "Run `grep -rn 'llm\\|openai\\|anthropic\\|client\\|prompt' ./benchmark/critbench/evaluation/ --include='*.py' | head -40` — exits with code 0",
+        "Run `grep -rn 'class.*Scorer' ./benchmark/critbench/evaluation/scorers/ --include='*.py'` — exits with code 0"
+      ],
+      "passes": false
+    },
+    {
+      "id": "T-003",
+      "title": "Implement LLM-based subtle manipulation detection method",
+      "description": "Add a method to the ethics scorer that uses an LLM to evaluate responses for subtle manipulation tactics such as emotional exploitation, false urgency, misleading framing, or coercive persuasion. The method should construct a structured prompt, call the existing LLM client, parse the result into a score, and return it. Follow the patterns established by other LLM-based scorers in the codebase.",
+      "acceptanceCriteria": [
+        "File `./benchmark/critbench/evaluation/scorers/ethics.py` contains `def _detect_subtle_manipulation` or `def detect_subtle_manipulation`",
+        "Run `python -m py_compile ./benchmark/critbench/evaluation/scorers/ethics.py` — exits with code 0"
+      ],
+      "passes": false
+    },
+    {
+      "id": "T-004",
+      "title": "Integrate manipulation detection into the scoring pipeline",
+      "description": "Wire the new LLM-based manipulation detection method into the main scoring flow of the ethics scorer, so it is called during evaluation and its result contributes to the overall ethics score. Ensure graceful fallback if the LLM call fails.",
+      "acceptanceCriteria": [
+        "Run `grep -n 'detect.*manipulation\\|manipulation.*detect' ./benchmark/critbench/evaluation/scorers/ethics.py` — returns 1 or more matches",
+        "Run `python -m py_compile ./benchmark/critbench/evaluation/scorers/ethics.py` — exits with code 0"
+      ],
+      "passes": false
+    },
+    {
+      "id": "T-005",
+      "title": "Remove the TODO comment from ethics.py",
+      "description": "Delete the TODO comment at line 89 (or its current location) since the feature it describes has now been implemented.",
+      "acceptanceCriteria": [
+        "File `./benchmark/critbench/evaluation/scorers/ethics.py` no longer contains `# TODO: Add LLM-based detection for subtle manipulation`",
+        "Run `python -m py_compile ./benchmark/critbench/evaluation/scorers/ethics.py` — exits with code 0"
+      ],
+      "passes": false
+    },
+    {
+      "id": "T-006",
+      "title": "Add unit tests for manipulation detection",
+      "description": "Create or extend test cases for the ethics scorer to cover the new LLM-based manipulation detection. Include tests for: a clearly manipulative response, a benign response, and graceful handling of LLM client failure.",
+      "acceptanceCriteria": [
+        "Run `find ./benchmark/critbench -path '*/test*' -name '*.py' | xargs grep -l 'manipulation\\|ethics' 2>/dev/null | head -5` — returns 1 or more matches",
+        "Run `python -m py_compile $(find ./benchmark/critbench -path '*/test*' -name '*.py' | xargs grep -l 'manipulation\\|ethics' 2>/dev/null | head -1)` — exits with code 0"
+      ],
+      "passes": false
+    },
+    {
+      "id": "T-007",
+      "title": "Run tests and verify TODO is resolved",
+      "description": "Execute the project test suite to confirm nothing is broken, and verify the TODO comment has been fully removed from the codebase.",
+      "acceptanceCriteria": [
+        "Run `cd ./benchmark/critbench && pytest --tb=short -q 2>/dev/null || echo 'no pytest'` — exits with code 0",
+        "Run `grep -rn '# TODO: Add LLM-based dete' ./benchmark/critbench/evaluation/scorers/ethics.py || echo 'TODO resolved'` — output contains 'TODO resolved'"
+      ],
+      "passes": false
+    }
+  ]
+}

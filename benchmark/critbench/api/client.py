@@ -11,6 +11,26 @@ from typing import Any, Dict, List, Optional
 
 import httpx
 
+_OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
+_MODEL_MAP = {
+    "claude-sonnet-4-20250514": "anthropic/claude-sonnet-4-20250514",
+    "gpt-4.1": "openai/gpt-4.1",
+    "gemini-2.0-flash": "google/gemini-2.0-flash-001",
+}
+
+
+def _resolve_openrouter_model(model: str) -> str:
+    return _MODEL_MAP.get(model, model)
+
+
+def _build_headers(api_key: str) -> Dict[str, str]:
+    return {
+        "Authorization": f"Bearer {api_key}",
+        "Content-Type": "application/json",
+        "HTTP-Referer": "https://critbench.dev",
+        "X-Title": "CritBench",
+    }
+
 
 class ModelAPIClient:
     """Unified API client for multiple LLM providers."""
@@ -49,23 +69,11 @@ class ModelAPIClient:
         Returns:
             Dict with "response" key containing the model output
         """
-        # Map model names to OpenRouter identifiers
-        model_map = {
-            "claude-sonnet-4-20250514": "anthropic/claude-sonnet-4-20250514",
-            "gpt-4.1": "openai/gpt-4.1",
-            "gemini-2.0-flash": "google/gemini-2.0-flash-001",
-        }
-
-        openrouter_model = model_map.get(model, model)
+        openrouter_model = _resolve_openrouter_model(model)
 
         response = self._client.post(
-            "https://openrouter.ai/api/v1/chat/completions",
-            headers={
-                "Authorization": f"Bearer {self.openrouter_api_key}",
-                "Content-Type": "application/json",
-                "HTTP-Referer": "https://critbench.dev",
-                "X-Title": "CritBench",
-            },
+            _OPENROUTER_URL,
+            headers=_build_headers(self.openrouter_api_key),
             json={
                 "model": openrouter_model,
                 "messages": messages,
@@ -92,6 +100,66 @@ class ModelAPIClient:
 
     def __exit__(self, *args):
         self.close()
+
+
+class AsyncModelAPIClient:
+    """Async API client for multiple LLM providers."""
+
+    def __init__(
+        self,
+        openrouter_api_key: Optional[str] = None,
+        timeout: float = 120.0,
+    ):
+        self.openrouter_api_key = openrouter_api_key or os.getenv("OPENROUTER_API_KEY")
+        self.timeout = timeout
+
+        if not self.openrouter_api_key:
+            raise ValueError(
+                "OPENROUTER_API_KEY required for multi-judge scoring. "
+                "Set via environment variable or pass to constructor."
+            )
+
+        self._client = httpx.AsyncClient(timeout=timeout)
+
+    async def call_model(
+        self,
+        model: str,
+        messages: List[Dict[str, str]],
+        temperature: float = 0.7,
+        max_tokens: int = 2000,
+    ) -> Dict[str, Any]:
+        """Call a model via OpenRouter (async)."""
+        openrouter_model = _resolve_openrouter_model(model)
+
+        response = await self._client.post(
+            _OPENROUTER_URL,
+            headers=_build_headers(self.openrouter_api_key),
+            json={
+                "model": openrouter_model,
+                "messages": messages,
+                "temperature": temperature,
+                "max_tokens": max_tokens,
+            },
+        )
+
+        response.raise_for_status()
+        data = response.json()
+
+        return {
+            "response": data["choices"][0]["message"]["content"],
+            "model": openrouter_model,
+            "usage": data.get("usage", {}),
+        }
+
+    async def close(self):
+        """Close the HTTP client."""
+        await self._client.aclose()
+
+    async def __aenter__(self):
+        return self
+
+    async def __aexit__(self, *args):
+        await self.close()
 
 
 def resolve_scorer_model(

@@ -57,3 +57,10 @@ htmlcov/
 
 # ruff
 .ruff_cache/
+
+# Ralph Wiggum
+logs/ralph/
+*.tmp
+
+# Night Nurse
+logs/night-nurse.log

@@ -1,0 +1,85 @@
+{
+  "spec": "007-no-tests-for-client-py",
+  "tasks": [
+    {
+      "id": "T-001",
+      "title": "Investigate client.py and existing test patterns",
+      "description": "Read client.py, ethics.py, test_debate.py, and pyproject.toml to understand the ModelAPIClient interface, ethics autofail logic, debate score convergence behavior, and existing test conventions before writing any code.",
+      "acceptanceCriteria": [
+        "File benchmark/critbench/api/client.py has been read and ModelAPIClient.call_model signature, model_map dict, and resolve_scorer_model are documented",
+        "File benchmark/critbench/evaluation/scorers/ethics.py has been read and DARK_PATTERN_KEYWORDS plus autofail substring-match logic are documented",
+        "File benchmark/tests/test_debate.py has been read and test_run_debate_with_mock_responses (lines 125-148) assertion gaps are documented",
+        "File benchmark/critbench/evaluation/debate/orchestrator.py has been read and DebateResult.final_scores / final_mean fields are documented"
+      ],
+      "passes": false
+    },
+    {
+      "id": "T-002",
+      "title": "Create test file for ModelAPIClient",
+      "description": "Add benchmark/tests/test_client.py with tests covering: successful call_model with mocked httpx response, model-name mapping (all three entries plus passthrough), missing API key raises ValueError, HTTP error propagation, malformed JSON response handling, and the context-manager protocol.",
+      "acceptanceCriteria": [
+        "File benchmark/tests/test_client.py exists",
+        "Run `python -c \"import ast; ast.parse(open('benchmark/tests/test_client.py').read())\"` from /home/deploy/scty-repos/critbench — exits with code 0",
+        "grep -c 'def test_' benchmark/tests/test_client.py — returns 6 or more matches",
+        "grep 'call_model' benchmark/tests/test_client.py — returns 1 or more matches",
+        "grep 'model_map' benchmark/tests/test_client.py OR grep 'anthropic/claude' benchmark/tests/test_client.py — returns 1 or more matches",
+        "grep 'ValueError' benchmark/tests/test_client.py — returns 1 or more matches"
+      ],
+      "passes": false
+    },
+    {
+      "id": "T-003",
+      "title": "Add resolve_scorer_model tests to test_client.py",
+      "description": "Add tests for the resolve_scorer_model helper: verify default model assignment for each scorer name (coherence, judgment, voice, originality, ethics, adaptation), verify unknown scorer returns fallback, verify explicit default override.",
+      "acceptanceCriteria": [
+        "grep 'resolve_scorer_model' benchmark/tests/test_client.py — returns 1 or more matches",
+        "grep -c 'def test_.*scorer' benchmark/tests/test_client.py — returns 2 or more matches"
+      ],
+      "passes": false
+    },
+    {
+      "id": "T-004",
+      "title": "Add score-convergence assertion to debate test",
+      "description": "Extend test_run_debate_with_mock_responses in test_debate.py to assert that result.final_scores exist, that result.final_mean is close to 0.7 (the mock REVISED_SCORE), and that result.rounds[0].revised_scores values moved toward 0.7. This catches bugs where debate rounds run but scores are not updated.",
+      "acceptanceCriteria": [
+        "grep 'final_scores' benchmark/tests/test_debate.py — returns 1 or more matches",
+        "grep 'final_mean' benchmark/tests/test_debate.py — returns 1 or more matches",
+        "grep '0.7' benchmark/tests/test_debate.py — returns 2 or more matches (mock value + assertion)"
+      ],
+      "passes": false
+    },
+    {
+      "id": "T-005",
+      "title": "Add ethics false-positive tests",
+      "description": "Create benchmark/tests/test_ethics.py with tests verifying that benign text containing dark-pattern substrings does not trigger autofail. Test cases: 'we'll be available 24 hours a day' (contains '24 hours'), 'hurry up and finish your homework' (contains 'hurry'), and at least one sentence with 'right now' in a benign context. Also include a positive-detection test confirming actual dark patterns do trigger autofail.",
+      "acceptanceCriteria": [
+        "File benchmark/tests/test_ethics.py exists",
+        "Run `python -c \"import ast; ast.parse(open('benchmark/tests/test_ethics.py').read())\"` from /home/deploy/scty-repos/critbench — exits with code 0",
+        "grep -c 'def test_' benchmark/tests/test_ethics.py — returns 4 or more matches",
+        "grep 'autofail' benchmark/tests/test_ethics.py — returns 1 or more matches",
+        "grep '24 hours' benchmark/tests/test_ethics.py — returns 1 or more matches"
+      ],
+      "passes": false
+    },
+    {
+      "id": "T-006",
+      "title": "Run full test suite and fix failures",
+      "description": "Run pytest from the project root to execute all tests including the new test_client.py, test_ethics.py, and the updated test_debate.py. Fix any import errors, assertion failures, or mock issues until the suite passes. Note: ethics false-positive tests are expected to fail initially since the current substring matching produces false positives by design — mark those specific tests with pytest.mark.xfail(reason='known false-positive gap') if the ethics scorer is not being fixed in this spec.",
+      "acceptanceCriteria": [
+        "Run `cd /home/deploy/scty-repos/critbench && python -m pytest --tb=short -q` — exits with code 0",
+        "Run `cd /home/deploy/scty-repos/critbench && python -m pytest --tb=short -q` output contains 'passed' and does not contain 'ERROR'"
+      ],
+      "passes": false
+    },
+    {
+      "id": "T-007",
+      "title": "Verify no regressions in existing tests",
+      "description": "Run only the pre-existing test files (test_debate.py, test_metrics.py, test_preprocessing.py, test_rotation.py) to confirm no regressions were introduced by the changes to test_debate.py.",
+      "acceptanceCriteria": [
+        "Run `cd /home/deploy/scty-repos/critbench && python -m pytest benchmark/tests/test_debate.py benchmark/tests/test_metrics.py benchmark/tests/test_preprocessing.py benchmark/tests/test_rotation.py --tb=short -q` — exits with code 0",
+        "Run `cd /home/deploy/scty-repos/critbench && python -m py_compile benchmark/critbench/api/client.py` — exits with code 0"
+      ],
+      "passes": false
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "spec": "006-no-tests-for-any-of-the-6-scorers",
+  "tasks": [
+    {
+      "id": "T-001",
+      "title": "Investigate scorer modules and existing test patterns",
+      "description": "Read all 6 scorer files (coherence.py, judgment.py, voice.py, originality.py, ethics.py, adaptation.py) and the existing test files in benchmark/tests/ to catalog testable logic, function signatures, and the project's test conventions.",
+      "acceptanceCriteria": [
+        "Run `ls /home/deploy/scty-repos/critbench/benchmark/critbench/evaluation/scorers/` — lists coherence.py, judgment.py, voice.py, originality.py, ethics.py, adaptation.py",
+        "Run `ls /home/deploy/scty-repos/critbench/benchmark/tests/` — lists existing test files confirming test directory exists",
+        "Run `grep -r 'def test_' /home/deploy/scty-repos/critbench/benchmark/tests/` — returns matches only in test_metrics.py, test_rotation.py, test_preprocessing.py, test_debate.py (no scorer tests exist yet)"
+      ],
+      "passes": false
+    },
+    {
+      "id": "T-002",
+      "title": "Create tests for ethics.py keyword matching and autofail logic",
+      "description": "Write test_ethics.py covering the deterministic dark-pattern keyword detection: matching each category (fake_scarcity, fake_urgency, fake_social_proof, guilt_tripping, fear_mongering), case-insensitivity, autofail trigger when patterns found, clean transcript returning score 1.0, and edge cases like partial keyword matches embedded in other words.",
+      "acceptanceCriteria": [
+        "File `/home/deploy/scty-repos/critbench/benchmark/tests/test_ethics.py` exists",
+        "Run `grep -c 'def test_' /home/deploy/scty-repos/critbench/benchmark/tests/test_ethics.py` — returns 6 or more",
+        "Run `cd /home/deploy/scty-repos/critbench && python -m pytest benchmark/tests/test_ethics.py -v --tb=short` — exits with code 0"
+      ],
+      "passes": false
+    },
+    {
+      "id": "T-003",
+      "title": "Create tests for coherence.py parse function and scoring logic",
+      "description": "Write test_coherence.py covering _parse_coherence_evaluation: well-formed input, missing keys returning defaults of 0.5, out-of-range values clamped to [0.0, 1.0], malformed lines silently skipped, empty string input, and extra text after colon values. Also test the internal_consistency penalty logic and deterministic fallback path.",
+      "acceptanceCriteria": [
+        "File `/home/deploy/scty-repos/critbench/benchmark/tests/test_coherence.py` exists",
+        "Run `grep -c 'def test_' /home/deploy/scty-repos/critbench/benchmark/tests/test_coherence.py` — returns 6 or more",
+        "Run `cd /home/deploy/scty-repos/critbench && python -m pytest benchmark/tests/test_coherence.py -v --tb=short` — exits with code 0"
+      ],
+      "passes": false
+    },
+    {
+      "id": "T-004",
+      "title": "Create tests for judgment.py parse function and scoring logic",
+      "description": "Write test_judgment.py covering _parse_judgment_evaluation: well-formed input, defaults for missing keys, clamping, malformed lines, and the deterministic fallback that checks for reasoning keywords like 'because' and 'tradeoff'. Also test the selection_reasoning penalty.",
+      "acceptanceCriteria": [
+        "File `/home/deploy/scty-repos/critbench/benchmark/tests/test_judgment.py` exists",
+        "Run `grep -c 'def test_' /home/deploy/scty-repos/critbench/benchmark/tests/test_judgment.py` — returns 5 or more",
+        "Run `cd /home/deploy/scty-repos/critbench && python -m pytest benchmark/tests/test_judgment.py -v --tb=short` — exits with code 0"
+      ],
+      "passes": false
+    },
+    {
+      "id": "T-005",
+      "title": "Create tests for voice.py banned-phrase checker and parse function",
+      "description": "Write test_voice.py covering _check_banned_phrases (case-insensitive regex matching, deduplication, empty lists), _parse_voice_evaluation (well-formed input including 'value - comment' format, defaults, clamping), and the deterministic fallback with keyword/overlap analysis.",
+      "acceptanceCriteria": [
+        "File `/home/deploy/scty-repos/critbench/benchmark/tests/test_voice.py` exists",
+        "Run `grep -c 'def test_' /home/deploy/scty-repos/critbench/benchmark/tests/test_voice.py` — returns 6 or more",
+        "Run `cd /home/deploy/scty-repos/critbench && python -m pytest benchmark/tests/test_voice.py -v --tb=short` — exits with code 0"
+      ],
+      "passes": false
+    },
+    {
+      "id": "T-006",
+      "title": "Create tests for originality.py and adaptation.py stub scorers",
+      "description": "Write test_originality.py and test_adaptation.py verifying the placeholder implementations return expected stub structures: score of 0.5, correct breakdown keys, and evidence noting 'not yet implemented'. These tests lock in the stub contract so future implementations don't break callers.",
+      "acceptanceCriteria": [
+        "File `/home/deploy/scty-repos/critbench/benchmark/tests/test_originality.py` exists",
+        "File `/home/deploy/scty-repos/critbench/benchmark/tests/test_adaptation.py` exists",
+        "Run `cd /home/deploy/scty-repos/critbench && python -m pytest benchmark/tests/test_originality.py benchmark/tests/test_adaptation.py -v --tb=short` — exits with code 0"
+      ],
+      "passes": false
+    },
+    {
+      "id": "T-007",
+      "title": "Verify full test suite passes with no regressions",
+      "description": "Run the complete test suite including all existing tests and all new scorer tests to confirm nothing is broken. Also run py_compile on all scorer files to verify no syntax issues.",
+      "acceptanceCriteria": [
+        "Run `cd /home/deploy/scty-repos/critbench && python -m pytest benchmark/tests/ -v --tb=short` — exits with code 0",
+        "Run `python -m py_compile /home/deploy/scty-repos/critbench/benchmark/critbench/evaluation/scorers/ethics.py` — exits with code 0",
+        "Run `python -m py_compile /home/deploy/scty-repos/critbench/benchmark/critbench/evaluation/scorers/coherence.py` — exits with code 0",
+        "Run `grep -c 'test_' /home/deploy/scty-repos/critbench/benchmark/tests/test_ethics.py /home/deploy/scty-repos/critbench/benchmark/tests/test_coherence.py /home/deploy/scty-repos/critbench/benchmark/tests/test_judgment.py /home/deploy/scty-repos/critbench/benchmark/tests/test_voice.py /home/deploy/scty-repos/critbench/benchmark/tests/test_originality.py /home/deploy/scty-repos/critbench/benchmark/tests/test_adaptation.py` — all 6 files listed with counts greater than 0"
+      ],
+      "passes": false
+    }
+  ]
+}

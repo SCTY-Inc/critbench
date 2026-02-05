@@ -1,0 +1,56 @@
+[
+  {
+    "title": "Bug: `_collect_scores` defeats the purpose of multi-judge reliability analysis",
+    "effort": "unknown",
+    "slug": "bug-collect-scores-defeats-the-purpose-of-multi-judge-reliab",
+    "source": "ai-review-2026-01-27",
+    "status": "actioned",
+    "type": "bug",
+    "body": "**`score.py:282-299`** — The `_collect_scores` helper is supposed to collect per-judge scores for computing inter-rater reliability (Krippendorff's alpha, ICC). Instead, it copies the *same* final aggregated score to every model entry:\n\n```python\nfinal_score = dim_result.get(\"score\", 0.5)\nfor model in models:\n    all_scores[dimension][model].append(final_score)\n```\n\nThis means the reliability metrics will always show perfect agreement because every judge gets assigned identical values. The comment on line 295-296 acknowledges the limitation. This is not a minor TODO — it renders the entire reliability/bias detection pipeline meaningless. Either the individual scorer modules need to return per-judge breakdowns, or this code shouldn't report reliability metrics at all (it currently reports fake reliability)."
+  },
+  {
+    "title": "Bug: `confidence` calculation can go negative",
+    "effort": "unknown",
+    "slug": "bug-confidence-calculation-can-go-negative",
+    "source": "ai-review-2026-01-27",
+    "status": "actioned",
+    "type": "bug",
+    "body": "**`coherence.py:87`** — Confidence is computed as `1.0 - stdev(scores)`. Standard deviation for scores between 0 and 1 can reach ~0.5, but there's no floor. If judges wildly disagree (stdev > 1.0 from future score ranges or data errors), confidence goes negative. Should be `max(0.0, 1.0 - stdev)`."
+  },
+  {
+    "title": "Bug: Redundant no-op in `_parse_coherence_evaluation`",
+    "effort": "unknown",
+    "slug": "bug-redundant-no-op-in-parse-coherence-evaluation",
+    "source": "ai-review-2026-01-27",
+    "status": "actioned",
+    "type": "bug",
+    "body": "**`coherence.py:248-249`** — The line:\n```python\nlabel = key.upper().replace(\"_\", \"_\")\n```\n`.replace(\"_\", \"_\")` does nothing. The same no-op is repeated on line 249. This looks like a find/replace artifact. The parsing logic works only because both sides of the comparison do the same no-op, but it obscures intent.\n\n### API client not closed on exception paths\n**`score.py:118-122`** — If `ModelAPIClient()` init succeeds but any scorer raises an exception, `api_client.close()` at line 248 is never reached. The client supports context manager protocol (`__enter__`/`__exit__`) but `score()` doesn't use it. An uncaught exception during scoring leaks an open `httpx.Client`.\n\n### `score_with_rotation` creates ephemeral `ScenarioRotator` — usage tracking is lost\n**`score.py:385-413`** — A fresh `ScenarioRotator` is constructed every call. Line 413 records usage (`rotator.record_usage(...)`) on this ephemeral object that's immediately garbage collected. The rotation tracking is stateless and never persists, so the contamination-prevention mechanism does nothing across runs.\n\n### Global mutable state in `llm_mode.py`\n**`llm_mode.py:7`** — `_LLM_ENABLED` is a module-level global, mutated via `set_llm_enabled()`. This is process-wide shared state with no thread safety. In any concurrent execution (parallel benchmark runs, test parallelism), one call to `set_llm_enabled(False)` silently disables LLM for all callers.\n\n### Ethics scorer uses naive keyword matching\n**`ethics.py:70-77`** — Substring matching on lowercased text means \"24 hours\" matches \"available 24 hours a day\" and \"right now\" matches \"the right now-moment\". This creates false positives on legitimate creative copy. The scanner also can't detect semantic dark patterns that don't use exact keyword phrases."
+  },
+  {
+    "title": "No tests for `score.py`, the core public API",
+    "effort": "unknown",
+    "slug": "no-tests-for-score-py-the-core-public-api",
+    "source": "ai-review-2026-01-27",
+    "status": "actioned",
+    "type": "improvement",
+    "body": "There is no `test_score.py`. The `score()`, `score_with_rewards()`, and `score_with_rotation()` functions — the primary public API — have zero test coverage. These are complex orchestration functions with multiple code paths (LLM on/off, debate, anonymization, autofail)."
+  },
+  {
+    "title": "No tests for any of the 6 scorers",
+    "effort": "unknown",
+    "slug": "no-tests-for-any-of-the-6-scorers",
+    "source": "ai-review-2026-01-27",
+    "status": "actioned",
+    "type": "improvement",
+    "body": "There are no tests for `coherence.py`, `judgment.py`, `voice.py`, `originality.py`, `ethics.py`, or `adaptation.py`. The ethics scorer has testable deterministic logic (keyword matching) that should be covered. The coherence parser (`_parse_coherence_evaluation`) handles string parsing that is fragile and needs edge-case tests."
+  },
+  {
+    "title": "No tests for `client.py`",
+    "effort": "unknown",
+    "slug": "no-tests-for-client-py",
+    "source": "ai-review-2026-01-27",
+    "status": "actioned",
+    "type": "improvement",
+    "body": "`ModelAPIClient` is untested. The `call_model` method does HTTP calls, response parsing, and model-name mapping — all of which can be tested with mocked responses.\n\n### Debate test doesn't verify score convergence\n**`test_debate.py:125-148`** — `test_run_debate_with_mock_responses` verifies the debate triggered and rounds ran, but doesn't assert that final scores moved toward the mock-returned value of 0.7. The test can't catch a bug where debate rounds run but scores aren't updated.\n\n### Test coverage gap: ethics false positives\nNo test verifies that benign text containing dark-pattern substrings (e.g., \"we'll be available 24 hours a day\") correctly avoids autofail. This is the most dangerous gap given ethics triggers autofail → overall score = 0."
+  }
+]
