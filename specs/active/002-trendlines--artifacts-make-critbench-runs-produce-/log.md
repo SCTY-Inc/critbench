@@ -66,3 +66,7 @@ Result: ✓ Complete
 ### Iteration 16 - 04:17:51
 Task: 6.1 Run full test suite (`pytest benchmark/tests/ -v`) — all tests pass.
 Result: ✓ Complete
+
+### Iteration 17 - 04:18:16
+Task: 6.2 Run type check (`mypy benchmark/critbench/`) — no new errors.
+Result: ✓ Complete
