@@ -30,3 +30,7 @@ Result: ✓ Complete
 ### Iteration 7 - 04:12:03
 Task: 3.1 Create `benchmark/critbench/results/summary.py` with `SummaryRenderer` class. Constructor takes `results_dir`. Method: `render(scenario_id: Optional[str] = None) -> str` returns markdown string and writes to `SUMMARY.md`.
 Result: ✓ Complete
+
+### Iteration 8 - 04:12:49
+Task: 3.2 Implement leaderboard table: dimensions sorted by weight descending, columns Dimension | Score | Weight | Weighted | Delta. Use `▲`/`▼`/`—` for delta direction. Include overall score row.
+Result: ✓ Complete
