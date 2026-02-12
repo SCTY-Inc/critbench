@@ -14,3 +14,7 @@ Result: ✓ Complete
 ### Iteration 3 - 04:09:21
 Task: 1.3 Write tests in `benchmark/tests/test_results.py` for schema validation: round-trip serialization, rejection of invalid data, run_id format regex.
 Result: ✓ Complete
+
+### Iteration 4 - 04:10:12
+Task: 2.1 Create `benchmark/critbench/results/__init__.py` and `benchmark/critbench/results/writer.py` with `ResultsWriter` class. Constructor takes `results_dir: str | Path`. Methods: `write(result: BenchmarkResult) -> Path` (writes per-run JSON + updates index), `read_index() -> list[IndexEntry]`, `load_result(run_id: str) -> BenchmarkResult`.
+Result: ✓ Complete

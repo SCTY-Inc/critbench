@@ -7,7 +7,7 @@
 - [x] 1.3 Write tests in `benchmark/tests/test_results.py` for schema validation: round-trip serialization, rejection of invalid data, run_id format regex.
 
 ## 2. Results Writer
-- [ ] 2.1 Create `benchmark/critbench/results/__init__.py` and `benchmark/critbench/results/writer.py` with `ResultsWriter` class. Constructor takes `results_dir: str | Path`. Methods: `write(result: BenchmarkResult) -> Path` (writes per-run JSON + updates index), `read_index() -> list[IndexEntry]`, `load_result(run_id: str) -> BenchmarkResult`.
+- [x] 2.1 Create `benchmark/critbench/results/__init__.py` and `benchmark/critbench/results/writer.py` with `ResultsWriter` class. Constructor takes `results_dir: str | Path`. Methods: `write(result: BenchmarkResult) -> Path` (writes per-run JSON + updates index), `read_index() -> list[IndexEntry]`, `load_result(run_id: str) -> BenchmarkResult`.
 - [ ] 2.2 Implement atomic index writes: read existing index, append new entry, write to temp file, rename over original.
 - [ ] 2.3 Write tests: first write creates dir + index, second write appends, `load_result` round-trips, corrupt/missing index is handled gracefully.
 
