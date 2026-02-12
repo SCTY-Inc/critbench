@@ -10,3 +10,7 @@ Result: ✓ Complete
 ### Iteration 2 - 04:08:40
 Task: 1.2 Create `IndexEntry` Pydantic model (in same file or `results/` package): `run_id`, `timestamp`, `scenario_id`, `overall_score`, `overall_percentage`.
 Result: ✓ Complete
+
+### Iteration 3 - 04:09:21
+Task: 1.3 Write tests in `benchmark/tests/test_results.py` for schema validation: round-trip serialization, rejection of invalid data, run_id format regex.
+Result: ✓ Complete
