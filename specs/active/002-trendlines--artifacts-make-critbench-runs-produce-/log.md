@@ -46,3 +46,7 @@ Result: ✓ Complete
 ### Iteration 11 - 04:14:40
 Task: 3.5 Write tests: summary with no prior run (dashes for deltas), summary with prior run (correct delta values and arrows), per-judge section present/absent.
 Result: ✓ Complete
+
+### Iteration 12 - 04:15:22
+Task: 4.1 Add `results_dir: Optional[str] = None` parameter to `score()` in `score.py`. When set: wrap result in `BenchmarkResult`, call `ResultsWriter.write()`, call `SummaryRenderer.render()`, add `run_id` to returned dict. Wrap in try/except so persistence failures are logged but don't break scoring.
+Result: ✓ Complete

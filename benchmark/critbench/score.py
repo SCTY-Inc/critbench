@@ -25,6 +25,7 @@ from __future__ import annotations
 
 import asyncio
 import json
+import logging
 import os
 import threading
 from pathlib import Path
@@ -46,10 +47,14 @@ from critbench.evaluation.metrics.reliability import compute_reliability
 from critbench.evaluation.metrics.cot_quality import CoTAnalyzer
 from critbench.evaluation.preprocessing.anonymizer import Anonymizer
 from critbench.evaluation.debate.orchestrator import DebateOrchestrator
+from critbench.models.result import BenchmarkResult
+from critbench.results.writer import ResultsWriter
+from critbench.results.summary import SummaryRenderer
 
 # Default paths
 _PACKAGE_ROOT = Path(__file__).parent.parent.parent
 _DEFAULT_SCORING_CONFIG = _PACKAGE_ROOT / "configs" / "scoring.yaml"
+logger = logging.getLogger(__name__)
 
 
 def _run_coroutine(coro_factory):
@@ -145,6 +150,7 @@ def score(
     transcript_path: str,
     scenario_path: str,
     brand_path: Optional[str] = None,
+    results_dir: Optional[str] = None,
     scoring_config_path: Optional[str] = None,
     enable_llm: bool = True,
     enable_debate: bool = False,
@@ -160,6 +166,7 @@ def score(
             Format: {"turn": int, "role": "user"|"assistant", "content": str}
         scenario_path: Path to scenario JSON file.
         brand_path: Path to brand YAML file. If None, uses brand from scenario.
+        results_dir: Optional directory to persist result JSON/index/summary artifacts.
         scoring_config_path: Path to scoring weights YAML.
         enable_llm: Enable multi-judge LLM scoring.
         enable_debate: Enable multi-agent debate for disagreements.
@@ -374,6 +381,17 @@ def score(
 
     if debate_results:
         result["debate_results"] = debate_results
+
+    if results_dir:
+        try:
+            scenario_id = str(result.get("metadata", {}).get("scenario_id") or "unknown")
+            benchmark_result = BenchmarkResult.from_score_result(result, scenario_id=scenario_id)
+            writer = ResultsWriter(results_dir=results_dir)
+            writer.write(benchmark_result)
+            SummaryRenderer(results_dir=results_dir).render(scenario_id=scenario_id)
+            result["run_id"] = benchmark_result.run_id
+        except Exception:
+            logger.exception("Failed to persist benchmark results to %s", results_dir)
 
     return result
 

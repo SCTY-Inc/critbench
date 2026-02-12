@@ -19,7 +19,7 @@
 - [x] 3.5 Write tests: summary with no prior run (dashes for deltas), summary with prior run (correct delta values and arrows), per-judge section present/absent.
 
 ## 4. Integration
-- [ ] 4.1 Add `results_dir: Optional[str] = None` parameter to `score()` in `score.py`. When set: wrap result in `BenchmarkResult`, call `ResultsWriter.write()`, call `SummaryRenderer.render()`, add `run_id` to returned dict. Wrap in try/except so persistence failures are logged but don't break scoring.
+- [x] 4.1 Add `results_dir: Optional[str] = None` parameter to `score()` in `score.py`. When set: wrap result in `BenchmarkResult`, call `ResultsWriter.write()`, call `SummaryRenderer.render()`, add `run_id` to returned dict. Wrap in try/except so persistence failures are logged but don't break scoring.
 - [ ] 4.2 Write integration test: call `score()` with `results_dir` pointing to a tmp dir, verify JSON file and SUMMARY.md are created, verify result dict has `run_id`.
 
 ## 5. CLI
