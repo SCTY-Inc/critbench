@@ -12,7 +12,7 @@
 - [x] 2.3 Write tests: first write creates dir + index, second write appends, `load_result` round-trips, corrupt/missing index is handled gracefully.
 
 ## 3. Summary Renderer
-- [ ] 3.1 Create `benchmark/critbench/results/summary.py` with `SummaryRenderer` class. Constructor takes `results_dir`. Method: `render(scenario_id: Optional[str] = None) -> str` returns markdown string and writes to `SUMMARY.md`.
+- [x] 3.1 Create `benchmark/critbench/results/summary.py` with `SummaryRenderer` class. Constructor takes `results_dir`. Method: `render(scenario_id: Optional[str] = None) -> str` returns markdown string and writes to `SUMMARY.md`.
 - [ ] 3.2 Implement leaderboard table: dimensions sorted by weight descending, columns Dimension | Score | Weight | Weighted | Delta. Use `▲`/`▼`/`—` for delta direction. Include overall score row.
 - [ ] 3.3 Implement delta calculation: find previous run for same scenario_id in index, load it, compute per-dimension and overall deltas.
 - [ ] 3.4 Implement per-judge breakdown section: if `per_judge_scores` exists in any dimension's breakdown, render a judge-by-dimension matrix.
