@@ -9,7 +9,7 @@
 ## 2. Results Writer
 - [x] 2.1 Create `benchmark/critbench/results/__init__.py` and `benchmark/critbench/results/writer.py` with `ResultsWriter` class. Constructor takes `results_dir: str | Path`. Methods: `write(result: BenchmarkResult) -> Path` (writes per-run JSON + updates index), `read_index() -> list[IndexEntry]`, `load_result(run_id: str) -> BenchmarkResult`.
 - [x] 2.2 Implement atomic index writes: read existing index, append new entry, write to temp file, rename over original.
-- [ ] 2.3 Write tests: first write creates dir + index, second write appends, `load_result` round-trips, corrupt/missing index is handled gracefully.
+- [x] 2.3 Write tests: first write creates dir + index, second write appends, `load_result` round-trips, corrupt/missing index is handled gracefully.
 
 ## 3. Summary Renderer
 - [ ] 3.1 Create `benchmark/critbench/results/summary.py` with `SummaryRenderer` class. Constructor takes `results_dir`. Method: `render(scenario_id: Optional[str] = None) -> str` returns markdown string and writes to `SUMMARY.md`.

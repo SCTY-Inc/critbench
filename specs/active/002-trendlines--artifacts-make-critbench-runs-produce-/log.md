@@ -22,3 +22,7 @@ Result: ✓ Complete
 ### Iteration 5 - 04:10:32
 Task: 2.2 Implement atomic index writes: read existing index, append new entry, write to temp file, rename over original.
 Result: ✓ Complete
+
+### Iteration 6 - 04:11:24
+Task: 2.3 Write tests: first write creates dir + index, second write appends, `load_result` round-trips, corrupt/missing index is handled gracefully.
+Result: ✓ Complete
