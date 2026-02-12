@@ -42,3 +42,7 @@ Result: ✓ Complete
 ### Iteration 10 - 04:14:06
 Task: 3.4 Implement per-judge breakdown section: if `per_judge_scores` exists in any dimension's breakdown, render a judge-by-dimension matrix.
 Result: ✓ Complete
+
+### Iteration 11 - 04:14:40
+Task: 3.5 Write tests: summary with no prior run (dashes for deltas), summary with prior run (correct delta values and arrows), per-judge section present/absent.
+Result: ✓ Complete

@@ -16,7 +16,7 @@
 - [x] 3.2 Implement leaderboard table: dimensions sorted by weight descending, columns Dimension | Score | Weight | Weighted | Delta. Use `▲`/`▼`/`—` for delta direction. Include overall score row.
 - [x] 3.3 Implement delta calculation: find previous run for same scenario_id in index, load it, compute per-dimension and overall deltas.
 - [x] 3.4 Implement per-judge breakdown section: if `per_judge_scores` exists in any dimension's breakdown, render a judge-by-dimension matrix.
-- [ ] 3.5 Write tests: summary with no prior run (dashes for deltas), summary with prior run (correct delta values and arrows), per-judge section present/absent.
+- [x] 3.5 Write tests: summary with no prior run (dashes for deltas), summary with prior run (correct delta values and arrows), per-judge section present/absent.
 
 ## 4. Integration
 - [ ] 4.1 Add `results_dir: Optional[str] = None` parameter to `score()` in `score.py`. When set: wrap result in `BenchmarkResult`, call `ResultsWriter.write()`, call `SummaryRenderer.render()`, add `run_id` to returned dict. Wrap in try/except so persistence failures are logged but don't break scoring.

@@ -10,6 +10,7 @@ import pytest
 from pydantic import ValidationError
 
 from critbench.models.result import BenchmarkResult
+from critbench.results.summary import SummaryRenderer
 from critbench.results.writer import ResultsWriter
 
 RUN_ID_PATTERN = re.compile(r"^\d{8}T\d{6}Z-[a-f0-9]{6}$")
@@ -200,3 +201,78 @@ def test_results_writer_handles_corrupt_index_gracefully(tmp_path: Path) -> None
     writer = ResultsWriter(results_dir)
 
     assert writer.read_index() == []
+
+
+def test_summary_with_no_prior_run_uses_dash_deltas(tmp_path: Path) -> None:
+    results_dir = tmp_path / "results"
+    writer = ResultsWriter(results_dir)
+    result = BenchmarkResult.from_score_result(
+        _sample_score_result(),
+        scenario_id="tier1_campaign_001",
+    )
+    writer.write(result)
+
+    markdown = SummaryRenderer(results_dir).render(scenario_id="tier1_campaign_001")
+
+    for dimension in ("coherence", "judgment", "voice", "originality", "ethics", "adaptation"):
+        assert f"| {dimension} |" in markdown
+        assert f"| {dimension} |" in markdown and "| — |" in next(
+            line for line in markdown.splitlines() if f"| {dimension} |" in line
+        )
+
+
+def test_summary_with_prior_run_shows_delta_arrows_and_values(tmp_path: Path) -> None:
+    results_dir = tmp_path / "results"
+    writer = ResultsWriter(results_dir)
+
+    previous_payload = _sample_score_result()
+    previous_payload["dimension_scores"]["coherence"]["score"] = 0.70
+    previous_result = BenchmarkResult.from_score_result(
+        previous_payload,
+        scenario_id="tier1_campaign_001",
+    )
+    writer.write(previous_result)
+
+    current_payload = _sample_score_result()
+    current_payload["dimension_scores"]["coherence"]["score"] = 0.82
+    current_result = BenchmarkResult.from_score_result(
+        current_payload,
+        scenario_id="tier1_campaign_001",
+    )
+    writer.write(current_result)
+
+    markdown = SummaryRenderer(results_dir).render(scenario_id="tier1_campaign_001")
+
+    coherence_row = next(line for line in markdown.splitlines() if "| coherence |" in line)
+    assert "▲ +0.12" in coherence_row
+    assert f"- Vs previous: `{previous_result.run_id}` (" in markdown
+
+
+@pytest.mark.parametrize("include_per_judge_scores", [False, True])
+def test_summary_per_judge_section_present_or_absent(
+    tmp_path: Path,
+    include_per_judge_scores: bool,
+) -> None:
+    results_dir = tmp_path / "results"
+    writer = ResultsWriter(results_dir)
+    payload = _sample_score_result()
+    if include_per_judge_scores:
+        payload["dimension_scores"]["coherence"]["breakdown"]["per_judge_scores"] = {
+            "claude-sonnet-4-20250514": 0.78,
+            "gpt-4.1": 0.72,
+            "gemini-2.0-flash": 0.81,
+        }
+
+    writer.write(
+        BenchmarkResult.from_score_result(
+            payload,
+            scenario_id="tier1_campaign_001",
+        )
+    )
+    markdown = SummaryRenderer(results_dir).render(scenario_id="tier1_campaign_001")
+
+    if include_per_judge_scores:
+        assert "## Per-Judge Scores" in markdown
+        assert "| claude-sonnet-4-20250514 | 0.7800 |" in markdown
+    else:
+        assert "## Per-Judge Scores" not in markdown
