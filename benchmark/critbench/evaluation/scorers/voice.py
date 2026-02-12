@@ -88,6 +88,7 @@ def score(
         "format_adaptation": [],
         "cross_output_consistency": [],
     }
+    per_judge_scores: Dict[str, float] = {}
 
     all_reasoning = {}
 
@@ -98,6 +99,12 @@ def score(
             )
             for key, value in model_scores.items():
                 all_scores[key].append(value)
+            per_judge_scores[model] = (
+                model_scores["tone_consistency"] * 0.35 +
+                model_scores["vocabulary_match"] * 0.25 +
+                model_scores["format_adaptation"] * 0.20 +
+                model_scores["cross_output_consistency"] * 0.20
+            )
             all_reasoning[model] = reasoning
         except Exception as e:
             result["evidence"].append(f"Judge {model} failed: {e}")
@@ -145,6 +152,7 @@ def score(
         "confidences": confidences,
         "n_judges": len(judge_models),
         "judges_succeeded": sum(1 for s in all_scores["tone_consistency"] if s is not None),
+        "per_judge_scores": per_judge_scores,
     }
 
     # Store reasoning for CoT analysis
@@ -205,6 +213,7 @@ async def score_async(
         "format_adaptation": [],
         "cross_output_consistency": [],
     }
+    per_judge_scores: Dict[str, float] = {}
 
     all_reasoning = {}
 
@@ -225,6 +234,12 @@ async def score_async(
         result["evidence"].append(evidence_entry)
         for key, value in model_scores.items():
             all_scores[key].append(value)
+        per_judge_scores[model] = (
+            model_scores["tone_consistency"] * 0.35 +
+            model_scores["vocabulary_match"] * 0.25 +
+            model_scores["format_adaptation"] * 0.20 +
+            model_scores["cross_output_consistency"] * 0.20
+        )
         all_reasoning[model] = reasoning
 
     final_scores = {}
@@ -266,6 +281,7 @@ async def score_async(
         "confidences": confidences,
         "n_judges": len(judge_models),
         "judges_succeeded": sum(1 for s in all_scores["tone_consistency"] if s is not None),
+        "per_judge_scores": per_judge_scores,
     }
 
     result["_reasoning"] = all_reasoning

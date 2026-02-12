@@ -71,6 +71,7 @@ def score(
         "feasibility_awareness": [],
         "selection_quality": [],
     }
+    per_judge_scores: Dict[str, float] = {}
 
     positioning = _extract_positioning(transcript, scenario)
 
@@ -87,6 +88,12 @@ def score(
             )
             for key, value in model_scores.items():
                 all_scores[key].append(value)
+            per_judge_scores[model] = (
+                model_scores["selection_reasoning"] * 0.40 +
+                model_scores["strategy_alignment"] * 0.30 +
+                model_scores["feasibility_awareness"] * 0.20 +
+                model_scores["selection_quality"] * 0.10
+            )
         except Exception as e:
             result["evidence"].append(f"Judge {model} failed: {e}")
 
@@ -114,7 +121,10 @@ def score(
         result["evidence"].append("PENALTY: Poor selection reasoning")
 
     result["score"] = overall
-    result["breakdown"] = final_scores
+    result["breakdown"] = {
+        **final_scores,
+        "per_judge_scores": per_judge_scores,
+    }
 
     return result
 
@@ -167,6 +177,7 @@ async def score_async(
         "feasibility_awareness": [],
         "selection_quality": [],
     }
+    per_judge_scores: Dict[str, float] = {}
 
     positioning = _extract_positioning(transcript, scenario)
 
@@ -190,6 +201,12 @@ async def score_async(
         model_scores = outcome
         for key, value in model_scores.items():
             all_scores[key].append(value)
+        per_judge_scores[model] = (
+            model_scores["selection_reasoning"] * 0.40 +
+            model_scores["strategy_alignment"] * 0.30 +
+            model_scores["feasibility_awareness"] * 0.20 +
+            model_scores["selection_quality"] * 0.10
+        )
 
     final_scores = {}
     for key, scores in all_scores.items():
@@ -212,7 +229,10 @@ async def score_async(
         result["evidence"].append("PENALTY: Poor selection reasoning")
 
     result["score"] = overall
-    result["breakdown"] = final_scores
+    result["breakdown"] = {
+        **final_scores,
+        "per_judge_scores": per_judge_scores,
+    }
 
     return result
 

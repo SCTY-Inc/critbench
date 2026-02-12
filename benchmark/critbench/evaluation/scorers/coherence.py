@@ -67,6 +67,7 @@ def score(
         "strategy_to_creative": [],
         "internal_consistency": [],
     }
+    per_judge_scores: Dict[str, float] = {}
 
     for model in judge_models:
         try:
@@ -75,6 +76,12 @@ def score(
             )
             for key, value in model_scores.items():
                 all_scores[key].append(value)
+            per_judge_scores[model] = (
+                model_scores["brief_understanding"] * 0.20 +
+                model_scores["insight_to_strategy"] * 0.35 +
+                model_scores["strategy_to_creative"] * 0.35 +
+                model_scores["internal_consistency"] * 0.10
+            )
         except Exception as e:
             result["evidence"].append(f"Judge {model} failed: {e}")
 
@@ -114,6 +121,7 @@ def score(
         "confidences": confidences,
         "n_judges": len(judge_models),
         "judges_succeeded": sum(1 for s in all_scores["brief_understanding"] if s is not None),
+        "per_judge_scores": per_judge_scores,
     }
 
     return result
@@ -161,6 +169,7 @@ async def score_async(
         "strategy_to_creative": [],
         "internal_consistency": [],
     }
+    per_judge_scores: Dict[str, float] = {}
 
     tasks = [
         _evaluate_with_model_async(
@@ -179,6 +188,12 @@ async def score_async(
         result["evidence"].append(evidence_entry)
         for key, value in model_scores.items():
             all_scores[key].append(value)
+        per_judge_scores[model] = (
+            model_scores["brief_understanding"] * 0.20 +
+            model_scores["insight_to_strategy"] * 0.35 +
+            model_scores["strategy_to_creative"] * 0.35 +
+            model_scores["internal_consistency"] * 0.10
+        )
 
     final_scores = {}
     confidences = {}
@@ -213,6 +228,7 @@ async def score_async(
         "confidences": confidences,
         "n_judges": len(judge_models),
         "judges_succeeded": sum(1 for s in all_scores["brief_understanding"] if s is not None),
+        "per_judge_scores": per_judge_scores,
     }
 
     return result
