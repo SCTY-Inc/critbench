@@ -62,3 +62,7 @@ Result: ✓ Complete
 ### Iteration 15 - 04:17:32
 Task: 5.2 Write test: invoke CLI `list` and `summary` commands against a pre-populated results dir, verify output.
 Result: ✓ Complete
+
+### Iteration 16 - 04:17:51
+Task: 6.1 Run full test suite (`pytest benchmark/tests/ -v`) — all tests pass.
+Result: ✓ Complete

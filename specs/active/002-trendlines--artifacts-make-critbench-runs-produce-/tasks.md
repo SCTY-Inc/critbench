@@ -27,6 +27,6 @@
 - [x] 5.2 Write test: invoke CLI `list` and `summary` commands against a pre-populated results dir, verify output.
 
 ## 6. Verification
-- [ ] 6.1 Run full test suite (`pytest benchmark/tests/ -v`) — all tests pass.
+- [x] 6.1 Run full test suite (`pytest benchmark/tests/ -v`) — all tests pass.
 - [ ] 6.2 Run type check (`mypy benchmark/critbench/`) — no new errors.
 - [ ] 6.3 Run lint (`ruff check benchmark && black --check benchmark`) — clean.
