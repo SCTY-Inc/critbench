@@ -70,3 +70,7 @@ Result: ✓ Complete
 ### Iteration 17 - 04:18:16
 Task: 6.2 Run type check (`mypy benchmark/critbench/`) — no new errors.
 Result: ✓ Complete
+
+### Iteration 18 - 04:18:29
+Task: 6.3 Run lint (`ruff check benchmark && black --check benchmark`) — clean.
+Result: ✓ Complete

@@ -29,4 +29,4 @@
 ## 6. Verification
 - [x] 6.1 Run full test suite (`pytest benchmark/tests/ -v`) — all tests pass.
 - [x] 6.2 Run type check (`mypy benchmark/critbench/`) — no new errors.
-- [ ] 6.3 Run lint (`ruff check benchmark && black --check benchmark`) — clean.
+- [x] 6.3 Run lint (`ruff check benchmark && black --check benchmark`) — clean.
