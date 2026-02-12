@@ -58,3 +58,7 @@ Result: ✓ Complete
 ### Iteration 14 - 04:16:49
 Task: 5.1 Create `benchmark/critbench/results/__main__.py` with Typer app. Commands: `list` (prints index as table via `rich`), `summary` (regenerates SUMMARY.md). Both accept `--results-dir` option defaulting to `results/`.
 Result: ✓ Complete
+
+### Iteration 15 - 04:17:32
+Task: 5.2 Write test: invoke CLI `list` and `summary` commands against a pre-populated results dir, verify output.
+Result: ✓ Complete

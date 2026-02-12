@@ -8,9 +8,11 @@ from pathlib import Path
 
 import pytest
 from pydantic import ValidationError
+from typer.testing import CliRunner
 
 from critbench import score
 from critbench.models.result import BenchmarkResult
+from critbench.results.__main__ import app
 from critbench.results.summary import SummaryRenderer
 from critbench.results.writer import ResultsWriter
 
@@ -318,3 +320,44 @@ def test_score_with_results_dir_persists_json_and_summary(tmp_path: Path) -> Non
     assert isinstance(run_id, str) and run_id
     assert (results_dir / f"{run_id}.json").exists()
     assert (results_dir / "SUMMARY.md").exists()
+
+
+def test_results_cli_list_and_summary_commands(tmp_path: Path) -> None:
+    results_dir = tmp_path / "results"
+    writer = ResultsWriter(results_dir)
+
+    first_payload = _sample_score_result()
+    first_result = BenchmarkResult.from_score_result(
+        first_payload,
+        scenario_id="tier1_campaign_001",
+    )
+    writer.write(first_result)
+
+    second_payload = _sample_score_result()
+    second_payload["overall_score"] = 0.9
+    second_payload["overall_percentage"] = 90.0
+    second_result = BenchmarkResult.from_score_result(
+        second_payload,
+        scenario_id="tier1_campaign_001",
+    )
+    writer.write(second_result)
+
+    runner = CliRunner()
+
+    list_cmd = runner.invoke(app, ["list", "--results-dir", str(results_dir)])
+    assert list_cmd.exit_code == 0
+    assert "Benchmark Runs" in list_cmd.stdout
+    assert first_result.run_id in list_cmd.stdout
+    assert second_result.run_id in list_cmd.stdout
+    assert "tier1_campaign_001" in list_cmd.stdout
+    assert "81.25" in list_cmd.stdout
+    assert "90.00" in list_cmd.stdout
+
+    summary_cmd = runner.invoke(app, ["summary", "--results-dir", str(results_dir)])
+    assert summary_cmd.exit_code == 0
+    assert "Regenerated" in summary_cmd.stdout
+
+    summary_text = (results_dir / "SUMMARY.md").read_text(encoding="utf-8")
+    assert "# Benchmark Summary" in summary_text
+    assert f"- Run ID: `{second_result.run_id}`" in summary_text
+    assert f"- Vs previous: `{first_result.run_id}` (" in summary_text

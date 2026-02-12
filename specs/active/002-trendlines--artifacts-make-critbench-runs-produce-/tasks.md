@@ -24,7 +24,7 @@
 
 ## 5. CLI
 - [x] 5.1 Create `benchmark/critbench/results/__main__.py` with Typer app. Commands: `list` (prints index as table via `rich`), `summary` (regenerates SUMMARY.md). Both accept `--results-dir` option defaulting to `results/`.
-- [ ] 5.2 Write test: invoke CLI `list` and `summary` commands against a pre-populated results dir, verify output.
+- [x] 5.2 Write test: invoke CLI `list` and `summary` commands against a pre-populated results dir, verify output.
 
 ## 6. Verification
 - [ ] 6.1 Run full test suite (`pytest benchmark/tests/ -v`) — all tests pass.
