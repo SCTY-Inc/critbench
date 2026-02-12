@@ -14,7 +14,7 @@
 ## 3. Summary Renderer
 - [x] 3.1 Create `benchmark/critbench/results/summary.py` with `SummaryRenderer` class. Constructor takes `results_dir`. Method: `render(scenario_id: Optional[str] = None) -> str` returns markdown string and writes to `SUMMARY.md`.
 - [x] 3.2 Implement leaderboard table: dimensions sorted by weight descending, columns Dimension | Score | Weight | Weighted | Delta. Use `▲`/`▼`/`—` for delta direction. Include overall score row.
-- [ ] 3.3 Implement delta calculation: find previous run for same scenario_id in index, load it, compute per-dimension and overall deltas.
+- [x] 3.3 Implement delta calculation: find previous run for same scenario_id in index, load it, compute per-dimension and overall deltas.
 - [ ] 3.4 Implement per-judge breakdown section: if `per_judge_scores` exists in any dimension's breakdown, render a judge-by-dimension matrix.
 - [ ] 3.5 Write tests: summary with no prior run (dashes for deltas), summary with prior run (correct delta values and arrows), per-judge section present/absent.
 

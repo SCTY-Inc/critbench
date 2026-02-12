@@ -34,3 +34,7 @@ Result: ✓ Complete
 ### Iteration 8 - 04:12:49
 Task: 3.2 Implement leaderboard table: dimensions sorted by weight descending, columns Dimension | Score | Weight | Weighted | Delta. Use `▲`/`▼`/`—` for delta direction. Include overall score row.
 Result: ✓ Complete
+
+### Iteration 9 - 04:13:29
+Task: 3.3 Implement delta calculation: find previous run for same scenario_id in index, load it, compute per-dimension and overall deltas.
+Result: ✓ Complete
