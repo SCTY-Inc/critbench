@@ -38,3 +38,7 @@ Result: ✓ Complete
 ### Iteration 9 - 04:13:29
 Task: 3.3 Implement delta calculation: find previous run for same scenario_id in index, load it, compute per-dimension and overall deltas.
 Result: ✓ Complete
+
+### Iteration 10 - 04:14:06
+Task: 3.4 Implement per-judge breakdown section: if `per_judge_scores` exists in any dimension's breakdown, render a judge-by-dimension matrix.
+Result: ✓ Complete
