@@ -74,3 +74,13 @@ class BenchmarkResult(BaseModel):
         payload["timestamp"] = now
 
         return cls.model_validate(payload)
+
+
+class IndexEntry(BaseModel):
+    """Compact index row for listing benchmark runs."""
+
+    run_id: str
+    timestamp: datetime
+    scenario_id: str
+    overall_score: float
+    overall_percentage: float
