@@ -20,7 +20,7 @@
 
 ## 4. Integration
 - [x] 4.1 Add `results_dir: Optional[str] = None` parameter to `score()` in `score.py`. When set: wrap result in `BenchmarkResult`, call `ResultsWriter.write()`, call `SummaryRenderer.render()`, add `run_id` to returned dict. Wrap in try/except so persistence failures are logged but don't break scoring.
-- [ ] 4.2 Write integration test: call `score()` with `results_dir` pointing to a tmp dir, verify JSON file and SUMMARY.md are created, verify result dict has `run_id`.
+- [x] 4.2 Write integration test: call `score()` with `results_dir` pointing to a tmp dir, verify JSON file and SUMMARY.md are created, verify result dict has `run_id`.
 
 ## 5. CLI
 - [ ] 5.1 Create `benchmark/critbench/results/__main__.py` with Typer app. Commands: `list` (prints index as table via `rich`), `summary` (regenerates SUMMARY.md). Both accept `--results-dir` option defaulting to `results/`.

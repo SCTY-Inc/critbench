@@ -50,3 +50,7 @@ Result: ✓ Complete
 ### Iteration 12 - 04:15:22
 Task: 4.1 Add `results_dir: Optional[str] = None` parameter to `score()` in `score.py`. When set: wrap result in `BenchmarkResult`, call `ResultsWriter.write()`, call `SummaryRenderer.render()`, add `run_id` to returned dict. Wrap in try/except so persistence failures are logged but don't break scoring.
 Result: ✓ Complete
+
+### Iteration 13 - 04:16:15
+Task: 4.2 Write integration test: call `score()` with `results_dir` pointing to a tmp dir, verify JSON file and SUMMARY.md are created, verify result dict has `run_id`.
+Result: ✓ Complete

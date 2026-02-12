@@ -9,6 +9,7 @@ from pathlib import Path
 import pytest
 from pydantic import ValidationError
 
+from critbench import score
 from critbench.models.result import BenchmarkResult
 from critbench.results.summary import SummaryRenderer
 from critbench.results.writer import ResultsWriter
@@ -276,3 +277,44 @@ def test_summary_per_judge_section_present_or_absent(
         assert "| claude-sonnet-4-20250514 | 0.7800 |" in markdown
     else:
         assert "## Per-Judge Scores" not in markdown
+
+
+def test_score_with_results_dir_persists_json_and_summary(tmp_path: Path) -> None:
+    transcript_path = tmp_path / "transcript.jsonl"
+    transcript_path.write_text(
+        (
+            '{"turn": 1, "role": "user", "content": "Generate three campaign ideas."}\n'
+            '{"turn": 2, "role": "assistant", "content": "Idea 1: Build in public. Idea 2:'
+            ' Founder stories. Idea 3: Customer proof. I recommend Idea 2 because it aligns'
+            ' with trust and is feasible to execute this quarter."}\n'
+        ),
+        encoding="utf-8",
+    )
+
+    scenario_path = tmp_path / "scenario.json"
+    scenario_path.write_text(
+        json.dumps(
+            {
+                "scenario_id": "tier1_campaign_001",
+                "tier": "tier1",
+                "brand": {"name": "Acme", "banned_phrases": []},
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    results_dir = tmp_path / "results"
+    result = score(
+        transcript_path=str(transcript_path),
+        scenario_path=str(scenario_path),
+        results_dir=str(results_dir),
+        scoring_config_path="benchmark/configs/scoring.yaml",
+        enable_llm=False,
+        enable_bias_detection=False,
+        enable_reliability_metrics=False,
+    )
+
+    run_id = result.get("run_id")
+    assert isinstance(run_id, str) and run_id
+    assert (results_dir / f"{run_id}.json").exists()
+    assert (results_dir / "SUMMARY.md").exists()
