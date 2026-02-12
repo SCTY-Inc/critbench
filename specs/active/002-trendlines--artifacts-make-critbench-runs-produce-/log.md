@@ -54,3 +54,7 @@ Result: ✓ Complete
 ### Iteration 13 - 04:16:15
 Task: 4.2 Write integration test: call `score()` with `results_dir` pointing to a tmp dir, verify JSON file and SUMMARY.md are created, verify result dict has `run_id`.
 Result: ✓ Complete
+
+### Iteration 14 - 04:16:49
+Task: 5.1 Create `benchmark/critbench/results/__main__.py` with Typer app. Commands: `list` (prints index as table via `rich`), `summary` (regenerates SUMMARY.md). Both accept `--results-dir` option defaulting to `results/`.
+Result: ✓ Complete
