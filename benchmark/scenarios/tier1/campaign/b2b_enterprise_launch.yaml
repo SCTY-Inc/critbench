@@ -1,0 +1,189 @@
+scenario_id: tier1_campaign_004
+tier: tier_1
+title: Enterprise Security Platform Launch - CISO Audience
+
+brand:
+  name: DefenseOS
+  voice: technically authoritative, pragmatic, vendor-neutral perspective
+  audience: CISOs and enterprise security leaders who are pragmatic, not hype-seekers
+  constraints:
+    - no marketing hype or "enterprise speak"
+    - must respect technical depth of audience
+    - claims must be backed by evidence/testing
+    - avoid FUD (fear, uncertainty, doubt) tactics
+  banned_phrases:
+    - zero trust
+    - military-grade
+    - unparalleled
+    - next-generation
+    - cyber
+
+turns:
+  - turn_number: 1
+    stage: brief_intake
+    user_message: "We're launching DefenseOS, an OS-level security monitoring platform. We target CISOs at Fortune 500 and large mid-markets who care about comprehensive endpoint visibility. Budget is $120k, 10 weeks. What questions do you have about our market and positioning?"
+    expected_behaviors:
+      - Asks about competitive landscape (crowded market)
+      - Asks about proof points / customer wins
+      - Asks about technical differentiation
+      - Asks about sales motion (how do CISOs buy)
+    autofail_triggers:
+      - Assumes CISOs are easy to influence with marketing
+      - Doesn't ask about technical proof or customers
+    rubric_criteria:
+      - criterion_id: market_understanding
+        description: Demonstrates understanding of enterprise security buying
+        max_points: 3
+        dimension: coherence
+        scoring_guide:
+          "3": "Asks 3+ questions about competitive landscape, proof points, and buying process"
+          "2": "Asks 1-2 relevant questions"
+          "1": "Questions are generic for enterprise software"
+          "0": "Misses the competitive/proof complexity"
+
+  - turn_number: 2
+    stage: insight_generation
+    user_message: "Our main insight: CISOs are drowning in data from 15+ security tools. They don't need more data—they need consolidation and context. Everyone else is building 'the platform' but just adding more noise. What insights should we lean into?"
+    expected_behaviors:
+      - Identifies consolidation/simplification as genuine insight
+      - Understands CISO pain (tool sprawl, alert fatigue)
+      - Surfaces the difference between breadth and signal quality
+      - Considers competitive positioning angle
+    autofail_triggers:
+      - Generic insights about CISOs needing visibility
+      - Misses the pain of tool consolidation
+    rubric_criteria:
+      - criterion_id: insight_depth
+        description: Surfaces insights about CISO pain and competitive gap
+        max_points: 3
+        dimension: originality
+        scoring_guide:
+          "3": "Identifies specific CISO pain (alert fatigue, tool sprawl) and positions consolidation as unique angle"
+          "2": "Valid insight but could be more specific"
+          "1": "Generic insight about CISOs"
+          "0": "Wrong or misses the competitive angle"
+
+  - turn_number: 3
+    stage: strategy
+    user_message: "So our positioning should be: we replace 5+ security tools by consolidating data into a single, low-noise interface. We're not about breadth—we're about signal quality. Our proof: customers run fewer tools and get faster detection time. How would you frame that?"
+    expected_behaviors:
+      - Clear, technical positioning that respects CISO intelligence
+      - Avoids marketing language
+      - Focuses on proof and measurable outcomes
+      - Differentiates from \"everything platform\" competitors
+    autofail_triggers:
+      - Uses marketing jargon like \"next-gen\" or \"unified platform\"
+      - Oversells without proof
+    rubric_criteria:
+      - criterion_id: positioning_credibility
+        description: Positioning is credible to expert audience
+        max_points: 3
+        dimension: coherence
+        scoring_guide:
+          "3": "Positioning is specific, proof-focused, credible to CISOs, differentiates clearly"
+          "2": "Positioning is good but slightly generic or lighter on proof"
+          "1": "Positioning is valid but could be more compelling"
+          "0": "Positioning contradicts the brief or uses marketing hype"
+      - criterion_id: differentiation
+        description: Clear differentiation from competitor platforms
+        max_points: 2
+        dimension: judgment
+        scoring_guide:
+          "2": "Clearly explains why consolidation + quality beats breadth"
+          "1": "Differentiation is present but could be sharper"
+          "0": "Generic platform positioning"
+
+  - turn_number: 4
+    stage: idea_generation
+    user_message: "Now give me 5 campaign concepts for reaching CISOs. Consider: they don't trust marketing, they trust peers and technical evidence. How do we earn credibility?"
+    expected_behaviors:
+      - Concepts leverage peer credibility and technical evidence
+      - Concepts consider where CISOs consume information
+      - Mix of thought leadership, peer case studies, technical depth
+      - Avoids traditional advertising or sponsorships
+    autofail_triggers:
+      - Concepts rely on ads or traditional marketing
+      - Concepts underestimate CISO skepticism
+    rubric_criteria:
+      - criterion_id: credibility_approach
+        description: Concepts earn credibility vs demand trust
+        max_points: 2
+        dimension: originality
+        scoring_guide:
+          "2": "All concepts focus on earned credibility (peers, tech, evidence, not ads)"
+          "1": "Most concepts focus on earning credibility, 1-2 are traditional"
+          "0": "Concepts rely on paid ads or hype"
+      - criterion_id: audience_alignment
+        description: Concepts reach CISOs where they actually consume info
+        max_points: 2
+        dimension: judgment
+        scoring_guide:
+          "2": "Concepts consider CISO behaviors (conferences, peer networks, technical docs)"
+          "1": "Some audience insight but could be sharper"
+          "0": "Concepts miss how CISOs make decisions"
+
+  - turn_number: 5
+    stage: idea_selection
+    user_message: "Which 3 concepts should we pursue? Explain why each works for a skeptical CISO audience."
+    expected_behaviors:
+      - Selects 3 distinct, credible approaches
+      - Explains how each earns credibility differently
+      - Prioritizes by impact and feasibility
+      - Shows realistic view of what resonates with CISOs
+    autofail_triggers:
+      - Picks 3 variations of same idea
+      - Reasoning is generic
+    rubric_criteria:
+      - criterion_id: selection_reasoning
+        description: Clear explanation of why each concept works for CISOs
+        max_points: 3
+        dimension: judgment
+        scoring_guide:
+          "3": "Each selection explained with specific CISO insight (e.g., \"respects technical depth\", \"peer validation\")"
+          "2": "Reasoning is valid but could be more CISO-specific"
+          "1": "Generic reasoning or incomplete"
+          "0": "No reasoning or contradictory reasoning"
+      - criterion_id: credibility_ranking
+        description: Selections are the most credible approaches
+        max_points: 2
+        dimension: judgment
+        scoring_guide:
+          "2": "Selections would credibly influence CISO buying decisions"
+          "1": "Selections would help but safer approaches might exist"
+          "0": "Selections wouldn't credibly reach CISOs"
+
+  - turn_number: 6
+    stage: execution
+    user_message: "Let's detail the first one. What's our MVP for showing technical proof in week 1?"
+    expected_behaviors:
+      - Breaks down into concrete technical deliverables
+      - Focuses on credibility-building, not polish
+      - Considers what CISOs would actually test/evaluate
+      - Mentions metrics to show impact
+    autofail_triggers:
+      - Too polished/corporate for week 1
+      - Doesn't show technical proof
+    rubric_criteria:
+      - criterion_id: technical_focus
+        description: MVP centers on technical proof, not marketing
+        max_points: 2
+        dimension: coherence
+        scoring_guide:
+          "2": "MVP shows actual technical comparison or data, not marketing materials"
+          "1": "MVP shows some technical depth but could be deeper"
+          "0": "MVP is marketing-focused, not technical proof"
+      - criterion_id: execution_realism
+        description: Plan is actually doable in week 1
+        max_points: 2
+        dimension: adaptation
+        scoring_guide:
+          "2": "Concrete, CISO-focused MVP achievable in week 1 with metrics"
+          "1": "Doable but missing metrics or less concrete"
+          "0": "Too ambitious or vague"
+
+metadata:
+  category: campaign_development
+  difficulty: medium_high
+  estimated_cost: 0.25
+  author: amadad
+  version: 1.0

@@ -1,0 +1,162 @@
+scenario_id: tier1_campaign_003
+tier: tier_1
+title: Nonprofit Rebrand - Donor Audience
+
+brand:
+  name: BirthrightUSA
+  voice: warm, evidence-based, mission-driven but not guilt-inducing
+  audience: donors (primarily women 35-65, mid-to-high net worth)
+  constraints:
+    - no guilt-tripping or emotional manipulation
+    - must be truthful about outcomes
+    - avoid savior language or white savior positioning
+    - emphasize dignity and agency of people served
+  banned_phrases:
+    - save the children
+    - rescue mission
+    - heart-wrenching
+    - helpless
+    - our work transforms lives
+
+turns:
+  - turn_number: 1
+    stage: brief_intake
+    user_message: "We're a 40-year-old nonprofit providing pregnancy support and maternity care to low-income women. We're rebranding to better reflect our work and connect with donors who care about reproductive autonomy and health equity. We have $80k, 12 weeks, and want to be different from other pregnancy nonprofits. What do you need to understand first?"
+    expected_behaviors:
+      - Asks about current donor base and what they value
+      - Asks about how clients/patients view the organization
+      - Questions about competitive landscape (other pregnancy nonprofits)
+      - Clarifies what sets them apart
+    autofail_triggers:
+      - Assumes they need to be more emotional to raise money
+      - Suggests framing around mother/child without understanding nuance
+    rubric_criteria:
+      - criterion_id: mission_understanding
+        description: Demonstrates understanding of nonprofit mission and values
+        max_points: 3
+        dimension: coherence
+        scoring_guide:
+          "3": "Asks 3+ questions about mission, donor values, and ethical positioning"
+          "2": "Asks 1-2 relevant questions"
+          "1": "Questions are generic for nonprofits"
+          "0": "Misses the core mission or asks about tactics only"
+
+  - turn_number: 2
+    stage: insight_generation
+    user_message: "Our donors are primarily women who value autonomy. They don't want to be guilt-tripped into giving. They're attracted to organizations that treat clients with dignity, not as victims. And honestly, most pregnancy nonprofits use manipulative fundraising. What insights should drive our rebrand?"
+    expected_behaviors:
+      - Identifies the ethical difference as a strength, not a weakness
+      - Surfaces donor psychology (want to support agency, not rescue)
+      - Considers how to differentiate ethically
+      - Frames dignity and autonomy as donor values, not just client values
+    autofail_triggers:
+      - Suggests using emotional manipulation despite brief
+      - Treats clients as victims rather than agents
+    rubric_criteria:
+      - criterion_id: ethical_insight
+        description: Surfaces ethical positioning as strategic advantage
+        max_points: 3
+        dimension: originality
+        scoring_guide:
+          "3": "Identifies that ethical approach (no guilt) is actually donor attraction point"
+          "2": "Recognizes ethical difference but treats it as constraint"
+          "1": "Acknowledges ethics but doesn't integrate into strategy"
+          "0": "Ignores ethical positioning or suggests compromising it"
+
+  - turn_number: 3
+    stage: strategy
+    user_message: "I like that. So our positioning should reflect: (1) we treat clients as partners in their own health, (2) we're fighting for systemic access, not just individual rescue, (3) donors are supporting a just system, not fixing individuals. How do we say that clearly?"
+    expected_behaviors:
+      - Distills complex positioning into clear language
+      - Avoids jargon while staying specific
+      - Differentiates from victim-narrative nonprofits
+      - Resonates with donor values (agency, justice, partnership)
+    autofail_triggers:
+      - Uses jargon like "reproductive justice" without translating
+      - Oversimplifies to empty statements
+      - Contradicts the briefed positioning
+    rubric_criteria:
+      - criterion_id: positioning_clarity
+        description: Positions clearly reflects the three-part brief
+        max_points: 3
+        dimension: coherence
+        scoring_guide:
+          "3": "Positioning clearly reflects all three elements: partnership, systemic change, donor role"
+          "2": "Addresses 2 of 3 elements"
+          "1": "Addresses 1 element or unclear"
+          "0": "Contradicts the positioning brief"
+      - criterion_id: tone_fit
+        description: Positioning matches warm, evidence-based, non-manipulative voice
+        max_points: 2
+        dimension: voice
+        scoring_guide:
+          "2": "Feels warm and genuine, not corporate or manipulative"
+          "1": "Mostly appropriate but slightly off in tone"
+          "0": "Feels manipulative or too clinical"
+
+  - turn_number: 4
+    stage: idea_generation
+    user_message: "Good positioning. Now give me 5 concepts for how to tell this story visually and narratively across website, social, and donor updates."
+    expected_behaviors:
+      - 5 distinct concepts for integrated storytelling
+      - Each shows partnership/agency of clients
+      - Concepts work across multiple channels
+      - Avoids trauma porn or before/after narratives
+    autofail_triggers:
+      - Concepts rely on sad/struggling client stories
+      - Concepts are all the same channel or approach
+      - Concepts use victim language or inspiration porn
+    rubric_criteria:
+      - criterion_id: narrative_approach
+        description: Storytelling approach centers client agency
+        max_points: 2
+        dimension: originality
+        scoring_guide:
+          "2": "All concepts show clients as agents; zero victim narrative"
+          "1": "Most concepts respect agency but 1-2 slip into victim framing"
+          "0": "Concepts rely on trauma or savior narrative"
+      - criterion_id: channel_integration
+        description: Concepts work across website, social, donor updates
+        max_points: 2
+        dimension: coherence
+        scoring_guide:
+          "2": "Concepts are distinct but coherent across channels"
+          "1": "Concepts work but some channel misalignment"
+          "0": "Concepts don't translate across channels"
+
+  - turn_number: 5
+    stage: idea_selection
+    user_message: "Which 2 concepts should we develop into full creative? Explain your selection."
+    expected_behaviors:
+      - Selects 2 based on strategic fit with donor audience
+      - Explains why each resonates with brief
+      - Considers feasibility and impact
+      - Acknowledges what each concept does well
+    autofail_triggers:
+      - Picks 2 variations of same idea
+      - Reasoning disconnects from positioning
+    rubric_criteria:
+      - criterion_id: selection_reasoning
+        description: Selection reasoning connects to positioning and donor values
+        max_points: 3
+        dimension: judgment
+        scoring_guide:
+          "3": "Clear explanation of how each concept serves positioning and appeals to donors"
+          "2": "Reasoning is valid but could be more specific"
+          "1": "Reasoning is generic or incomplete"
+          "0": "No reasoning or contradictory"
+      - criterion_id: concept_quality
+        description: Selected concepts are actually the strongest
+        max_points: 2
+        dimension: judgment
+        scoring_guide:
+          "2": "Selections are clearly the most strategic and differentiating"
+          "1": "Selections are reasonable but safer options might exist"
+          "0": "Selections don't align with positioning"
+
+metadata:
+  category: campaign_development
+  difficulty: medium
+  estimated_cost: 0.18
+  author: amadad
+  version: 1.0

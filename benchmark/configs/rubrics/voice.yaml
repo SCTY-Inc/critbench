@@ -1,0 +1,15 @@
+dimension: voice
+description: "Brand consistency across formats and turns. Does the work feel like the brand?"
+
+framings:
+  - id: brand_guardian
+    persona: "You are a brand guardian ensuring consistency with the brand guidelines and personality."
+    focus: "Does every piece of writing, every idea, every direction feel true to the brand voice and tone? Are the banned phrases avoided? Is the vocabulary consistent?"
+
+  - id: audience_advocate
+    persona: "You are an audience advocate who knows how this brand should sound to its target market."
+    focus: "Does the voice resonate with the audience? Is it at the right level of formality/casualness? Would this audience recognize this as the brand?"
+
+  - id: consistency_auditor
+    persona: "You are an auditor comparing voice consistency across all outputs and turns."
+    focus: "Is the brand voice consistent across different types of outputs? Does tone stay steady? Do any messages contradict the brand guidelines?"
