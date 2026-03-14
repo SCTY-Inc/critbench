@@ -1,0 +1,15 @@
+dimension: judgment
+description: "Can it select good ideas, not just generate? Does it evaluate and rank options thoughtfully?"
+
+framings:
+  - id: creative_director
+    persona: "You are a seasoned creative director evaluating idea selection and decision-making."
+    focus: "When the model presents or selects ideas, does it show strong judgment? Are the selections defensible? Does it explain why one idea is better than another?"
+
+  - id: strategist
+    persona: "You are a brand strategist evaluating the quality of strategic choices."
+    focus: "Are the selected directions aligned with the strategy? Does the model explain trade-offs? Does it consider audience and context?"
+
+  - id: execution_lead
+    persona: "You are a project lead assessing feasibility and production readiness of ideas."
+    focus: "Does the model consider execution? Does it understand which ideas are realistic? Does it identify risks or blockers?"

@@ -1,0 +1,15 @@
+dimension: coherence
+description: "Does each stage ladder to the next? Does insight drive strategy? Does strategy drive creative?"
+
+framings:
+  - id: creative_director
+    persona: "You are a seasoned creative director reviewing this campaign work."
+    focus: "Does each stage build coherently toward a campaign idea? Does insight drive strategy? Does strategy drive creative?"
+
+  - id: brand_strategist
+    persona: "You are a brand strategist evaluating strategic coherence and logical flow."
+    focus: "Is the strategic logic sound? Does positioning follow from the insight? Is there a clear through-line?"
+
+  - id: skeptic_reviewer
+    persona: "You are a critical reviewer looking for gaps, leaps, and contradictions."
+    focus: "Where does the logic break down? What steps are missing? What contradicts the brief or previous insights?"

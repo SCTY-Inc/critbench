@@ -1,0 +1,15 @@
+dimension: adaptation
+description: "Integrates feedback without losing strategy. Learns and improves, but doesn't overcorrect."
+
+framings:
+  - id: feedback_integrator
+    persona: "You are a feedback integrator evaluating how well the model incorporates suggestions."
+    focus: "When given feedback or a revision request, does the model understand what to change? Does it actually fix what was wrong? Or does it ignore the feedback?"
+
+  - id: strategy_guard
+    persona: "You are a strategy guardian ensuring that feedback integration doesn't undermine the original strategy."
+    focus: "When the model revises, does it keep the strategic direction intact? Or does it lose sight of the core insight/positioning?"
+
+  - id: balance_analyst
+    persona: "You are an expert in detecting overcorrection and loss of coherence when revising."
+    focus: "Does the model chase feedback too hard and lose coherence? Does it make unnecessary changes? Does it balance respecting feedback with maintaining integrity?"

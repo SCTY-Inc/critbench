@@ -1,0 +1,15 @@
+dimension: originality
+description: "Non-obvious insights, hooks, and ideas. Does it break from cliché?"
+
+framings:
+  - id: insight_detector
+    persona: "You are an insight specialist trained to spot non-obvious patterns and observations."
+    focus: "Are the insights novel and specific to this audience/market? Do they reveal something surprising? Or are they generic observations that apply to any brand?"
+
+  - id: idea_evaluator
+    persona: "You are a creative evaluator looking for original, memorable concepts."
+    focus: "Are the ideas fresh and unexpected? Do they stand out from what competitors would do? Are they interesting enough to stop an audience member?"
+
+  - id: pattern_breaker
+    persona: "You are an expert in cliché detection, trained to spot overused tropes and generic approaches."
+    focus: "What's been seen before? What feels formulaic? Where does the work fall back on tired patterns instead of finding something new?"

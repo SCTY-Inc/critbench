@@ -1,0 +1,187 @@
+scenario_id: tier1_campaign_002
+tier: tier_1
+title: Consumer App Launch - Gen Z Audience
+
+brand:
+  name: Snap
+  voice: authentic, irreverent, platform-native (mostly in-app copy)
+  audience: Gen Z (16-25) users, early adopters, trend-conscious
+  constraints:
+    - no corporate speak
+    - no overselling
+    - must feel native to TikTok/Instagram
+    - no fakeness - Gen Z spots it immediately
+  banned_phrases:
+    - viral
+    - trending
+    - literally obsessed
+    - tell your friends
+    - just dropping this
+
+turns:
+  - turn_number: 1
+    stage: brief_intake
+    user_message: "We're launching a new social app for sharing video reactions to music. It's like Instagram Reels but focused on reactions and community. Our target is Gen Z, budget is $30k, we have 8 weeks. We want to grow organically before paid. What questions do you have?"
+    expected_behaviors:
+      - Asks about what makes it different from Reels/YouTube Shorts
+      - Asks about the core user motivation
+      - Asks about organic growth strategy
+      - Asks about where Gen Z discovers new apps
+    autofail_triggers:
+      - Suggests traditional paid ads without understanding organic launch
+      - Treats Gen Z like millennials
+    rubric_criteria:
+      - criterion_id: audience_understanding
+        description: Shows understanding of Gen Z app adoption patterns
+        max_points: 3
+        dimension: coherence
+        scoring_guide:
+          "3": "Asks at least 2 questions about where/how Gen Z discovers apps and what motivates sharing"
+          "2": "Asks 1-2 relevant questions about audience"
+          "1": "Questions are generic (could apply to any demographic)"
+          "0": "No relevant questions or wrong assumptions about Gen Z"
+
+  - turn_number: 2
+    stage: insight_generation
+    user_message: "Gen Z is tired of performing for algorithm. They want spaces where they can be weird without getting ratio'd. The app is invite-only at launch, which creates FOMO. What insights should we lean into?"
+    expected_behaviors:
+      - Connects FOMO and exclusivity to Gen Z psychology
+      - Identifies tension between authenticity and platform exposure
+      - Considers the appeal of small, tight communities
+      - Surfaces anti-platform sentiment
+    autofail_triggers:
+      - Generic insights about social apps
+      - Suggests contradicting exclusivity with growth
+    rubric_criteria:
+      - criterion_id: cultural_insight
+        description: Surfaces insights specific to Gen Z culture and psychology
+        max_points: 3
+        dimension: originality
+        scoring_guide:
+          "3": "Names specific Gen Z behavior/value (e.g., anti-algorithm sentiment, authenticity as rebellion)"
+          "2": "Valid but surface-level insight about Gen Z"
+          "1": "Could apply to millennial social apps"
+          "0": "Misses Gen Z cultural moment"
+
+  - turn_number: 3
+    stage: idea_generation
+    user_message: "Exactly. So how do we launch this without ads, in a way that feels earned and true to what the app is?"
+    expected_behaviors:
+      - Suggests organic/seeded launch tactics
+      - Ideas respect the exclusivity positioning
+      - Considers influencer/creator strategy carefully
+      - Avoids feeling corporate or forced
+    autofail_triggers:
+      - Suggests running paid ads when brief said organic
+      - Ideas feel corporate or inauthentic
+    rubric_criteria:
+      - criterion_id: organic_strategy
+        description: Launch ideas work within organic/earned constraints
+        max_points: 2
+        dimension: judgment
+        scoring_guide:
+          "2": "3+ concrete organic tactics aligned with app values"
+          "1": "Some organic ideas but also suggests paid/traditional approaches"
+          "0": "Ignores organic constraint or suggests traditional marketing"
+      - criterion_id: authenticity
+        description: Ideas feel native to how Gen Z actually discovers things
+        max_points: 2
+        dimension: voice
+        scoring_guide:
+          "2": "Ideas feel earned and viral-ready (not forced)"
+          "1": "Ideas are reasonable but might feel engineered"
+          "0": "Ideas feel corporate or inauthentic to platform"
+
+  - turn_number: 4
+    stage: idea_selection
+    user_message: "Pick your top 3 strategies and explain why each would actually work for Gen Z users discovering us."
+    expected_behaviors:
+      - Selects 3 distinct strategies
+      - Reasoning connects to Gen Z discovery/sharing behavior
+      - Realistic about what will vs won't work
+      - Shows understanding of each strategy's appeal
+    autofail_triggers:
+      - Picks 3 variations of same idea
+      - Reasoning is generic
+    rubric_criteria:
+      - criterion_id: strategic_selection
+        description: Selections are distinctly different and credible
+        max_points: 2
+        dimension: judgment
+        scoring_guide:
+          "2": "3 clearly different approaches, each explained with Gen Z insight"
+          "1": "Picks 3 but some are similar or reasoning is generic"
+          "0": "Picks variations of same idea"
+      - criterion_id: credibility
+        description: Selections actually work for Gen Z discovery
+        max_points: 2
+        dimension: originality
+        scoring_guide:
+          "2": "All 3 selections feel realistic and tappable for organic growth"
+          "1": "Most are credible, 1 feels weak"
+          "0": "Selections feel unlikely to drive Gen Z adoption"
+
+  - turn_number: 5
+    stage: execution
+    user_message: "Which 1 should we do first, in week 1? And what's the minimum viable execution to test it?"
+    expected_behaviors:
+      - Picks 1 with clear rationale
+      - Breaks down into concrete, tiny first steps
+      - Focuses on learning/feedback, not polish
+      - Mentions how to measure if it's working
+    autofail_triggers:
+      - Too ambitious for week 1
+      - Doesn't mention how to measure success
+    rubric_criteria:
+      - criterion_id: prioritization
+        description: Clear reasoning for which to do first
+        max_points: 2
+        dimension: judgment
+        scoring_guide:
+          "2": "Picks 1 with strategic explanation (e.g., fastest feedback, builds on others)"
+          "1": "Picks 1 but reasoning is weak"
+          "0": "Picks multiple or no reasoning"
+      - criterion_id: execution_realism
+        description: MVP execution is actually doable in week 1
+        max_points: 2
+        dimension: adaptation
+        scoring_guide:
+          "2": "Plan is scrappy, focused, measurable, with success metrics"
+          "1": "Plan is doable but missing metrics or too polished"
+          "0": "Plan is too ambitious or vague"
+
+  - turn_number: 6
+    stage: revision
+    user_message: "Actually, we're worried we don't have the right creators to seed this. We have no existing audience. How do we fix the week 1 plan?"
+    expected_behaviors:
+      - Adjusts to reality of no existing audience
+      - Suggests alternative seeding strategies
+      - Doesn't abandon the core positioning
+      - Gets creative about finding early users
+    autofail_triggers:
+      - Suggests using influencers they don't have
+      - Suggests abandoning exclusivity
+    rubric_criteria:
+      - criterion_id: constraint_adaptation
+        description: Adjusts strategy to new constraint (no existing audience)
+        max_points: 2
+        dimension: adaptation
+        scoring_guide:
+          "2": "Suggests alternative tactic that respects constraints"
+          "1": "Tries to adapt but suggestions aren't realistic"
+          "0": "Ignores the constraint or abandons positioning"
+      - criterion_id: creative_problem_solving
+        description: Finds novel ways to seed without audience
+        max_points: 2
+        dimension: originality
+        scoring_guide:
+          "2": "Suggests 2+ creative (non-obvious) seeding approaches"
+          "1": "Suggests 1 creative approach + fallbacks"
+          "0": "Only suggests standard approaches (community, friends)"
+
+metadata:
+  category: campaign_development
+  difficulty: medium
+  estimated_cost: 0.12
+  author: amadad
+  version: 1.0
