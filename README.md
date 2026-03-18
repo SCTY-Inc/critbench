@@ -141,6 +141,12 @@ echo "OPENROUTER_API_KEY=sk-or-v1-..." > .env
 # Run tier 0 (smoke test)
 python benchmark/scripts/validation/run_minimal.py -y
 
+# Run tier 0 + tier 1 validation
+python benchmark/scripts/validation/run_full.py -y
+
+# Estimate validation cost without scoring
+python benchmark/scripts/validation/run_minimal.py --dry-run
+
 # Score a transcript
 python -m benchmark.critbench.cli \
   --scenario benchmark/scenarios/tier1/campaign/saas_launch.json \
