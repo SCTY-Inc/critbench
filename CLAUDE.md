@@ -17,16 +17,16 @@ AI assistant instructions for CritBench (creative benchmark project).
 ```bash
 # === BENCHMARKING ===
 # Quick validation (tier 0 offline smoke test)
-python benchmark/scripts/validation/run_minimal.py -y
+python3 benchmark/scripts/validation/run_minimal.py -y
 
 # Full validation (tier 0 + tier 1 offline smoke test)
-python benchmark/scripts/validation/run_full.py -y
+python3 benchmark/scripts/validation/run_full.py -y
 
 # Dry run (list scenarios and estimated cost)
-python benchmark/scripts/validation/run_minimal.py --dry-run
+python3 benchmark/scripts/validation/run_minimal.py --dry-run
 
 # === SCORING (single scenario) ===
-python -m benchmark.critbench.cli \
+python3 -m benchmark.critbench.cli \
   --scenario benchmark/scenarios/tier1/campaign/saas_launch.json \
   --transcript path/to/transcript.jsonl \
   --brand benchmark/configs/brands/codeflow.yaml \
