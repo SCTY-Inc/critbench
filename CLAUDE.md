@@ -16,13 +16,13 @@ AI assistant instructions for CritBench (creative benchmark project).
 
 ```bash
 # === BENCHMARKING ===
-# Quick validation (tier 0, ~$0.10)
+# Quick validation (tier 0 offline smoke test)
 python benchmark/scripts/validation/run_minimal.py -y
 
-# Full benchmark (all tiers, ~$20-30)
+# Full validation (tier 0 + tier 1 offline smoke test)
 python benchmark/scripts/validation/run_full.py -y
 
-# Dry run (cost estimate)
+# Dry run (list scenarios and estimated cost)
 python benchmark/scripts/validation/run_minimal.py --dry-run
 
 # === SCORING (single scenario) ===

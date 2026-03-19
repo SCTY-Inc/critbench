@@ -138,8 +138,14 @@ uv pip install -e ".[all]"
 # Set API key for multi-judge scoring
 echo "OPENROUTER_API_KEY=sk-or-v1-..." > .env
 
-# Run tier 0 (smoke test)
+# Run tier 0 validation (offline smoke test)
 python benchmark/scripts/validation/run_minimal.py -y
+
+# Run tier 0 + tier 1 validation (offline smoke test)
+python benchmark/scripts/validation/run_full.py -y
+
+# Preview validation scenarios and estimated cost
+python benchmark/scripts/validation/run_minimal.py --dry-run
 
 # Score a transcript
 python -m benchmark.critbench.cli \
