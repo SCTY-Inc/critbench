@@ -7,7 +7,7 @@ import json
 import sys
 import tempfile
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 BENCHMARK_ROOT = REPO_ROOT / "benchmark"
@@ -22,7 +22,7 @@ SCORING_CONFIG_PATH = REPO_ROOT / "benchmark" / "configs" / "scoring.yaml"
 
 def score(*args: Any, **kwargs: Any) -> dict[str, Any]:
     score_module = importlib.import_module("critbench.score")
-    return score_module.score(*args, **kwargs)
+    return cast(dict[str, Any], score_module.score(*args, **kwargs))
 
 
 def parse_args() -> argparse.Namespace:
@@ -57,7 +57,7 @@ def collect_scenarios() -> list[Path]:
 
 def load_scenario(path: Path) -> dict[str, Any]:
     with path.open() as handle:
-        return json.load(handle)
+        return cast(dict[str, Any], json.load(handle))
 
 
 def estimate_total_cost(scenarios: list[Path]) -> float:
@@ -70,8 +70,7 @@ def estimate_total_cost(scenarios: list[Path]) -> float:
 
 def detect_differentiator(scenario: dict[str, Any]) -> str:
     combined_text = " ".join(
-        turn.get("user_message", "")
-        for turn in scenario.get("turns", [])
+        turn.get("user_message", "") for turn in scenario.get("turns", [])
     ).lower()
 
     if "git/pr" in combined_text or ("git" in combined_text and "pr" in combined_text):
@@ -81,7 +80,9 @@ def detect_differentiator(scenario: dict[str, Any]) -> str:
     return "evidence the team can trust"
 
 
-def build_stage_response(stage: str, scenario: dict[str, Any], turn: dict[str, Any]) -> str:
+def build_stage_response(
+    stage: str, scenario: dict[str, Any], turn: dict[str, Any]
+) -> str:
     brand = scenario.get("brand", {})
     brand_name = brand.get("name", "the brand")
     audience = brand.get("audience", "the target audience")
@@ -143,9 +144,7 @@ def build_stage_response(stage: str, scenario: dict[str, Any], turn: dict[str, A
         )
 
     if stage == "revision":
-        return (
-            f"Revised direction: help {audience} replace guesswork with evidence they can explain to leadership and the team."
-        )
+        return f"Revised direction: help {audience} replace guesswork with evidence they can explain to leadership and the team."
 
     if stage == "pressure_test":
         return (
@@ -153,9 +152,7 @@ def build_stage_response(stage: str, scenario: dict[str, Any], turn: dict[str, A
             "teams gain from real data and offer a concrete, truthful next step."
         )
 
-    return (
-        f"{brand_name} should speak to {audience} with restrained, evidence-based messaging built around {differentiator}."
-    )
+    return f"{brand_name} should speak to {audience} with restrained, evidence-based messaging built around {differentiator}."
 
 
 def build_transcript(scenario: dict[str, Any]) -> list[dict[str, Any]]:
