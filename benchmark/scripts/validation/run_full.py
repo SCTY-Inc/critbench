@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import importlib
 import json
 import sys
 import tempfile
@@ -14,11 +15,14 @@ BENCHMARK_ROOT = REPO_ROOT / "benchmark"
 if str(BENCHMARK_ROOT) not in sys.path:
     sys.path.insert(0, str(BENCHMARK_ROOT))
 
-from critbench.score import score
-
 
 SCENARIO_TIERS = ("tier0", "tier1")
 SCORING_CONFIG_PATH = REPO_ROOT / "benchmark" / "configs" / "scoring.yaml"
+
+
+def score(*args: Any, **kwargs: Any) -> dict[str, Any]:
+    score_module = importlib.import_module("critbench.score")
+    return score_module.score(*args, **kwargs)
 
 
 def parse_args() -> argparse.Namespace:
@@ -186,18 +190,19 @@ def build_transcript(scenario: dict[str, Any]) -> list[dict[str, Any]]:
 
 
 def write_transcript(transcript: list[dict[str, Any]]) -> Path:
-    handle = tempfile.NamedTemporaryFile(
-        mode="w",
-        suffix=".jsonl",
-        delete=False,
-    )
-    path = Path(handle.name)
+    path: Path | None = None
     try:
-        with handle:
+        with tempfile.NamedTemporaryFile(
+            mode="w",
+            suffix=".jsonl",
+            delete=False,
+        ) as handle:
+            path = Path(handle.name)
             for message in transcript:
                 handle.write(json.dumps(message) + "\n")
     except Exception:
-        path.unlink(missing_ok=True)
+        if path is not None:
+            path.unlink(missing_ok=True)
         raise
     return path
 
@@ -230,7 +235,7 @@ def run_scenario(scenario_path: Path) -> float:
 
 def print_run_summary(scenarios: list[Path]) -> None:
     total_cost = estimate_total_cost(scenarios)
-    print(f"validation: full")
+    print("validation: full")
     print(f"scenarios: {len(scenarios)}")
     print(f"estimated_cost: ${total_cost:.2f}")
     for scenario_path in scenarios:
