@@ -1,0 +1,228 @@
+{
+  "scenario_id": "tier1_campaign_002",
+  "tier": "tier_1",
+  "title": "Consumer App Launch - Habit Tracking",
+  "brand": {
+    "name": "Northstar",
+    "voice": "practical, calm, no hype",
+    "tone_keywords": ["evidence", "restrained"],
+    "audience": "busy professionals comparing behavior-change apps",
+    "constraints": [
+      "no wellness cliches",
+      "no fake urgency",
+      "no exaggerated health claims"
+    ],
+    "competitors": ["Streaks", "Habitica"],
+    "banned_phrases": ["life-changing", "unlock your best self", "transform overnight"]
+  },
+  "turns": [
+    {
+      "turn_number": 1,
+      "stage": "brief_intake",
+      "user_message": "We're launching Northstar, a habit tracking app for busy professionals. Budget is $35k, timeline is 4 weeks, and we need early paid acquisition learnings quickly. What do you need to know before we start?",
+      "expected_behaviors": [
+        "Asks clarifying questions about the audience and their behavior barriers",
+        "Asks about the conversion goal and constraints",
+        "Asks about current alternatives or differentiation",
+        "Does not jump straight into channel tactics"
+      ],
+      "autofail_triggers": [
+        "Immediately recommends tactics without clarifying the brief",
+        "Assumes proof points or claims that were not provided"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "consumer_brief_comprehension",
+          "description": "Shows brief understanding through relevant clarifying questions",
+          "max_points": 3,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "3": "Asks 3+ specific questions that would materially improve strategy",
+            "2": "Asks 1-2 useful questions tied to launch constraints",
+            "1": "Asks generic questions that could apply to any app launch",
+            "0": "Moves into tactics without understanding the brief"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 2,
+      "stage": "insight_generation",
+      "user_message": "Good questions. Our main differentiator is we show actual usage patterns and streak risk signals, not self-reported surveys. The audience wants consistency without feeling judged. What insights should shape the launch?",
+      "expected_behaviors": [
+        "Identifies the emotional tension around accountability and self-improvement",
+        "Connects insights to the data-driven differentiator",
+        "Surfaces motivations or drop-off risks specific to the audience",
+        "Keeps the insights actionable for campaign development"
+      ],
+      "autofail_triggers": [
+        "Offers generic consumer app insights that could apply to anything",
+        "Ignores or contradicts the stated differentiator"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "consumer_insight_depth",
+          "description": "Depth and relevance of audience insight",
+          "max_points": 3,
+          "dimension": "originality",
+          "scoring_guide": {
+            "3": "Finds a specific tension or behavior pattern that feels true to the audience",
+            "2": "Produces a solid but familiar insight",
+            "1": "Stays generic or surface-level",
+            "0": "Insight is irrelevant or off-brief"
+          }
+        },
+        {
+          "criterion_id": "consumer_insight_actionability",
+          "description": "Insights clearly suggest campaign implications",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Each insight implies a clear creative or messaging direction",
+            "1": "Insight is interesting but hard to turn into creative",
+            "0": "Insight does not inform the campaign"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 3,
+      "stage": "strategy",
+      "user_message": "I like the idea that people want accountability without shame. Based on that, what should the positioning be?",
+      "expected_behaviors": [
+        "Translates the insight into clear positioning",
+        "Differentiates from competitor framing",
+        "Stays relevant to the stated audience and brand voice",
+        "Avoids generic app-store language"
+      ],
+      "autofail_triggers": [
+        "Positioning does not follow from the insight",
+        "Uses hype or banned consumer clichés",
+        "Could describe any generic wellness app"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "consumer_insight_to_strategy",
+          "description": "Positioning flows from the chosen insight",
+          "max_points": 3,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "3": "Positioning directly addresses the insight tension",
+            "2": "Positioning is related but loosely connected",
+            "1": "Positioning is valid but generic",
+            "0": "Positioning ignores or contradicts the insight"
+          }
+        },
+        {
+          "criterion_id": "consumer_differentiation",
+          "description": "Positioning creates separation from alternatives",
+          "max_points": 2,
+          "dimension": "judgment",
+          "scoring_guide": {
+            "2": "Differentiation is clear and defensible",
+            "1": "Some distinction exists but still overlaps with competitors",
+            "0": "No meaningful differentiation"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 4,
+      "stage": "idea_generation",
+      "user_message": "Good. Give me 5 campaign concepts that bring this positioning to life.",
+      "expected_behaviors": [
+        "Generates 5 distinct concepts",
+        "Keeps the concepts rooted in the positioning",
+        "Shows range rather than slight variations",
+        "Respects the calm, practical brand voice"
+      ],
+      "autofail_triggers": [
+        "Produces fewer than 5 concepts",
+        "Concepts are near-duplicates",
+        "Uses hype or disallowed health language"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "consumer_idea_volume",
+          "description": "Provides the requested number of distinct concepts",
+          "max_points": 1,
+          "dimension": "judgment",
+          "scoring_guide": {
+            "1": "Five distinct concepts are provided",
+            "0": "Too few concepts or obvious repetitions"
+          }
+        },
+        {
+          "criterion_id": "consumer_idea_range",
+          "description": "Concepts explore varied territories",
+          "max_points": 2,
+          "dimension": "originality",
+          "scoring_guide": {
+            "2": "Concepts cover three or more clearly different angles",
+            "1": "Some range exists but several ideas are similar",
+            "0": "All concepts feel like the same idea"
+          }
+        },
+        {
+          "criterion_id": "consumer_strategy_ladder",
+          "description": "Concepts clearly ladder to the strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Every concept supports the positioning",
+            "1": "Most concepts connect but one or two drift",
+            "0": "Concepts do not reflect the strategy"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 5,
+      "stage": "idea_selection",
+      "user_message": "Which 2 are strongest and why? Be specific about the trade-offs.",
+      "expected_behaviors": [
+        "Selects two concepts with clear reasoning",
+        "Connects the reasoning to audience and strategy",
+        "Acknowledges trade-offs or practical constraints",
+        "Does not default to the safest but blandest choice"
+      ],
+      "autofail_triggers": [
+        "Provides no reasoning for the selections",
+        "Reasoning contradicts earlier strategy",
+        "Selects ideas that violate the brand voice"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "consumer_selection_reasoning",
+          "description": "Quality of reasoning behind the selections",
+          "max_points": 3,
+          "dimension": "judgment",
+          "scoring_guide": {
+            "3": "Reasoning is clear, strategic, and audience-aware",
+            "2": "Reasoning is valid but somewhat generic",
+            "1": "Reasoning is weak or preference-based",
+            "0": "No meaningful reasoning is given"
+          }
+        },
+        {
+          "criterion_id": "consumer_selection_quality",
+          "description": "Selected ideas are credibly the strongest options",
+          "max_points": 2,
+          "dimension": "judgment",
+          "scoring_guide": {
+            "2": "Selections are defensibly the strongest",
+            "1": "Selections are reasonable but debatable",
+            "0": "Selections are clearly weak choices"
+          }
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "category": "campaign_development",
+    "difficulty": "medium",
+    "estimated_cost": 0.15,
+    "author": "amadad",
+    "version": "1.0"
+  }
+}

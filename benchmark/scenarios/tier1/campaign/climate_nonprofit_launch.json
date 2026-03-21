@@ -1,0 +1,87 @@
+{
+  "scenario_id": "tier1_campaign_008",
+  "tier": "tier_1",
+  "title": "Climate Nonprofit Launch - Local Action Network",
+  "brand": {
+    "name": "BlockCurrent",
+    "voice": "humane, practical, no guilt tactics",
+    "tone_keywords": ["evidence", "restrained"],
+    "audience": "local donors and community organizers who want practical climate action",
+    "constraints": ["no guilt-based messaging", "no inflated impact claims", "no savior framing"],
+    "competitors": ["Sunrise Movement", "350.org"],
+    "banned_phrases": ["save the planet now", "before it's too late", "be the hero"]
+  },
+  "turns": [
+    {
+      "turn_number": 1,
+      "stage": "brief_intake",
+      "user_message": "We're launching BlockCurrent, a nonprofit building local climate action networks. Budget is $38k, timeline is 7 weeks, and the goal is to grow donor and organizer interest without alienating current supporters. What do you need to know first?",
+      "expected_behaviors": ["Asks about audiences, trust signals, and rebrand risks", "Clarifies goals and proof points", "Does not jump into tactics"],
+      "autofail_triggers": ["Moves into tactics before understanding the brief", "Assumes emotional triggers not provided"],
+      "rubric_criteria": [{
+        "criterion_id": "climate_brief_comprehension",
+        "description": "Uses clarifying questions to understand the launch brief",
+        "max_points": 3,
+        "dimension": "coherence",
+        "scoring_guide": {"3": "Questions surface audience, trust, and transition risks", "2": "Questions are useful but incomplete", "1": "Questions are generic", "0": "Moves into tactics without understanding the brief"}
+      }]
+    },
+    {
+      "turn_number": 2,
+      "stage": "insight_generation",
+      "user_message": "Good questions. Our differentiator is that we can show neighborhood-level participation and follow-through data, not generic supporter surveys. What insights should drive the campaign?",
+      "expected_behaviors": ["Finds a tension around trust and practical impact", "Connects the insight to the evidence-based differentiator", "Keeps the insight actionable"],
+      "autofail_triggers": ["Relies on generic nonprofit tropes", "Ignores the differentiator"],
+      "rubric_criteria": [{
+        "criterion_id": "climate_insight_depth",
+        "description": "Depth and specificity of audience insight",
+        "max_points": 3,
+        "dimension": "originality",
+        "scoring_guide": {"3": "Insight reflects a specific donor or organizer tension", "2": "Insight is useful but familiar", "1": "Insight is generic", "0": "Insight is off-brief"}
+      }]
+    },
+    {
+      "turn_number": 3,
+      "stage": "strategy",
+      "user_message": "I like the idea that people trust visible local progress more than broad emotional appeals. Based on that, what should the positioning be?",
+      "expected_behaviors": ["Turns the insight into positioning", "Balances warmth with credibility", "Differentiates from generic nonprofit messaging"],
+      "autofail_triggers": ["Positioning ignores the insight", "Uses manipulative or guilt-heavy language"],
+      "rubric_criteria": [{
+        "criterion_id": "climate_insight_to_strategy",
+        "description": "Positioning ladders from the chosen insight",
+        "max_points": 3,
+        "dimension": "coherence",
+        "scoring_guide": {"3": "Positioning directly addresses the insight", "2": "Positioning is related but loose", "1": "Positioning is generic", "0": "Positioning ignores the insight"}
+      }]
+    },
+    {
+      "turn_number": 4,
+      "stage": "idea_generation",
+      "user_message": "Great. Give me 5 campaign concepts for the launch.",
+      "expected_behaviors": ["Generates 5 distinct concepts", "Shows range", "Keeps concepts tied to the strategy"],
+      "autofail_triggers": ["Produces fewer than 5 concepts", "Concepts rely on guilt or fear", "Concepts are repetitive"],
+      "rubric_criteria": [{
+        "criterion_id": "climate_idea_range",
+        "description": "Concepts cover distinct territories while supporting strategy",
+        "max_points": 2,
+        "dimension": "originality",
+        "scoring_guide": {"2": "Concepts span several territories", "1": "Some range exists but concepts overlap", "0": "Concepts all feel the same"}
+      }]
+    },
+    {
+      "turn_number": 5,
+      "stage": "idea_selection",
+      "user_message": "Which 2 are strongest and why? Please include any trade-offs.",
+      "expected_behaviors": ["Selects two concepts with clear reasoning", "Connects choices to audience and strategy", "Acknowledges trade-offs"],
+      "autofail_triggers": ["Provides no reasoning", "Reasoning contradicts the strategy"],
+      "rubric_criteria": [{
+        "criterion_id": "climate_selection_reasoning",
+        "description": "Quality of reasoning behind the selections",
+        "max_points": 3,
+        "dimension": "judgment",
+        "scoring_guide": {"3": "Reasoning is strategic and specific", "2": "Reasoning is valid but generic", "1": "Reasoning is weak", "0": "No meaningful reasoning"}
+      }]
+    }
+  ],
+  "metadata": {"category": "campaign_development", "difficulty": "medium", "estimated_cost": 0.15, "author": "amadad", "version": "1.0"}
+}

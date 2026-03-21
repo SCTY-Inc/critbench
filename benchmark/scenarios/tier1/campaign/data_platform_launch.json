@@ -1,0 +1,87 @@
+{
+  "scenario_id": "tier1_campaign_012",
+  "tier": "tier_1",
+  "title": "Data Platform Launch - Query Reliability",
+  "brand": {
+    "name": "QueryLine",
+    "voice": "precise, understated, no hype",
+    "tone_keywords": ["evidence", "restrained"],
+    "audience": "data platform leaders at scaling software companies",
+    "constraints": ["no inflated performance claims", "no fearmongering", "no vague platform jargon"],
+    "competitors": ["Monte Carlo", "Bigeye"],
+    "banned_phrases": ["10x reliability", "never break a query", "industry-leading platform"]
+  },
+  "turns": [
+    {
+      "turn_number": 1,
+      "stage": "brief_intake",
+      "user_message": "We're launching QueryLine, a query reliability platform for scaling software companies. Budget is $65k, timeline is 7 weeks, and the goal is qualified pipeline from data platform leaders. What do you need to know before we start?",
+      "expected_behaviors": ["Asks about the buyer, trust barriers, and proof points", "Clarifies objectives and constraints", "Does not jump to tactics"],
+      "autofail_triggers": ["Moves into tactics before understanding the brief", "Assumes unsupported claims"],
+      "rubric_criteria": [{
+        "criterion_id": "data_brief_comprehension",
+        "description": "Uses clarifying questions to understand the launch brief",
+        "max_points": 3,
+        "dimension": "coherence",
+        "scoring_guide": {"3": "Questions surface buyer context, proof points, and goals", "2": "Questions are useful but incomplete", "1": "Questions are generic", "0": "Moves into tactics without understanding the brief"}
+      }]
+    },
+    {
+      "turn_number": 2,
+      "stage": "insight_generation",
+      "user_message": "Good questions. Our differentiator is that we show actual query behavior and failure timing data, not survey-based data-team confidence scores. What insights should shape the campaign?",
+      "expected_behaviors": ["Finds a real platform-ops tension", "Connects the insight to the evidence-based differentiator", "Keeps the insight actionable"],
+      "autofail_triggers": ["Offers generic data tooling platitudes", "Ignores the differentiator"],
+      "rubric_criteria": [{
+        "criterion_id": "data_insight_depth",
+        "description": "Depth and specificity of audience insight",
+        "max_points": 3,
+        "dimension": "originality",
+        "scoring_guide": {"3": "Insight reflects a specific data-platform tension", "2": "Insight is useful but familiar", "1": "Insight is generic", "0": "Insight is off-brief"}
+      }]
+    },
+    {
+      "turn_number": 3,
+      "stage": "strategy",
+      "user_message": "I like the idea that data teams are expected to move fast without reliable signal quality. Based on that, what should the positioning be?",
+      "expected_behaviors": ["Turns the insight into positioning", "Feels credible for the audience", "Differentiates from generic data tooling messaging"],
+      "autofail_triggers": ["Positioning ignores the insight", "Uses hype or vague language"],
+      "rubric_criteria": [{
+        "criterion_id": "data_insight_to_strategy",
+        "description": "Positioning ladders from the chosen insight",
+        "max_points": 3,
+        "dimension": "coherence",
+        "scoring_guide": {"3": "Positioning directly addresses the insight", "2": "Positioning is related but loose", "1": "Positioning is generic", "0": "Positioning ignores the insight"}
+      }]
+    },
+    {
+      "turn_number": 4,
+      "stage": "idea_generation",
+      "user_message": "Good. Give me 5 campaign concepts that bring this positioning to life.",
+      "expected_behaviors": ["Generates 5 distinct concepts", "Shows range", "Keeps concepts tied to the strategy"],
+      "autofail_triggers": ["Produces fewer than 5 concepts", "Concepts are repetitive", "Uses hype-heavy language"],
+      "rubric_criteria": [{
+        "criterion_id": "data_idea_range",
+        "description": "Concepts cover distinct territories while supporting strategy",
+        "max_points": 2,
+        "dimension": "originality",
+        "scoring_guide": {"2": "Concepts span several territories", "1": "Some range exists but concepts overlap", "0": "Concepts all feel the same"}
+      }]
+    },
+    {
+      "turn_number": 5,
+      "stage": "idea_selection",
+      "user_message": "Which 2 are strongest and why? Include the trade-offs you considered.",
+      "expected_behaviors": ["Selects two concepts with clear reasoning", "Connects choices to audience and strategy", "Acknowledges trade-offs"],
+      "autofail_triggers": ["Provides no reasoning", "Reasoning contradicts the strategy"],
+      "rubric_criteria": [{
+        "criterion_id": "data_selection_reasoning",
+        "description": "Quality of reasoning behind the selections",
+        "max_points": 3,
+        "dimension": "judgment",
+        "scoring_guide": {"3": "Reasoning is strategic and specific", "2": "Reasoning is valid but generic", "1": "Reasoning is weak", "0": "No meaningful reasoning"}
+      }]
+    }
+  ],
+  "metadata": {"category": "campaign_development", "difficulty": "medium", "estimated_cost": 0.15, "author": "amadad", "version": "1.0"}
+}
