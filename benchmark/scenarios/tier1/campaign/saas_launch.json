@@ -5,6 +5,7 @@
   "brand": {
     "name": "CodeFlow",
     "voice": "technically credible, understated, no hype",
+    "tone_keywords": ["evidence", "restrained"],
     "audience": "senior engineers at Series B+ startups",
     "constraints": [
       "no 'revolutionary' or 'game-changing'",

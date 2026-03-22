@@ -1,0 +1,228 @@
+{
+  "scenario_id": "tier1_campaign_004",
+  "tier": "tier_1",
+  "title": "B2B Enterprise Launch - Security Operations Platform",
+  "brand": {
+    "name": "SignalBridge",
+    "voice": "precise, credible, no hype",
+    "tone_keywords": ["evidence", "restrained"],
+    "audience": "security leaders at enterprise organizations",
+    "constraints": [
+      "no fearmongering",
+      "no inflated compliance claims",
+      "no vague enterprise jargon"
+    ],
+    "competitors": ["Splunk", "Securonix"],
+    "banned_phrases": ["military-grade", "never miss a threat", "industry-leading platform"]
+  },
+  "turns": [
+    {
+      "turn_number": 1,
+      "stage": "brief_intake",
+      "user_message": "We're launching SignalBridge, a security operations platform for enterprise teams. Budget is $90k, timeline is 10 weeks, and the goal is qualified pipeline from security leaders. What do you need to know before we start?",
+      "expected_behaviors": [
+        "Asks clarifying questions about the buyer, threat environment, and proof points",
+        "Asks about procurement or trust barriers",
+        "Asks about the conversion target and launch constraints",
+        "Does not jump directly into channel recommendations"
+      ],
+      "autofail_triggers": [
+        "Moves into tactics before understanding the brief",
+        "Assumes capabilities or certifications not provided"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "enterprise_brief_comprehension",
+          "description": "Uses clarifying questions to understand the launch brief",
+          "max_points": 3,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "3": "Questions surface buyer context, trust barriers, and success metrics",
+            "2": "Questions are useful but incomplete",
+            "1": "Questions are generic and low-value",
+            "0": "Moves into tactics without understanding the brief"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 2,
+      "stage": "insight_generation",
+      "user_message": "Good questions. Our differentiator is that we connect live incident evidence across tools instead of relying on analyst opinion or survey-based maturity assessments. What insights should shape the campaign?",
+      "expected_behaviors": [
+        "Finds a relevant tension in enterprise security buying",
+        "Connects the insight to the evidence-based differentiator",
+        "Surfaces trust or credibility challenges specific to the audience",
+        "Keeps the insights actionable for campaign development"
+      ],
+      "autofail_triggers": [
+        "Offers generic cybersecurity platitudes",
+        "Ignores the stated differentiator or buyer tension"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "enterprise_insight_depth",
+          "description": "Depth and specificity of enterprise security insight",
+          "max_points": 3,
+          "dimension": "originality",
+          "scoring_guide": {
+            "3": "Insight reflects a specific tension in security decision-making",
+            "2": "Insight is useful but familiar",
+            "1": "Insight is generic or vague",
+            "0": "Insight is off-brief"
+          }
+        },
+        {
+          "criterion_id": "enterprise_insight_actionability",
+          "description": "Insight clearly informs campaign direction",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Insight points clearly toward positioning and creative",
+            "1": "Insight is interesting but weakly connected to execution",
+            "0": "Insight does not help shape the campaign"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 3,
+      "stage": "strategy",
+      "user_message": "I like the idea that buyers are exhausted by opinion-heavy security tooling. Based on that, what should the positioning be?",
+      "expected_behaviors": [
+        "Turns the insight into clear positioning",
+        "Differentiates from competitor language",
+        "Feels credible for enterprise security leaders",
+        "Avoids fear-based messaging"
+      ],
+      "autofail_triggers": [
+        "Positioning does not follow from the insight",
+        "Uses hype or fearmongering",
+        "Could describe any generic security platform"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "enterprise_insight_to_strategy",
+          "description": "Positioning ladders from the chosen insight",
+          "max_points": 3,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "3": "Positioning directly addresses the insight tension",
+            "2": "Positioning is related but loosely tied",
+            "1": "Positioning is generic",
+            "0": "Positioning ignores or contradicts the insight"
+          }
+        },
+        {
+          "criterion_id": "enterprise_differentiation",
+          "description": "Positioning creates clear separation from alternatives",
+          "max_points": 2,
+          "dimension": "judgment",
+          "scoring_guide": {
+            "2": "Differentiation is clear and defensible",
+            "1": "Some distinction exists but is not sharp",
+            "0": "No meaningful differentiation"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 4,
+      "stage": "idea_generation",
+      "user_message": "Good. Give me 5 campaign concepts that bring this positioning to life.",
+      "expected_behaviors": [
+        "Generates 5 distinct concepts",
+        "Keeps the concepts tied to the positioning",
+        "Shows genuine range rather than near-duplicates",
+        "Maintains the precise, credible voice"
+      ],
+      "autofail_triggers": [
+        "Produces fewer than 5 concepts",
+        "Concepts are repetitive",
+        "Uses fear-based or hype-heavy language"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "enterprise_idea_volume",
+          "description": "Provides the requested number of concepts",
+          "max_points": 1,
+          "dimension": "judgment",
+          "scoring_guide": {
+            "1": "Five distinct concepts are provided",
+            "0": "Too few concepts or obvious repeats"
+          }
+        },
+        {
+          "criterion_id": "enterprise_idea_range",
+          "description": "Concepts cover varied territories",
+          "max_points": 2,
+          "dimension": "originality",
+          "scoring_guide": {
+            "2": "Concepts span several different territories",
+            "1": "Some range exists but concepts overlap",
+            "0": "Concepts all feel the same"
+          }
+        },
+        {
+          "criterion_id": "enterprise_strategy_ladder",
+          "description": "Concepts clearly support the positioning",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "All concepts clearly ladder to the strategy",
+            "1": "Most connect but one or two drift",
+            "0": "Concepts do not reflect the strategy"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 5,
+      "stage": "idea_selection",
+      "user_message": "Which 2 are strongest and why? Include the trade-offs you considered.",
+      "expected_behaviors": [
+        "Selects two concepts with clear reasoning",
+        "Connects the reasoning to buyer trust and positioning",
+        "Acknowledges execution trade-offs or sales-cycle realities",
+        "Does not simply pick the safest idea without explanation"
+      ],
+      "autofail_triggers": [
+        "Gives no reasoning for the selections",
+        "Reasoning contradicts the strategy",
+        "Selects concepts that violate the brand constraints"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "enterprise_selection_reasoning",
+          "description": "Quality of reasoning behind the selections",
+          "max_points": 3,
+          "dimension": "judgment",
+          "scoring_guide": {
+            "3": "Reasoning is clear, strategic, and buyer-aware",
+            "2": "Reasoning is valid but generic",
+            "1": "Reasoning is weak or preference-based",
+            "0": "No meaningful reasoning is given"
+          }
+        },
+        {
+          "criterion_id": "enterprise_selection_quality",
+          "description": "Selected concepts are credibly the strongest",
+          "max_points": 2,
+          "dimension": "judgment",
+          "scoring_guide": {
+            "2": "Selections are defensibly the strongest",
+            "1": "Selections are reasonable but debatable",
+            "0": "Selections are clearly weak"
+          }
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "category": "campaign_development",
+    "difficulty": "medium",
+    "estimated_cost": 0.15,
+    "author": "amadad",
+    "version": "1.0"
+  }
+}

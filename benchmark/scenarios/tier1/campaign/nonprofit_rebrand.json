@@ -1,0 +1,228 @@
+{
+  "scenario_id": "tier1_campaign_003",
+  "tier": "tier_1",
+  "title": "Nonprofit Rebrand - Community Food Access",
+  "brand": {
+    "name": "HarborAid",
+    "voice": "humane, credible, no guilt tactics",
+    "tone_keywords": ["evidence", "restrained"],
+    "audience": "donors and local partners who want practical community impact",
+    "constraints": [
+      "no guilt-based fundraising language",
+      "no inflated impact claims",
+      "no savior framing"
+    ],
+    "competitors": ["Feeding America", "City Harvest"],
+    "banned_phrases": ["every dollar saves lives", "act now before it's too late", "be the hero"]
+  },
+  "turns": [
+    {
+      "turn_number": 1,
+      "stage": "brief_intake",
+      "user_message": "We're rebranding HarborAid, a nonprofit focused on neighborhood food access. Budget is $40k, timeline is 8 weeks, and we need to keep current donors while attracting younger local supporters. What do you need to know first?",
+      "expected_behaviors": [
+        "Asks clarifying questions about audiences and perception gaps",
+        "Asks about current trust signals and program outcomes",
+        "Asks about risks in changing the brand",
+        "Does not jump into creative executions immediately"
+      ],
+      "autofail_triggers": [
+        "Suggests messaging or design tactics before clarifying the brief",
+        "Assumes emotional triggers that were not provided"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "nonprofit_brief_comprehension",
+          "description": "Uses clarifying questions to understand the rebrand brief",
+          "max_points": 3,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "3": "Questions uncover audience, trust, and transition risks",
+            "2": "Questions are useful but incomplete",
+            "1": "Questions are generic and low-value",
+            "0": "Moves into tactics without understanding the brief"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 2,
+      "stage": "insight_generation",
+      "user_message": "Good questions. Our differentiator is that we can show clear neighborhood-level outcome data and volunteer retention trends, not generic donor surveys. What insights should drive the rebrand?",
+      "expected_behaviors": [
+        "Finds an insight about trust, dignity, or proof of impact",
+        "Connects the insight to the evidence-based differentiator",
+        "Surfaces tensions between existing donors and new supporters",
+        "Keeps the insight actionable for brand development"
+      ],
+      "autofail_triggers": [
+        "Relies on generic nonprofit messaging tropes",
+        "Ignores the stated differentiator or donor tension"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "nonprofit_insight_depth",
+          "description": "Depth and specificity of insight for the rebrand",
+          "max_points": 3,
+          "dimension": "originality",
+          "scoring_guide": {
+            "3": "Insight reveals a specific, relevant tension for this nonprofit",
+            "2": "Insight is useful but familiar",
+            "1": "Insight is generic or vague",
+            "0": "Insight is off-brief"
+          }
+        },
+        {
+          "criterion_id": "nonprofit_insight_actionability",
+          "description": "Insight can clearly inform the new brand direction",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Insight naturally leads to a brand direction",
+            "1": "Insight is interesting but difficult to act on",
+            "0": "Insight does not help the rebrand"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 3,
+      "stage": "strategy",
+      "user_message": "I like the idea that people trust measured community progress more than broad emotional appeals. Based on that, what should our positioning be?",
+      "expected_behaviors": [
+        "Creates positioning that follows from the insight",
+        "Balances warmth with credibility",
+        "Differentiates from generic nonprofit language",
+        "Remains suitable for both donors and partners"
+      ],
+      "autofail_triggers": [
+        "Positioning contradicts the insight",
+        "Uses manipulative or guilt-heavy framing",
+        "Could describe any nonprofit without specifics"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "nonprofit_insight_to_strategy",
+          "description": "Positioning ladders directly from the insight",
+          "max_points": 3,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "3": "Positioning directly expresses the insight tension",
+            "2": "Positioning is related but not sharply tied",
+            "1": "Positioning is generic",
+            "0": "Positioning ignores the insight"
+          }
+        },
+        {
+          "criterion_id": "nonprofit_differentiation",
+          "description": "Positioning feels distinct from common nonprofit framing",
+          "max_points": 2,
+          "dimension": "judgment",
+          "scoring_guide": {
+            "2": "Positioning creates real distinction",
+            "1": "Some distinction exists but remains familiar",
+            "0": "Positioning is generic"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 4,
+      "stage": "idea_generation",
+      "user_message": "Great. Give me 5 campaign concepts for the rebrand rollout.",
+      "expected_behaviors": [
+        "Generates 5 distinct concepts",
+        "Builds directly from the positioning",
+        "Explores a range of creative territories",
+        "Keeps the tone humane and restrained"
+      ],
+      "autofail_triggers": [
+        "Produces fewer than 5 concepts",
+        "Concepts rely on guilt or savior narratives",
+        "Concepts feel like minor variations"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "nonprofit_idea_volume",
+          "description": "Provides the requested number of concepts",
+          "max_points": 1,
+          "dimension": "judgment",
+          "scoring_guide": {
+            "1": "Five distinct concepts are provided",
+            "0": "Too few concepts or obvious repeats"
+          }
+        },
+        {
+          "criterion_id": "nonprofit_idea_range",
+          "description": "Concepts cover varied territories",
+          "max_points": 2,
+          "dimension": "originality",
+          "scoring_guide": {
+            "2": "Concepts span clearly different territories",
+            "1": "Some range exists but several concepts overlap",
+            "0": "Concepts are all the same idea"
+          }
+        },
+        {
+          "criterion_id": "nonprofit_strategy_ladder",
+          "description": "Concepts stay connected to the positioning",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "All concepts clearly ladder to the strategy",
+            "1": "Most connect but one or two drift",
+            "0": "Concepts do not reflect the strategy"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 5,
+      "stage": "idea_selection",
+      "user_message": "Which 2 are strongest and why? Please include any trade-offs you see.",
+      "expected_behaviors": [
+        "Selects two concepts with clear strategic reasoning",
+        "Links the reasoning to audience trust and positioning",
+        "Acknowledges trade-offs or execution risk",
+        "Avoids defaulting to the safest but least effective option"
+      ],
+      "autofail_triggers": [
+        "Fails to explain the selections",
+        "Reasoning contradicts the rebrand strategy",
+        "Selects concepts that violate the voice constraints"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "nonprofit_selection_reasoning",
+          "description": "Quality of reasoning behind the selections",
+          "max_points": 3,
+          "dimension": "judgment",
+          "scoring_guide": {
+            "3": "Reasoning is strategic, clear, and aware of audience trust",
+            "2": "Reasoning is valid but somewhat generic",
+            "1": "Reasoning is weak or preference-based",
+            "0": "No meaningful reasoning is given"
+          }
+        },
+        {
+          "criterion_id": "nonprofit_selection_quality",
+          "description": "Selected concepts are credibly the strongest",
+          "max_points": 2,
+          "dimension": "judgment",
+          "scoring_guide": {
+            "2": "Selections are defensibly the strongest",
+            "1": "Selections are reasonable but debatable",
+            "0": "Selections are clearly weak"
+          }
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "category": "campaign_development",
+    "difficulty": "medium",
+    "estimated_cost": 0.15,
+    "author": "amadad",
+    "version": "1.0"
+  }
+}

@@ -80,4 +80,9 @@ Test scenarios organized by tier complexity.
 2. Follow the format above
 3. Include rubric criteria for key evaluation points
 4. Add autofail triggers for hard failures
-5. Test with `python -m benchmark.critbench.cli --scenario <path> --dry-run`
+5. Test with the validation runners or the Python `score(...)` API shown in the repo README
+
+## Current Validation Coverage
+
+- `tier0`: 1 smoke-test scenario
+- `tier1`: 12 campaign scenarios spanning B2B SaaS, enterprise security, finance, healthcare, education, HR, retail, logistics, data tooling, and nonprofit/community briefs

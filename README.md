@@ -142,15 +142,23 @@ echo "OPENROUTER_API_KEY=sk-or-v1-..." > .env
 python3 benchmark/scripts/validation/run_minimal.py -y
 
 # Run tier 0 + tier 1 validation (offline smoke test)
+# Current suite: 12 tier1 campaign scenarios + 1 tier0 smoke test
 python3 benchmark/scripts/validation/run_full.py -y
 
 # Preview validation scenarios and estimated cost
 python3 benchmark/scripts/validation/run_minimal.py --dry-run
 
-# Score a transcript
-python3 -m benchmark.critbench.cli \
-  --scenario benchmark/scenarios/tier1/campaign/saas_launch.json \
-  --transcript path/to/transcript.jsonl
+# Score a transcript from Python
+python3 - <<'PY'
+from critbench import score
+
+result = score(
+    transcript_path="path/to/transcript.jsonl",
+    scenario_path="benchmark/scenarios/tier1/campaign/saas_launch.json",
+)
+
+print(result["overall_percentage"])
+PY
 ```
 
 ---

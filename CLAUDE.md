@@ -20,17 +20,23 @@ AI assistant instructions for CritBench (creative benchmark project).
 python3 benchmark/scripts/validation/run_minimal.py -y
 
 # Full validation (tier 0 + tier 1 offline smoke test)
+# Current suite: 12 tier1 campaign scenarios + 1 tier0 smoke test
 python3 benchmark/scripts/validation/run_full.py -y
 
 # Dry run (list scenarios and estimated cost)
 python3 benchmark/scripts/validation/run_minimal.py --dry-run
 
 # === SCORING (single scenario) ===
-python3 -m benchmark.critbench.cli \
-  --scenario benchmark/scenarios/tier1/campaign/saas_launch.json \
-  --transcript path/to/transcript.jsonl \
-  --brand benchmark/configs/brands/codeflow.yaml \
-  --out report.html
+python3 - <<'PY'
+from critbench import score
+
+result = score(
+    transcript_path="path/to/transcript.jsonl",
+    scenario_path="benchmark/scenarios/tier1/campaign/saas_launch.json",
+)
+
+print(result["overall_percentage"])
+PY
 
 # === TESTS ===
 pytest benchmark/tests/ -v
@@ -48,7 +54,6 @@ black benchmark
 benchmark/critbench/
 ├── __init__.py       # Public API: score, score_with_rewards
 ├── score.py          # Main scoring function
-├── cli.py            # CLI tool
 ├── models/           # Brand, Turn, Campaign, Scenario dataclasses
 ├── evaluation/
 │   ├── orchestrator.py
@@ -86,6 +91,7 @@ benchmark/critbench/
   "brand": {
     "name": "CodeFlow",
     "voice": "technically credible, understated",
+    "tone_keywords": ["evidence", "restrained"],
     "audience": "senior engineers",
     "constraints": ["no 'revolutionary'", "no fake metrics"]
   },
@@ -108,6 +114,11 @@ Uses 3-model ensemble to reduce bias:
 - Majority vote for binary decisions
 - Mean + confidence for numeric scores
 - Disagreement flags for human review
+
+## Current Validation Coverage
+
+- `tier0`: 1 smoke-test scenario
+- `tier1`: 12 campaign scenarios spanning B2B SaaS, enterprise security, finance, healthcare, education, HR, retail, logistics, data tooling, and nonprofit/community briefs
 
 ## Code Style
 
