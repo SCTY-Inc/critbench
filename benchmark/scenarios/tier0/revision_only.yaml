@@ -1,0 +1,117 @@
+scenario_id: tier0_revision_only
+tier: tier_0
+title: Revision & Feedback Integration - Fidelity Test
+
+brand:
+  name: HealthCo
+  voice: empathetic, accessible, no medical jargon
+  audience: busy parents and caregivers
+  constraints:
+    - must be actionable
+    - avoid alarm
+  banned_phrases:
+    - consult your doctor
+    - serious health condition
+
+turns:
+  - turn_number: 1
+    stage: brief_intake
+    user_message: "We're a health app helping busy parents track their family's wellness. We want to send a welcome email that explains what we do, builds trust, and gets people to set up their first health profile. What approach would you take?"
+    expected_behaviors:
+      - Understands the goal (explain, trust-build, activate)
+      - Considers parent psychology
+      - Thinks about email tone and structure
+    autofail_triggers:
+      - Oversells the app
+    rubric_criteria:
+      - criterion_id: brief_understanding
+        description: Understands the core goal of welcome email
+        max_points: 2
+        dimension: coherence
+        scoring_guide:
+          "2": "Clearly states goal is explain+trust+activate"
+          "1": "Understands partially"
+          "0": "Misses the goal"
+
+  - turn_number: 2
+    stage: execution
+    user_message: "Draft the welcome email for me."
+    expected_behaviors:
+      - Email explains the app clearly
+      - Email builds trust (empathetic, accessible tone)
+      - Email has clear CTA
+      - Tone matches brand voice
+    autofail_triggers:
+      - Uses jargon
+      - Doesn't build trust
+      - No clear CTA
+    rubric_criteria:
+      - criterion_id: email_clarity
+        description: Email clearly explains what the app does
+        max_points: 2
+        dimension: coherence
+        scoring_guide:
+          "2": "Parent reads email and understands core value"
+          "1": "Mostly clear but some confusion"
+          "0": "Unclear"
+      - criterion_id: voice_match
+        description: Email matches brand voice (empathetic, accessible)
+        max_points: 2
+        dimension: voice
+        scoring_guide:
+          "2": "Email feels warm, accessible, parent-friendly"
+          "1": "Mostly good but slightly corporate"
+          "0": "Formal, clinical, or off-brand"
+      - criterion_id: cta_effectiveness
+        description: CTA clearly directs to next action
+        max_points: 1
+        dimension: judgment
+        scoring_guide:
+          "1": "Clear CTA present and compelling"
+          "0": "No CTA or unclear"
+
+  - turn_number: 3
+    stage: feedback
+    user_message: "Good but feels a bit corporate. Can you make it sound more like I'm talking to a friend? Also, it's too long—people won't read it all. And add something that shows we understand what parents actually worry about."
+    expected_behaviors:
+      - Simplifies and shortens email
+      - Makes tone more conversational
+      - Adds emotional resonance (understanding parental concern)
+      - Keeps the structure and CTA
+    autofail_triggers:
+      - Becomes too casual/unprofessional
+      - Removes CTA
+      - Loses clarity trying to shorten
+    rubric_criteria:
+      - criterion_id: feedback_incorporation
+        description: Addresses all three pieces of feedback
+        max_points: 3
+        dimension: adaptation
+        scoring_guide:
+          "3": "Revision addresses: friendlier tone, shorter, adds parental concern"
+          "2": "Addresses 2 of 3 feedback items"
+          "1": "Addresses 1 item"
+          "0": "Ignores feedback"
+      - criterion_id: coherence_preservation
+        description: Keeps core message and structure intact
+        max_points: 2
+        dimension: coherence
+        scoring_guide:
+          "2": "Core message and CTA preserved while improving tone/length"
+          "1": "Mostly preserved but some elements lost"
+          "0": "Loses coherence in revision"
+      - criterion_id: tone_shift
+        description: Successfully shifts to conversational tone
+        max_points: 2
+        dimension: voice
+        scoring_guide:
+          "2": "Reads like friend talking, not corporate email"
+          "1": "Slightly friendlier but still formal"
+          "0": "Doesn't improve tone or becomes too casual"
+
+metadata:
+  category: revision_fidelity
+  difficulty: easy
+  estimated_cost: 0.05
+  author: amadad
+  version: 1.0

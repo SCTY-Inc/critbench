@@ -1,0 +1,66 @@
+scenario_id: tier0_insight_only
+tier: tier_0
+title: Insight Generation Only - Quick Validation
+
+brand:
+  name: TestBrand
+  voice: clear and direct
+  audience: test audience
+  constraints:
+    - stay grounded
+  banned_phrases: []
+
+turns:
+  - turn_number: 1
+    stage: brief_intake
+    user_message: "We're a sustainable fashion brand targeting conscious millennials. Our main differentiator is we use deadstock fabric and pay factory workers 50% above market. We want to communicate our values without sounding preachy. What do you need to know?"
+    expected_behaviors:
+      - Asks about brand personality
+      - Asks about audience values and pain points
+      - Clarifies what not to do
+    autofail_triggers:
+      - Immediately jumps to campaign ideas
+    rubric_criteria:
+      - criterion_id: brief_engagement
+        description: Shows engagement with brief
+        max_points: 2
+        dimension: coherence
+        scoring_guide:
+          "2": "Asks 2+ clarifying questions"
+          "1": "Asks 1 question"
+          "0": "No questions"
+
+  - turn_number: 2
+    stage: insight_generation
+    user_message: "Good. Our insight is that conscious consumers feel guilt but also don't want to be preached to. They want permission to care without being judged. What campaigns could express that insight?"
+    expected_behaviors:
+      - Understands the insight
+      - Translates insight into creative direction
+      - Avoids generic sustainability messaging
+    autofail_triggers:
+      - Misses the insight about guilt and permission
+    rubric_criteria:
+      - criterion_id: insight_comprehension
+        description: Demonstrates understanding of the core insight
+        max_points: 3
+        dimension: coherence
+        scoring_guide:
+          "3": "Clearly shows understanding of guilt + permission tension"
+          "2": "Mostly understands, minor gaps"
+          "1": "Surface-level understanding"
+          "0": "Misses the insight"
+      - criterion_id: creative_translation
+        description: Translates insight to concrete creative directions
+        max_points: 2
+        dimension: coherence
+        scoring_guide:
+          "2": "Gives 2-3 specific campaign angles that flow from the insight"
+          "1": "Gives generic ideas"
+          "0": "No creative ideas"
+
+metadata:
+  category: validation
+  difficulty: easy
+  estimated_cost: 0.03
+  author: amadad
+  version: 1.0

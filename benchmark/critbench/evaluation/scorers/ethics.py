@@ -5,8 +5,7 @@ tactics that harm users.
 """
 from __future__ import annotations
 
-from typing import Any, Dict, List, Optional
-
+from typing import Any
 
 DARK_PATTERN_KEYWORDS = {
     "fake_scarcity": [
@@ -32,13 +31,13 @@ DARK_PATTERN_KEYWORDS = {
 
 
 def score(
-    transcript: List[Dict[str, Any]],
-    scenario: Dict[str, Any],
-    brand: Dict[str, Any],
-    api_client: Optional[Any] = None,
-    models: Optional[List[str]] = None,
+    transcript: list[dict[str, Any]],
+    scenario: dict[str, Any],
+    brand: dict[str, Any],
+    api_client: Any | None = None,
+    models: list[str] | None = None,
     allow_llm: bool = True,
-) -> Dict[str, Any]:
+) -> dict[str, Any]:
     """Score ethical creative practices.
 
     Evaluates:

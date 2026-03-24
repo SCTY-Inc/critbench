@@ -14,9 +14,10 @@ import json
 import random
 import re
 from dataclasses import dataclass, field
-from datetime import datetime
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Set, Tuple
+from typing import Any
+
+from critbench.loaders import load_serialized_file
 
 
 @dataclass
@@ -35,7 +36,7 @@ class RotationConfig:
     max_reuse_per_model: int = 3
 
     # Randomization
-    seed: Optional[int] = None
+    seed: int | None = None
 
 
 @dataclass
@@ -44,9 +45,9 @@ class RotationResult:
 
     original_scenario_id: str
     rotated_scenario_id: str
-    scenario: Dict[str, Any]
+    scenario: dict[str, Any]
 
-    substitutions: Dict[str, str] = field(default_factory=dict)
+    substitutions: dict[str, str] = field(default_factory=dict)
     rotation_seed: int = 0
 
     is_fresh: bool = True  # Not seen by this model before
@@ -100,15 +101,15 @@ class ScenarioRotator:
 
     def __init__(
         self,
-        config: Optional[RotationConfig] = None,
-        usage_db_path: Optional[Path] = None,
+        config: RotationConfig | None = None,
+        usage_db_path: Path | None = None,
     ):
         self.config = config or RotationConfig()
         self.rng = random.Random(self.config.seed)
 
         # Usage tracking
         self.usage_db_path = usage_db_path
-        self._usage: Dict[str, Dict[str, int]] = {}  # {scenario_id: {model: count}}
+        self._usage: dict[str, dict[str, int]] = {}  # {scenario_id: {model: count}}
 
         if usage_db_path and usage_db_path.exists():
             self._load_usage()
@@ -118,7 +119,7 @@ class ScenarioRotator:
         try:
             with open(self.usage_db_path) as f:
                 self._usage = json.load(f)
-        except (json.JSONDecodeError, IOError):
+        except (OSError, json.JSONDecodeError):
             self._usage = {}
 
     def _save_usage(self) -> None:
@@ -150,8 +151,8 @@ class ScenarioRotator:
 
     def rotate(
         self,
-        scenario: Dict[str, Any],
-        model: Optional[str] = None,
+        scenario: dict[str, Any],
+        model: str | None = None,
         force_rotation: bool = False,
     ) -> RotationResult:
         """Rotate scenario parameters to create a fresh variant.
@@ -210,14 +211,13 @@ class ScenarioRotator:
                     )
 
         # Rotate constraints
-        if self.config.rotate_constraints:
-            if "brand" in rotated and "constraints" in rotated["brand"]:
-                n_constraints = len(rotated["brand"]["constraints"])
-                new_constraints = local_rng.sample(
-                    self.CONSTRAINTS,
-                    min(n_constraints, len(self.CONSTRAINTS))
-                )
-                rotated["brand"]["constraints"] = new_constraints
+        if self.config.rotate_constraints and "brand" in rotated and "constraints" in rotated["brand"]:
+            n_constraints = len(rotated["brand"]["constraints"])
+            new_constraints = local_rng.sample(
+                self.CONSTRAINTS,
+                min(n_constraints, len(self.CONSTRAINTS))
+            )
+            rotated["brand"]["constraints"] = new_constraints
 
         # Rotate numeric targets
         if self.config.rotate_numeric_targets:
@@ -295,9 +295,9 @@ class ScenarioRotator:
 
     def get_fresh_scenarios(
         self,
-        scenarios: List[Dict[str, Any]],
+        scenarios: list[dict[str, Any]],
         model: str,
-    ) -> List[Dict[str, Any]]:
+    ) -> list[dict[str, Any]]:
         """Filter scenarios to only those fresh for a model."""
         return [
             s for s in scenarios
@@ -307,7 +307,7 @@ class ScenarioRotator:
     def get_rotation_recommendations(
         self,
         model: str,
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """Get recommendations for scenario rotation for a model."""
         stale = []
         fresh = []
@@ -329,21 +329,22 @@ class ScenarioRotator:
 
 def get_rotated_scenario(
     scenario_path: str,
-    model: Optional[str] = None,
+    model: str | None = None,
     **config_kwargs,
-) -> Tuple[Dict[str, Any], RotationResult]:
+) -> tuple[dict[str, Any], RotationResult]:
     """Convenience function to load and rotate a scenario.
 
     Args:
-        scenario_path: Path to scenario JSON
+        scenario_path: Path to scenario JSON or YAML
         model: Model being evaluated
         **config_kwargs: RotationConfig options
 
     Returns:
         Tuple of (rotated scenario, rotation result)
     """
-    with open(scenario_path) as f:
-        scenario = json.load(f)
+    scenario = load_serialized_file(scenario_path)
+    if not isinstance(scenario, dict):
+        raise ValueError(f"Scenario file must contain an object: {scenario_path}")
 
     config = RotationConfig(**config_kwargs)
     rotator = ScenarioRotator(config)

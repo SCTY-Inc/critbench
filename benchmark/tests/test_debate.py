@@ -1,6 +1,5 @@
 """Tests for debate orchestrator module."""
-import pytest
-from unittest.mock import Mock, MagicMock
+from unittest.mock import Mock
 
 from critbench.evaluation.debate.orchestrator import (
     DebateOrchestrator,

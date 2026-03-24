@@ -7,7 +7,7 @@ Supports multiple providers for robust multi-judge scoring:
 from __future__ import annotations
 
 import os
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 import httpx
 
@@ -17,7 +17,7 @@ class ModelAPIClient:
 
     def __init__(
         self,
-        openrouter_api_key: Optional[str] = None,
+        openrouter_api_key: str | None = None,
         timeout: float = 120.0,
     ):
         self.openrouter_api_key = openrouter_api_key or os.getenv("OPENROUTER_API_KEY")
@@ -34,10 +34,10 @@ class ModelAPIClient:
     def call_model(
         self,
         model: str,
-        messages: List[Dict[str, str]],
+        messages: list[dict[str, str]],
         temperature: float = 0.7,
         max_tokens: int = 2000,
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """Call a model via OpenRouter.
 
         Args:
@@ -97,7 +97,7 @@ class ModelAPIClient:
 def resolve_scorer_model(
     client: ModelAPIClient,
     scorer_name: str,
-    default: Optional[str] = None,
+    default: str | None = None,
 ) -> str:
     """Resolve which model to use for a given scorer.
 

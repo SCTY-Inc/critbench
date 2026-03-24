@@ -13,50 +13,39 @@ Test scenarios organized by tier complexity.
 
 ## Scenario Format
 
-```json
-{
-  "scenario_id": "tier1_campaign_001",
-  "tier": "tier_1",
-  "title": "Human-readable title",
-  "brand": {
-    "name": "BrandName",
-    "voice": "voice description",
-    "audience": "target audience",
-    "constraints": ["constraint1", "constraint2"],
-    "competitors": ["Competitor1"],
-    "banned_phrases": ["phrase1", "phrase2"]
-  },
-  "turns": [
-    {
-      "turn_number": 1,
-      "stage": "brief_intake|insight_generation|strategy|idea_generation|idea_selection|execution|feedback|revision|pressure_test",
-      "user_message": "The user's prompt",
-      "expected_behaviors": ["what good looks like"],
-      "autofail_triggers": ["hard failures"],
-      "rubric_criteria": [
-        {
-          "criterion_id": "unique_id",
-          "description": "What this measures",
-          "max_points": 3,
-          "dimension": "coherence|judgment|voice|originality|ethics|adaptation",
-          "scoring_guide": {
-            "3": "Excellent",
-            "2": "Good",
-            "1": "Adequate",
-            "0": "Poor"
-          }
-        }
-      ]
-    }
-  ],
-  "metadata": {
-    "category": "campaign_development|single_output|etc",
-    "difficulty": "easy|medium|hard",
-    "estimated_cost": 0.15,
-    "author": "amadad",
-    "version": "1.0"
-  }
-}
+```yaml
+scenario_id: tier1_campaign_001
+tier: tier_1
+title: Human-readable title
+brand:
+  name: BrandName
+  voice: voice description
+  audience: target audience
+  constraints: [constraint1, constraint2]
+  competitors: [Competitor1]
+  banned_phrases: [phrase1, phrase2]
+turns:
+  - turn_number: 1
+    stage: brief_intake|insight_generation|strategy|idea_generation|idea_selection|execution|feedback|revision|pressure_test
+    user_message: The user's prompt
+    expected_behaviors: [what good looks like]
+    autofail_triggers: [hard failures]
+    rubric_criteria:
+      - criterion_id: unique_id
+        description: What this measures
+        max_points: 3
+        dimension: coherence|judgment|voice|originality|ethics|adaptation
+        scoring_guide:
+          "3": Excellent
+          "2": Good
+          "1": Adequate
+          "0": Poor
+metadata:
+  category: campaign_development|single_output|etc
+  difficulty: easy|medium|hard
+  estimated_cost: 0.15
+  author: amadad
+  version: "1.0"
 ```
 
 ## Stages
@@ -76,7 +65,7 @@ Test scenarios organized by tier complexity.
 
 ## Adding Scenarios
 
-1. Create JSON file in appropriate tier directory
+1. Create a JSON or YAML file in the appropriate tier directory
 2. Follow the format above
 3. Include rubric criteria for key evaluation points
 4. Add autofail triggers for hard failures
@@ -84,5 +73,5 @@ Test scenarios organized by tier complexity.
 
 ## Current Validation Coverage
 
-- `tier0`: 1 smoke-test scenario
+- `tier0`: 3 scenarios
 - `tier1`: 12 campaign scenarios spanning B2B SaaS, enterprise security, finance, healthcare, education, HR, retail, logistics, data tooling, and nonprofit/community briefs

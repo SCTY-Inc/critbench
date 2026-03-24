@@ -12,7 +12,7 @@ from __future__ import annotations
 
 import re
 from dataclasses import dataclass, field
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 
 @dataclass
@@ -28,7 +28,7 @@ class CoTAnalysis:
     has_contradictions: bool = False
     uses_hedging: bool = False
 
-    flags: List[str] = field(default_factory=list)
+    flags: list[str] = field(default_factory=list)
 
     @property
     def overall_quality(self) -> float:
@@ -46,7 +46,7 @@ class CoTAnalysis:
             self.score_justification * weights["score_justification"]
         )
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         """Convert to dictionary."""
         return {
             "reasoning_depth": self.reasoning_depth,
@@ -66,16 +66,16 @@ class CoTQualityReport:
     """Aggregate CoT quality report across all judge responses."""
 
     mean_quality: float = 0.0
-    quality_by_model: Dict[str, float] = field(default_factory=dict)
-    quality_by_dimension: Dict[str, float] = field(default_factory=dict)
+    quality_by_model: dict[str, float] = field(default_factory=dict)
+    quality_by_dimension: dict[str, float] = field(default_factory=dict)
 
     low_quality_responses: int = 0
     high_quality_responses: int = 0
     total_responses: int = 0
 
-    common_issues: List[str] = field(default_factory=list)
+    common_issues: list[str] = field(default_factory=list)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         """Convert to dictionary."""
         return {
             "mean_quality": self.mean_quality,
@@ -126,14 +126,14 @@ class CoTAnalyzer:
     def __init__(self, low_quality_threshold: float = 0.4, high_quality_threshold: float = 0.7):
         self.low_quality_threshold = low_quality_threshold
         self.high_quality_threshold = high_quality_threshold
-        self._analyses: List[tuple] = []  # (model, dimension, analysis)
+        self._analyses: list[tuple] = []  # (model, dimension, analysis)
 
     def analyze_response(
         self,
         response: str,
-        model: Optional[str] = None,
-        dimension: Optional[str] = None,
-        score_given: Optional[float] = None,
+        model: str | None = None,
+        dimension: str | None = None,
+        score_given: float | None = None,
     ) -> CoTAnalysis:
         """Analyze a single judge response for CoT quality.
 
@@ -231,7 +231,7 @@ class CoTAnalyzer:
         report.high_quality_responses = sum(1 for q in qualities if q >= self.high_quality_threshold)
 
         # Quality by model
-        model_qualities: Dict[str, List[float]] = {}
+        model_qualities: dict[str, list[float]] = {}
         for model, _, analysis in self._analyses:
             if model:
                 if model not in model_qualities:
@@ -242,7 +242,7 @@ class CoTAnalyzer:
             report.quality_by_model[model] = sum(quals) / len(quals)
 
         # Quality by dimension
-        dim_qualities: Dict[str, List[float]] = {}
+        dim_qualities: dict[str, list[float]] = {}
         for _, dim, analysis in self._analyses:
             if dim:
                 if dim not in dim_qualities:
@@ -253,7 +253,7 @@ class CoTAnalyzer:
             report.quality_by_dimension[dim] = sum(quals) / len(quals)
 
         # Common issues
-        issue_counts: Dict[str, int] = {}
+        issue_counts: dict[str, int] = {}
         for _, _, analysis in self._analyses:
             for flag in analysis.flags:
                 # Normalize flag to category
@@ -280,7 +280,7 @@ class CoTAnalyzer:
 
 
 def analyze_cot_quality(
-    responses: List[Dict[str, Any]],
+    responses: list[dict[str, Any]],
 ) -> CoTQualityReport:
     """Convenience function to analyze a list of judge responses.
 

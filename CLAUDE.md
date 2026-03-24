@@ -20,7 +20,7 @@ AI assistant instructions for CritBench (creative benchmark project).
 python3 benchmark/scripts/validation/run_minimal.py -y
 
 # Full validation (tier 0 + tier 1 offline smoke test)
-# Current suite: 12 tier1 campaign scenarios + 1 tier0 smoke test
+# Current suite: 12 tier1 campaign scenarios + 3 tier0 scenarios
 python3 benchmark/scripts/validation/run_full.py -y
 
 # Dry run (list scenarios and estimated cost)
@@ -32,7 +32,7 @@ from critbench import score
 
 result = score(
     transcript_path="path/to/transcript.jsonl",
-    scenario_path="benchmark/scenarios/tier1/campaign/saas_launch.json",
+    scenario_path="benchmark/scenarios/tier1/campaign/saas_launch.json",  # JSON or YAML
 )
 
 print(result["overall_percentage"])
@@ -83,28 +83,22 @@ benchmark/critbench/
 
 ## Scenario Format
 
-```json
-{
-  "scenario_id": "tier1_campaign_001",
-  "tier": "tier_1",
-  "title": "B2B SaaS Launch",
-  "brand": {
-    "name": "CodeFlow",
-    "voice": "technically credible, understated",
-    "tone_keywords": ["evidence", "restrained"],
-    "audience": "senior engineers",
-    "constraints": ["no 'revolutionary'", "no fake metrics"]
-  },
-  "turns": [
-    {
-      "turn_number": 1,
-      "stage": "brief_intake",
-      "user_message": "We're launching CodeFlow...",
-      "expected_behaviors": ["asks clarifying questions"],
-      "autofail_triggers": ["jumps to tactics without understanding"]
-    }
-  ]
-}
+```yaml
+scenario_id: tier1_campaign_001
+tier: tier_1
+title: B2B SaaS Launch
+brand:
+  name: CodeFlow
+  voice: technically credible, understated
+  tone_keywords: [evidence, restrained]
+  audience: senior engineers
+  constraints: ["no 'revolutionary'", "no fake metrics"]
+turns:
+  - turn_number: 1
+    stage: brief_intake
+    user_message: We're launching CodeFlow...
+    expected_behaviors: [asks clarifying questions]
+    autofail_triggers: [jumps to tactics without understanding]
 ```
 
 ## Multi-Judge Scoring
@@ -117,7 +111,7 @@ Uses 3-model ensemble to reduce bias:
 
 ## Current Validation Coverage
 
-- `tier0`: 1 smoke-test scenario
+- `tier0`: 3 scenarios
 - `tier1`: 12 campaign scenarios spanning B2B SaaS, enterprise security, finance, healthcare, education, HR, retail, logistics, data tooling, and nonprofit/community briefs
 
 ## Code Style

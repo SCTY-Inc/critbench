@@ -5,17 +5,17 @@ losing strategic coherence.
 """
 from __future__ import annotations
 
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 
 def score(
-    transcript: List[Dict[str, Any]],
-    scenario: Dict[str, Any],
-    brand: Dict[str, Any],
-    api_client: Optional[Any] = None,
-    models: Optional[List[str]] = None,
+    transcript: list[dict[str, Any]],
+    scenario: dict[str, Any],
+    brand: dict[str, Any],
+    api_client: Any | None = None,
+    models: list[str] | None = None,
     allow_llm: bool = True,
-) -> Dict[str, Any]:
+) -> dict[str, Any]:
     """Score feedback adaptation quality.
 
     Evaluates:

@@ -6,20 +6,20 @@ process maintains logical coherence across stages, not just output quality.
 from __future__ import annotations
 
 import statistics
-from typing import Any, Dict, List, Optional
+from typing import Any
 
-from critbench.api import ModelAPIClient, resolve_scorer_model
+from critbench.api import ModelAPIClient
 from critbench.utils.llm_mode import llm_enabled
 
 
 def score(
-    transcript: List[Dict[str, Any]],
-    scenario: Dict[str, Any],
-    brand: Dict[str, Any],
-    api_client: Optional[ModelAPIClient] = None,
-    models: Optional[List[str]] = None,
+    transcript: list[dict[str, Any]],
+    scenario: dict[str, Any],
+    brand: dict[str, Any],
+    api_client: ModelAPIClient | None = None,
+    models: list[str] | None = None,
     allow_llm: bool = True,
-) -> Dict[str, Any]:
+) -> dict[str, Any]:
     """Score coherence across creative process stages.
 
     Evaluates:
@@ -119,9 +119,9 @@ def score(
 
 
 def _extract_stages(
-    transcript: List[Dict[str, Any]],
-    scenario: Dict[str, Any]
-) -> Dict[str, str]:
+    transcript: list[dict[str, Any]],
+    scenario: dict[str, Any]
+) -> dict[str, str]:
     """Extract content by creative stage from transcript."""
     stages = {}
 
@@ -145,13 +145,13 @@ def _extract_stages(
 
 
 def _evaluate_with_model(
-    stages: Dict[str, str],
-    brand: Dict[str, Any],
-    scenario: Dict[str, Any],
+    stages: dict[str, str],
+    brand: dict[str, Any],
+    scenario: dict[str, Any],
     api_client: ModelAPIClient,
     model: str,
-    evidence: List[str],
-) -> Dict[str, float]:
+    evidence: list[str],
+) -> dict[str, float]:
     """Evaluate coherence using a single judge model."""
 
     prompt = f"""You are evaluating the COHERENCE of a creative process.
@@ -233,7 +233,7 @@ EVIDENCE:
         raise
 
 
-def _parse_coherence_evaluation(analysis: str) -> Dict[str, float]:
+def _parse_coherence_evaluation(analysis: str) -> dict[str, float]:
     """Parse LLM coherence evaluation response."""
     scores = {
         "brief_understanding": 0.5,
@@ -257,9 +257,9 @@ def _parse_coherence_evaluation(analysis: str) -> Dict[str, float]:
 
 
 def _evaluate_coherence_deterministic(
-    stages: Dict[str, str],
-    brand: Dict[str, Any],
-    result: Dict[str, Any],
+    stages: dict[str, str],
+    brand: dict[str, Any],
+    result: dict[str, Any],
 ) -> None:
     """Fallback deterministic coherence check."""
 

@@ -14,20 +14,20 @@ from __future__ import annotations
 
 import re
 import statistics
-from typing import Any, Dict, List, Optional, Set
+from typing import Any
 
 from critbench.api import ModelAPIClient
 from critbench.utils.llm_mode import llm_enabled
 
 
 def score(
-    transcript: List[Dict[str, Any]],
-    scenario: Dict[str, Any],
-    brand: Dict[str, Any],
-    api_client: Optional[ModelAPIClient] = None,
-    models: Optional[List[str]] = None,
+    transcript: list[dict[str, Any]],
+    scenario: dict[str, Any],
+    brand: dict[str, Any],
+    api_client: ModelAPIClient | None = None,
+    models: list[str] | None = None,
     allow_llm: bool = True,
-) -> Dict[str, Any]:
+) -> dict[str, Any]:
     """Score brand voice consistency.
 
     Evaluates:
@@ -152,7 +152,7 @@ def score(
     return result
 
 
-def _extract_responses(transcript: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+def _extract_responses(transcript: list[dict[str, Any]]) -> list[dict[str, Any]]:
     """Extract assistant responses with turn context."""
     responses = []
     for msg in transcript:
@@ -165,35 +165,34 @@ def _extract_responses(transcript: List[Dict[str, Any]]) -> List[Dict[str, Any]]
 
 
 def _check_banned_phrases(
-    responses: List[Dict[str, Any]],
-    banned_phrases: List[str],
-) -> List[str]:
+    responses: list[dict[str, Any]],
+    banned_phrases: list[str],
+) -> list[str]:
     """Check for banned phrases in responses."""
     found = []
 
     for phrase in banned_phrases:
         pattern = re.compile(re.escape(phrase), re.IGNORECASE)
         for resp in responses:
-            if pattern.search(resp["content"]):
-                if phrase not in found:
-                    found.append(phrase)
+            if pattern.search(resp["content"]) and phrase not in found:
+                found.append(phrase)
 
     return found
 
 
 def _evaluate_with_model(
-    responses: List[Dict[str, Any]],
-    brand: Dict[str, Any],
-    scenario: Dict[str, Any],
+    responses: list[dict[str, Any]],
+    brand: dict[str, Any],
+    scenario: dict[str, Any],
     api_client: ModelAPIClient,
     model: str,
-    evidence: List[str],
-) -> tuple:
+    evidence: list[str],
+) -> tuple[dict[str, float], str]:
     """Evaluate voice using a single judge model."""
 
     # Build response summary
     response_texts = []
-    for i, resp in enumerate(responses[:5]):  # Limit to first 5 turns
+    for resp in responses[:5]:  # Limit to first 5 turns
         response_texts.append(f"Turn {resp['turn']}:\n{resp['content'][:800]}")
 
     responses_block = "\n\n---\n\n".join(response_texts)
@@ -272,7 +271,7 @@ EVIDENCE:
         raise
 
 
-def _parse_voice_evaluation(analysis: str) -> Dict[str, float]:
+def _parse_voice_evaluation(analysis: str) -> dict[str, float]:
     """Parse LLM voice evaluation response."""
     scores = {
         "tone_consistency": 0.5,
@@ -299,16 +298,14 @@ def _parse_voice_evaluation(analysis: str) -> Dict[str, float]:
 
 
 def _evaluate_voice_deterministic(
-    responses: List[Dict[str, Any]],
-    brand: Dict[str, Any],
-    banned_found: List[str],
-    result: Dict[str, Any],
+    responses: list[dict[str, Any]],
+    brand: dict[str, Any],
+    banned_found: list[str],
+    result: dict[str, Any],
 ) -> None:
     """Fallback deterministic voice check."""
 
     tone_keywords = set(kw.lower() for kw in brand.get("tone_keywords", []))
-    constraints = brand.get("constraints", [])
-
     # Simple heuristics
     all_text = " ".join(r["content"].lower() for r in responses)
     words = set(all_text.split())

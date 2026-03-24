@@ -1,22 +1,20 @@
 """Tests for evaluation metrics modules."""
-import pytest
 
 from critbench.evaluation.metrics.bias_detection import (
     BiasDetector,
     BiasReport,
-    detect_biases,
-)
-from critbench.evaluation.metrics.reliability import (
-    calculate_krippendorff_alpha,
-    calculate_icc,
-    calculate_pairwise_agreement,
-    compute_reliability,
-    ReliabilityMetrics,
 )
 from critbench.evaluation.metrics.cot_quality import (
-    CoTAnalyzer,
     CoTAnalysis,
+    CoTAnalyzer,
     analyze_cot_quality,
+)
+from critbench.evaluation.metrics.reliability import (
+    ReliabilityMetrics,
+    calculate_icc,
+    calculate_krippendorff_alpha,
+    calculate_pairwise_agreement,
+    compute_reliability,
 )
 
 

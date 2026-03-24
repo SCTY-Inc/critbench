@@ -50,6 +50,9 @@ all = [
     "critbench[dev]",
 ]
 
+[project.scripts]
+critbench = "critbench.cli:app"
+
 [project.urls]
 Homepage = "https://critbench.dev"
 Repository = "https://github.com/amadad/critbench"

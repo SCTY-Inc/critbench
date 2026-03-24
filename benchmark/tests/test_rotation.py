@@ -1,13 +1,11 @@
 """Tests for scenario rotation module."""
 import json
-import pytest
-from pathlib import Path
-from tempfile import NamedTemporaryFile
 
+import pytest
 from critbench.loaders.rotation import (
-    ScenarioRotator,
     RotationConfig,
     RotationResult,
+    ScenarioRotator,
     get_rotated_scenario,
 )
 
@@ -106,7 +104,6 @@ class TestScenarioRotator:
         result = rotator.rotate(sample_scenario, model="model_a")
 
         # Constraints should be different
-        original_constraints = set(sample_scenario["brand"]["constraints"])
         new_constraints = set(result.scenario["brand"]["constraints"])
         # At least some change expected (may have overlap)
         assert len(new_constraints) > 0

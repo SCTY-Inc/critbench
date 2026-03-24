@@ -12,8 +12,8 @@ Tests judgment, not just generation. Evaluates:
 Public API:
     from critbench import score, score_with_rewards
 
-    result = score("transcript.jsonl", "scenario.json")
-    rewards = score_with_rewards("transcript.jsonl", "scenario.json")
+    result = score("transcript.jsonl", "scenario.yaml")
+    rewards = score_with_rewards("transcript.jsonl", "scenario.yaml")
 """
 
 __version__ = "0.1.0"

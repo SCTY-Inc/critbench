@@ -12,28 +12,28 @@ from __future__ import annotations
 
 import statistics
 from dataclasses import dataclass, field
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any
 
 
 @dataclass
 class BiasReport:
     """Report of detected biases in judge scoring."""
 
-    length_bias: Optional[float] = None  # Correlation coefficient
+    length_bias: float | None = None  # Correlation coefficient
     length_bias_detected: bool = False
 
-    self_enhancement_bias: Dict[str, float] = field(default_factory=dict)
+    self_enhancement_bias: dict[str, float] = field(default_factory=dict)
     self_enhancement_detected: bool = False
 
-    position_bias: Optional[float] = None  # Diff between positions
+    position_bias: float | None = None  # Diff between positions
     position_bias_detected: bool = False
 
-    model_leniency: Dict[str, float] = field(default_factory=dict)
+    model_leniency: dict[str, float] = field(default_factory=dict)
     leniency_spread: float = 0.0
 
-    flags: List[str] = field(default_factory=list)
+    flags: list[str] = field(default_factory=list)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         """Convert to dictionary for JSON serialization."""
         return {
             "length_bias": {
@@ -73,15 +73,15 @@ class BiasDetector:
         self.leniency_spread_threshold = leniency_spread_threshold
 
         # Accumulate scores across evaluations
-        self._scores_by_model: Dict[str, List[float]] = {}
-        self._scores_with_lengths: List[Tuple[int, float]] = []
-        self._scores_by_position: Dict[int, List[float]] = {}
+        self._scores_by_model: dict[str, list[float]] = {}
+        self._scores_with_lengths: list[tuple[int, float]] = []
+        self._scores_by_position: dict[int, list[float]] = {}
 
     def record_scores(
         self,
-        scores_by_model: Dict[str, float],
-        response_length: Optional[int] = None,
-        position: Optional[int] = None,
+        scores_by_model: dict[str, float],
+        response_length: int | None = None,
+        position: int | None = None,
     ) -> None:
         """Record scores from a single evaluation for bias analysis.
 
@@ -153,7 +153,7 @@ class BiasDetector:
 
         return report
 
-    def _calculate_correlation(self, x: List[float], y: List[float]) -> Optional[float]:
+    def _calculate_correlation(self, x: list[float], y: list[float]) -> float | None:
         """Calculate Pearson correlation coefficient."""
         if len(x) != len(y) or len(x) < 3:
             return None
@@ -184,8 +184,8 @@ class BiasDetector:
 
 
 def detect_biases(
-    all_scores: Dict[str, List[float]],
-    response_lengths: Optional[List[int]] = None,
+    all_scores: dict[str, list[float]],
+    response_lengths: list[int] | None = None,
 ) -> BiasReport:
     """Convenience function to detect biases from a single evaluation.
 
@@ -203,17 +203,13 @@ def detect_biases(
 
     for judge_idx in range(n_judges):
         scores_by_model = {}
-        for dim, scores in all_scores.items():
+        for _dim, scores in all_scores.items():
             if judge_idx < len(scores):
                 # Use dimension as proxy for model (will be fixed with proper tracking)
                 model_key = f"judge_{judge_idx}"
                 if model_key not in scores_by_model:
                     scores_by_model[model_key] = []
                 scores_by_model[model_key].append(scores[judge_idx])
-
-        avg_score = statistics.mean([
-            s for ss in scores_by_model.values() for s in ss
-        ]) if scores_by_model else 0.5
 
         length = response_lengths[judge_idx] if response_lengths and judge_idx < len(response_lengths) else None
 

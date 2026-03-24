@@ -6,7 +6,7 @@ Usage:
 
     result = score(
         transcript_path="path/to/transcript.jsonl",
-        scenario_path="path/to/scenario.json",
+        scenario_path="path/to/scenario.yaml",
         brand_path="path/to/brand.yaml"
     )
 
@@ -25,50 +25,48 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import Any, Dict, List, Optional
-
-import yaml
+from typing import Any
 
 from critbench.api import ModelAPIClient
-from critbench.evaluation.scorers import (
-    coherence,
-    judgment,
-    voice,
-    originality,
-    ethics,
-    adaptation,
-)
 from critbench.evaluation.metrics.bias_detection import BiasDetector
-from critbench.evaluation.metrics.reliability import compute_reliability
 from critbench.evaluation.metrics.cot_quality import CoTAnalyzer
+from critbench.evaluation.metrics.reliability import compute_reliability
 from critbench.evaluation.preprocessing.anonymizer import Anonymizer
-from critbench.evaluation.debate.orchestrator import DebateOrchestrator
+from critbench.evaluation.scorers import (
+    adaptation,
+    coherence,
+    ethics,
+    judgment,
+    originality,
+    voice,
+)
+from critbench.loaders import load_serialized_file
 
 # Default paths
-_PACKAGE_ROOT = Path(__file__).parent.parent.parent
+_PACKAGE_ROOT = Path(__file__).parent.parent
 _DEFAULT_SCORING_CONFIG = _PACKAGE_ROOT / "configs" / "scoring.yaml"
 
 
 def score(
     transcript_path: str,
     scenario_path: str,
-    brand_path: Optional[str] = None,
-    scoring_config_path: Optional[str] = None,
+    brand_path: str | None = None,
+    scoring_config_path: str | None = None,
     enable_llm: bool = True,
     enable_debate: bool = False,
     enable_anonymization: bool = False,
     enable_bias_detection: bool = True,
     enable_reliability_metrics: bool = True,
     enable_cot_analysis: bool = False,
-) -> Dict[str, Any]:
+) -> dict[str, Any]:
     """Score a transcript against a creative scenario.
 
     Args:
         transcript_path: Path to JSONL transcript file.
             Format: {"turn": int, "role": "user"|"assistant", "content": str}
-        scenario_path: Path to scenario JSON file.
-        brand_path: Path to brand YAML file. If None, uses brand from scenario.
-        scoring_config_path: Path to scoring weights YAML.
+        scenario_path: Path to scenario JSON or YAML file.
+        brand_path: Path to brand YAML or JSON file. If None, uses brand from scenario.
+        scoring_config_path: Path to scoring weights YAML or JSON file.
         enable_llm: Enable multi-judge LLM scoring.
         enable_debate: Enable multi-agent debate for disagreements.
         enable_anonymization: Anonymize outputs before judging.
@@ -97,21 +95,24 @@ def score(
                 transcript.append(json.loads(line))
 
     # Load scenario
-    with open(scenario_path) as f:
-        scenario = json.load(f)
+    scenario = load_serialized_file(scenario_path)
+    if not isinstance(scenario, dict):
+        raise ValueError(f"Scenario file must contain an object: {scenario_path}")
 
     # Load brand (from file or scenario)
     if brand_path:
-        with open(brand_path) as f:
-            brand = yaml.safe_load(f)
+        brand = load_serialized_file(brand_path)
+        if not isinstance(brand, dict):
+            raise ValueError(f"Brand file must contain an object: {brand_path}")
     else:
         brand = scenario.get("brand", {})
 
     # Load scoring config
     if scoring_config_path is None:
         scoring_config_path = str(_DEFAULT_SCORING_CONFIG)
-    with open(scoring_config_path) as f:
-        scoring_config = yaml.safe_load(f)
+    scoring_config = load_serialized_file(scoring_config_path)
+    if not isinstance(scoring_config, dict):
+        raise ValueError(f"Scoring config must contain an object: {scoring_config_path}")
 
     # Initialize API client if LLM enabled
     api_client = None
@@ -130,7 +131,6 @@ def score(
     # Initialize analysis tools
     bias_detector = BiasDetector() if enable_bias_detection else None
     cot_analyzer = CoTAnalyzer() if enable_cot_analysis else None
-    debate_orchestrator = DebateOrchestrator(api_client) if enable_debate and api_client else None
 
     # Get judge models from config
     judge_models = scoring_config.get("judging", {}).get("models", [
@@ -142,7 +142,7 @@ def score(
     # Score each dimension
     dimension_results = {}
     autofail_reasons = []
-    all_scores_by_dimension: Dict[str, Dict[str, List[float]]] = {}
+    all_scores_by_dimension: dict[str, dict[str, list[float]]] = {}
     debate_results = {}
 
     # Coherence
@@ -232,7 +232,7 @@ def score(
     bias_report = None
     if bias_detector:
         # Record scores for bias analysis
-        for dim, dim_scores in all_scores_by_dimension.items():
+        for _dim, dim_scores in all_scores_by_dimension.items():
             for model, scores in dim_scores.items():
                 for s in scores:
                     bias_detector.record_scores({model: s})
@@ -280,16 +280,14 @@ def score(
 
 
 def _collect_scores(
-    dim_result: Dict[str, Any],
+    dim_result: dict[str, Any],
     dimension: str,
-    all_scores: Dict[str, Dict[str, List[float]]],
-    models: List[str],
+    all_scores: dict[str, dict[str, list[float]]],
+    models: list[str],
 ) -> None:
     """Collect scores from dimension result for reliability analysis."""
     if dimension not in all_scores:
         all_scores[dimension] = {m: [] for m in models}
-
-    breakdown = dim_result.get("breakdown", {})
 
     # Collect overall dimension score per judge
     # Since we don't track per-judge scores separately, use the final score
@@ -300,10 +298,10 @@ def _collect_scores(
 
 
 def _analyze_cot(
-    dim_result: Dict[str, Any],
+    dim_result: dict[str, Any],
     dimension: str,
-    analyzer: Optional[CoTAnalyzer],
-    models: List[str],
+    analyzer: CoTAnalyzer | None,
+    models: list[str],
 ) -> None:
     """Analyze chain-of-thought quality from dimension result."""
     if analyzer is None:
@@ -324,9 +322,9 @@ def _analyze_cot(
 def score_with_rewards(
     transcript_path: str,
     scenario_path: str,
-    brand_path: Optional[str] = None,
-    scoring_config_path: Optional[str] = None,
-) -> Dict[str, Any]:
+    brand_path: str | None = None,
+    scoring_config_path: str | None = None,
+) -> dict[str, Any]:
     """Score and return rewards for RL training.
 
     Returns:
@@ -359,10 +357,10 @@ def score_with_rotation(
     transcript_path: str,
     scenario_path: str,
     model: str,
-    brand_path: Optional[str] = None,
-    scoring_config_path: Optional[str] = None,
+    brand_path: str | None = None,
+    scoring_config_path: str | None = None,
     **kwargs,
-) -> Dict[str, Any]:
+) -> dict[str, Any]:
     """Score with anti-contamination scenario rotation.
 
     Args:
@@ -376,11 +374,12 @@ def score_with_rotation(
     Returns:
         Score result with rotation metadata
     """
-    from critbench.loaders.rotation import ScenarioRotator, RotationConfig
+    from critbench.loaders.rotation import RotationConfig, ScenarioRotator
 
     # Load and rotate scenario
-    with open(scenario_path) as f:
-        scenario = json.load(f)
+    scenario = load_serialized_file(scenario_path)
+    if not isinstance(scenario, dict):
+        raise ValueError(f"Scenario file must contain an object: {scenario_path}")
 
     rotator = ScenarioRotator(RotationConfig())
     rotation_result = rotator.rotate(scenario, model)

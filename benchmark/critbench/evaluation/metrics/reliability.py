@@ -11,28 +11,28 @@ from __future__ import annotations
 
 import statistics
 from dataclasses import dataclass, field
-from typing import Any, Dict, List, Optional, Tuple
 from itertools import combinations
+from typing import Any
 
 
 @dataclass
 class ReliabilityMetrics:
     """Collection of inter-rater reliability metrics."""
 
-    krippendorff_alpha: Optional[float] = None
-    icc: Optional[float] = None
-    mean_pairwise_agreement: Optional[float] = None
+    krippendorff_alpha: float | None = None
+    icc: float | None = None
+    mean_pairwise_agreement: float | None = None
 
     # Per-dimension reliability
-    dimension_reliability: Dict[str, float] = field(default_factory=dict)
+    dimension_reliability: dict[str, float] = field(default_factory=dict)
 
     # Flags for low reliability
-    low_reliability_dimensions: List[str] = field(default_factory=list)
+    low_reliability_dimensions: list[str] = field(default_factory=list)
 
     # Interpretation
     interpretation: str = ""
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         """Convert to dictionary for JSON serialization."""
         return {
             "krippendorff_alpha": self.krippendorff_alpha,
@@ -45,9 +45,9 @@ class ReliabilityMetrics:
 
 
 def calculate_krippendorff_alpha(
-    ratings: List[List[Optional[float]]],
+    ratings: list[list[float | None]],
     level: str = "interval",
-) -> Optional[float]:
+) -> float | None:
     """Calculate Krippendorff's alpha for reliability measurement.
 
     Alpha interpretation:
@@ -73,7 +73,7 @@ def calculate_krippendorff_alpha(
         return None
 
     # Collect all valid ratings per item
-    item_ratings: List[List[float]] = []
+    item_ratings: list[list[float]] = []
     for i in range(n_items):
         item_values = []
         for r in range(n_raters):
@@ -137,9 +137,9 @@ def calculate_krippendorff_alpha(
 
 
 def calculate_icc(
-    ratings: List[List[float]],
+    ratings: list[list[float]],
     icc_type: str = "ICC(2,1)",
-) -> Optional[float]:
+) -> float | None:
     """Calculate Intra-class Correlation Coefficient.
 
     Implements ICC(2,1) - two-way random effects, single rater, absolute agreement.
@@ -196,9 +196,9 @@ def calculate_icc(
 
 
 def calculate_pairwise_agreement(
-    scores_by_judge: Dict[str, List[float]],
+    scores_by_judge: dict[str, list[float]],
     threshold: float = 0.2,
-) -> Tuple[float, Dict[Tuple[str, str], float]]:
+) -> tuple[float, dict[tuple[str, str], float]]:
     """Calculate pairwise agreement between judges.
 
     Args:
@@ -227,8 +227,8 @@ def calculate_pairwise_agreement(
 
 
 def compute_reliability(
-    all_scores: Dict[str, Dict[str, List[float]]],
-    models: List[str],
+    all_scores: dict[str, dict[str, list[float]]],
+    models: list[str],
 ) -> ReliabilityMetrics:
     """Compute comprehensive reliability metrics for multi-judge evaluation.
 
@@ -242,10 +242,10 @@ def compute_reliability(
     metrics = ReliabilityMetrics()
 
     # Aggregate all scores for overall metrics
-    all_ratings: List[List[float]] = []
+    all_ratings: list[list[float]] = []
     for model in models:
         model_scores = []
-        for dim, dim_scores in all_scores.items():
+        for _dim, dim_scores in all_scores.items():
             if model in dim_scores:
                 model_scores.extend(dim_scores[model])
         if model_scores:
@@ -274,8 +274,8 @@ def compute_reliability(
                     metrics.low_reliability_dimensions.append(dim)
 
     # Mean pairwise agreement
-    flat_by_judge: Dict[str, List[float]] = {m: [] for m in models}
-    for dim, dim_scores in all_scores.items():
+    flat_by_judge: dict[str, list[float]] = {m: [] for m in models}
+    for _dim, dim_scores in all_scores.items():
         for model, scores in dim_scores.items():
             if model in flat_by_judge:
                 flat_by_judge[model].extend(scores)

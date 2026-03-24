@@ -10,7 +10,7 @@ from __future__ import annotations
 
 import statistics
 from dataclasses import dataclass, field
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any
 
 from critbench.api import ModelAPIClient
 
@@ -20,12 +20,12 @@ class DebateRound:
     """Single round of debate between judges."""
 
     round_number: int
-    initial_scores: Dict[str, float]
-    arguments: Dict[str, str]
-    revised_scores: Dict[str, float]
-    score_changes: Dict[str, float]
+    initial_scores: dict[str, float]
+    arguments: dict[str, str]
+    revised_scores: dict[str, float]
+    score_changes: dict[str, float]
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         return {
             "round": self.round_number,
             "initial_scores": self.initial_scores,
@@ -42,20 +42,20 @@ class DebateResult:
     triggered: bool = False
     trigger_reason: str = ""
 
-    initial_scores: Dict[str, float] = field(default_factory=dict)
+    initial_scores: dict[str, float] = field(default_factory=dict)
     initial_mean: float = 0.0
     initial_spread: float = 0.0
 
-    rounds: List[DebateRound] = field(default_factory=list)
+    rounds: list[DebateRound] = field(default_factory=list)
 
-    final_scores: Dict[str, float] = field(default_factory=dict)
+    final_scores: dict[str, float] = field(default_factory=dict)
     final_mean: float = 0.0
     final_spread: float = 0.0
 
     consensus_reached: bool = False
     outcome_changed: bool = False
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         return {
             "triggered": self.triggered,
             "trigger_reason": self.trigger_reason,
@@ -103,9 +103,9 @@ class DebateOrchestrator:
 
     def should_trigger_debate(
         self,
-        scores: Dict[str, float],
-        confidence: Optional[float] = None,
-    ) -> Tuple[bool, str]:
+        scores: dict[str, float],
+        confidence: float | None = None,
+    ) -> tuple[bool, str]:
         """Determine if debate should be triggered.
 
         Args:
@@ -132,10 +132,10 @@ class DebateOrchestrator:
     def run_debate(
         self,
         dimension: str,
-        scores: Dict[str, float],
-        reasoning: Dict[str, str],
+        scores: dict[str, float],
+        reasoning: dict[str, str],
         context: str,
-        models: List[str],
+        models: list[str],
     ) -> DebateResult:
         """Run a multi-agent debate to resolve disagreement.
 
@@ -202,10 +202,10 @@ class DebateOrchestrator:
         self,
         round_num: int,
         dimension: str,
-        scores: Dict[str, float],
-        reasoning: Dict[str, str],
+        scores: dict[str, float],
+        reasoning: dict[str, str],
         context: str,
-        models: List[str],
+        models: list[str],
     ) -> DebateRound:
         """Run a single round of debate."""
 
@@ -323,10 +323,10 @@ ARGUMENT: [Your response to other judges and justification for your score]
 def run_debate(
     api_client: ModelAPIClient,
     dimension: str,
-    scores: Dict[str, float],
-    reasoning: Dict[str, str],
+    scores: dict[str, float],
+    reasoning: dict[str, str],
     context: str,
-    models: List[str],
+    models: list[str],
     **kwargs,
 ) -> DebateResult:
     """Convenience function to run a debate.

@@ -7,20 +7,20 @@ that existing benchmarks don't measure.
 from __future__ import annotations
 
 import statistics
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 from critbench.api import ModelAPIClient
 from critbench.utils.llm_mode import llm_enabled
 
 
 def score(
-    transcript: List[Dict[str, Any]],
-    scenario: Dict[str, Any],
-    brand: Dict[str, Any],
-    api_client: Optional[ModelAPIClient] = None,
-    models: Optional[List[str]] = None,
+    transcript: list[dict[str, Any]],
+    scenario: dict[str, Any],
+    brand: dict[str, Any],
+    api_client: ModelAPIClient | None = None,
+    models: list[str] | None = None,
     allow_llm: bool = True,
-) -> Dict[str, Any]:
+) -> dict[str, Any]:
     """Score idea selection and judgment quality.
 
     Evaluates:
@@ -119,9 +119,9 @@ def score(
 
 
 def _extract_ideas(
-    transcript: List[Dict[str, Any]],
-    scenario: Dict[str, Any]
-) -> Optional[str]:
+    transcript: list[dict[str, Any]],
+    scenario: dict[str, Any]
+) -> str | None:
     """Extract idea generation response."""
     for turn in scenario.get("turns", []):
         if turn.get("stage") == "idea_generation":
@@ -133,9 +133,9 @@ def _extract_ideas(
 
 
 def _extract_selection(
-    transcript: List[Dict[str, Any]],
-    scenario: Dict[str, Any]
-) -> Optional[str]:
+    transcript: list[dict[str, Any]],
+    scenario: dict[str, Any]
+) -> str | None:
     """Extract idea selection response."""
     for turn in scenario.get("turns", []):
         if turn.get("stage") == "idea_selection":
@@ -147,9 +147,9 @@ def _extract_selection(
 
 
 def _extract_positioning(
-    transcript: List[Dict[str, Any]],
-    scenario: Dict[str, Any]
-) -> Optional[str]:
+    transcript: list[dict[str, Any]],
+    scenario: dict[str, Any]
+) -> str | None:
     """Extract positioning/strategy response."""
     for turn in scenario.get("turns", []):
         if turn.get("stage") == "strategy":
@@ -163,12 +163,12 @@ def _extract_positioning(
 def _evaluate_with_model(
     ideas: str,
     selection: str,
-    positioning: Optional[str],
-    brand: Dict[str, Any],
+    positioning: str | None,
+    brand: dict[str, Any],
     api_client: ModelAPIClient,
     model: str,
-    evidence: List[str],
-) -> Dict[str, float]:
+    evidence: list[str],
+) -> dict[str, float]:
     """Evaluate judgment using a single judge model."""
 
     prompt = f"""You are evaluating CREATIVE JUDGMENT - the ability to select the best ideas.
@@ -235,7 +235,7 @@ EVIDENCE:
     return _parse_judgment_evaluation(response["response"])
 
 
-def _parse_judgment_evaluation(analysis: str) -> Dict[str, float]:
+def _parse_judgment_evaluation(analysis: str) -> dict[str, float]:
     """Parse LLM judgment evaluation response."""
     scores = {
         "selection_reasoning": 0.5,
@@ -261,7 +261,7 @@ def _parse_judgment_evaluation(analysis: str) -> Dict[str, float]:
 def _evaluate_judgment_deterministic(
     ideas: str,
     selection: str,
-    result: Dict[str, Any],
+    result: dict[str, Any],
 ) -> None:
     """Fallback deterministic judgment check."""
 

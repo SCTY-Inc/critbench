@@ -48,6 +48,7 @@ def collect_scenarios() -> list[Path]:
     for tier in SCENARIO_TIERS:
         tier_dir = REPO_ROOT / "benchmark" / "scenarios" / tier
         scenario_paths.extend(sorted(tier_dir.rglob("*.json")))
+        scenario_paths.extend(sorted(tier_dir.rglob("*.yaml")))
 
     if not scenario_paths:
         raise RuntimeError("No validation scenarios found")
@@ -56,8 +57,9 @@ def collect_scenarios() -> list[Path]:
 
 
 def load_scenario(path: Path) -> dict[str, Any]:
-    with path.open() as handle:
-        return cast(dict[str, Any], json.load(handle))
+    yaml_loader_module = importlib.import_module("critbench.loaders.yaml_loader")
+    data = yaml_loader_module.load_serialized_file(path)
+    return cast(dict[str, Any], data)
 
 
 def estimate_total_cost(scenarios: list[Path]) -> float:

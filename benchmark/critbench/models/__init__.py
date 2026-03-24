@@ -5,7 +5,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 
 class TierLevel(Enum):
@@ -46,14 +46,14 @@ class Brand:
     name: str
     voice: str
     audience: str
-    constraints: List[str] = field(default_factory=list)
-    competitors: List[str] = field(default_factory=list)
-    banned_phrases: List[str] = field(default_factory=list)
-    tone_keywords: List[str] = field(default_factory=list)
-    examples: Dict[str, str] = field(default_factory=dict)
+    constraints: list[str] = field(default_factory=list)
+    competitors: list[str] = field(default_factory=list)
+    banned_phrases: list[str] = field(default_factory=list)
+    tone_keywords: list[str] = field(default_factory=list)
+    examples: dict[str, str] = field(default_factory=dict)
 
     @classmethod
-    def from_dict(cls, data: Dict[str, Any]) -> "Brand":
+    def from_dict(cls, data: dict[str, Any]) -> Brand:
         return cls(
             name=data["name"],
             voice=data["voice"],
@@ -73,10 +73,10 @@ class RubricCriterion:
     description: str
     max_points: int
     dimension: DimensionType
-    scoring_guide: Dict[str, str]  # score -> description
+    scoring_guide: dict[str, str]  # score -> description
 
     @classmethod
-    def from_dict(cls, data: Dict[str, Any]) -> "RubricCriterion":
+    def from_dict(cls, data: dict[str, Any]) -> RubricCriterion:
         return cls(
             criterion_id=data["criterion_id"],
             description=data["description"],
@@ -91,14 +91,14 @@ class Turn:
     """A single turn in a creative scenario."""
     turn_number: int
     user_message: str
-    stage: Optional[StageType] = None
-    expected_behaviors: List[str] = field(default_factory=list)
-    autofail_triggers: List[str] = field(default_factory=list)
-    rubric_criteria: List[RubricCriterion] = field(default_factory=list)
-    context_notes: Optional[str] = None
+    stage: StageType | None = None
+    expected_behaviors: list[str] = field(default_factory=list)
+    autofail_triggers: list[str] = field(default_factory=list)
+    rubric_criteria: list[RubricCriterion] = field(default_factory=list)
+    context_notes: str | None = None
 
     @classmethod
-    def from_dict(cls, data: Dict[str, Any]) -> "Turn":
+    def from_dict(cls, data: dict[str, Any]) -> Turn:
         turn_number = data.get("turn_number", data.get("t"))
         if turn_number is None:
             raise KeyError("turn_number required")
@@ -129,15 +129,15 @@ class Scenario:
     tier: TierLevel
     title: str
     brand: Brand
-    turns: List[Turn] = field(default_factory=list)
-    metadata: Dict[str, Any] = field(default_factory=dict)
+    turns: list[Turn] = field(default_factory=list)
+    metadata: dict[str, Any] = field(default_factory=dict)
 
     @property
     def total_turns(self) -> int:
         return len(self.turns)
 
     @classmethod
-    def from_dict(cls, data: Dict[str, Any]) -> "Scenario":
+    def from_dict(cls, data: dict[str, Any]) -> Scenario:
         tier = TierLevel(data["tier"])
         brand = Brand.from_dict(data["brand"])
         turns = [Turn.from_dict(t) for t in data.get("turns", [])]

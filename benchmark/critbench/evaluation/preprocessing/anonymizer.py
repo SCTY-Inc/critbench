@@ -8,11 +8,10 @@ Reference: LitBench research on provenance cues in creative evaluation.
 """
 from __future__ import annotations
 
-import hashlib
 import random
 import re
-from dataclasses import dataclass, field
-from typing import Any, Dict, List, Optional, Tuple
+from dataclasses import dataclass
+from typing import Any
 
 
 @dataclass
@@ -20,9 +19,9 @@ class AnonymizationResult:
     """Result of anonymization process."""
 
     anonymized_content: str
-    mapping: Dict[str, str]  # original -> anonymized
-    reverse_mapping: Dict[str, str]  # anonymized -> original
-    redactions: List[str]  # What was redacted
+    mapping: dict[str, str]  # original -> anonymized
+    reverse_mapping: dict[str, str]  # anonymized -> original
+    redactions: list[str]  # What was redacted
 
 
 class Anonymizer:
@@ -60,7 +59,7 @@ class Anonymizer:
         anonymize_providers: bool = True,
         anonymize_versions: bool = True,
         shuffle_order: bool = True,
-        seed: Optional[int] = None,
+        seed: int | None = None,
     ):
         self.anonymize_models = anonymize_models
         self.anonymize_providers = anonymize_providers
@@ -69,7 +68,7 @@ class Anonymizer:
         self.rng = random.Random(seed)
 
         self._counter = 0
-        self._mapping: Dict[str, str] = {}
+        self._mapping: dict[str, str] = {}
 
     def _get_anon_id(self, original: str, prefix: str = "Model") -> str:
         """Get or create anonymized ID for an original value."""
@@ -102,8 +101,12 @@ class Anonymizer:
                     anon_id = self._get_anon_id(original, replacement)
                     mapping[original] = anon_id
                     redactions.append(f"Model reference: {original}")
-                result = re.sub(pattern, lambda m: self._get_anon_id(m.group(0), replacement),
-                               result, flags=re.IGNORECASE)
+                result = re.sub(
+                    pattern,
+                    lambda m, replacement=replacement: self._get_anon_id(m.group(0), replacement),
+                    result,
+                    flags=re.IGNORECASE,
+                )
 
         # Anonymize provider names
         if self.anonymize_providers:
@@ -113,8 +116,12 @@ class Anonymizer:
                     anon_id = self._get_anon_id(original, replacement)
                     mapping[original] = anon_id
                     redactions.append(f"Provider reference: {original}")
-                result = re.sub(pattern, lambda m: self._get_anon_id(m.group(0), replacement),
-                               result, flags=re.IGNORECASE)
+                result = re.sub(
+                    pattern,
+                    lambda m, replacement=replacement: self._get_anon_id(m.group(0), replacement),
+                    result,
+                    flags=re.IGNORECASE,
+                )
 
         # Anonymize versions
         if self.anonymize_versions:
@@ -134,8 +141,8 @@ class Anonymizer:
 
     def anonymize_transcript(
         self,
-        transcript: List[Dict[str, Any]],
-    ) -> Tuple[List[Dict[str, Any]], Dict[str, str]]:
+        transcript: list[dict[str, Any]],
+    ) -> tuple[list[dict[str, Any]], dict[str, str]]:
         """Anonymize a full transcript.
 
         Args:
@@ -159,8 +166,8 @@ class Anonymizer:
 
     def shuffle_responses(
         self,
-        responses: List[Dict[str, Any]],
-    ) -> Tuple[List[Dict[str, Any]], List[int]]:
+        responses: list[dict[str, Any]],
+    ) -> tuple[list[dict[str, Any]], list[int]]:
         """Shuffle response order to prevent position bias.
 
         Args:
@@ -200,9 +207,9 @@ def anonymize_content(content: str, **kwargs) -> str:
 
 
 def anonymize_transcript(
-    transcript: List[Dict[str, Any]],
+    transcript: list[dict[str, Any]],
     **kwargs,
-) -> List[Dict[str, Any]]:
+) -> list[dict[str, Any]]:
     """Convenience function to anonymize a transcript.
 
     Args:

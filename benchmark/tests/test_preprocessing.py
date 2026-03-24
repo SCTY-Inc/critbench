@@ -1,9 +1,8 @@
 """Tests for preprocessing modules."""
-import pytest
 
 from critbench.evaluation.preprocessing.anonymizer import (
-    Anonymizer,
     AnonymizationResult,
+    Anonymizer,
     anonymize_content,
     anonymize_transcript,
 )
