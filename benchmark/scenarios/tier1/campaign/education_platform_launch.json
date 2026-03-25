@@ -3,85 +3,4470 @@
   "tier": "tier_1",
   "title": "Education Platform Launch - Cohort Learning",
   "brand": {
-    "name": "SignalClass",
+    "name": "add audience because but confidence, debates defend. explain facts feel gut-feel makes making most need opinion. pressure replaces shared team tension that they tools trust under useful watched.",
     "voice": "clear, grounded, no hype",
-    "tone_keywords": ["evidence", "restrained"],
+    "tone_keywords": [
+      "evidence",
+      "restrained"
+    ],
     "audience": "program directors and learning leads evaluating cohort platforms",
-    "constraints": ["no exaggerated outcomes", "no urgency tactics", "no edtech cliches"],
-    "competitors": ["Circle", "Maven"],
-    "banned_phrases": ["transform learning", "guaranteed results", "industry-leading"]
+    "constraints": [
+      "no exaggerated outcomes",
+      "no urgency tactics",
+      "no edtech cliches"
+    ],
+    "competitors": [
+      "Circle",
+      "Maven"
+    ],
+    "banned_phrases": [
+      "transform learning",
+      "guaranteed results",
+      "industry-leading"
+    ]
   },
   "turns": [
     {
       "turn_number": 1,
       "stage": "brief_intake",
       "user_message": "We're launching SignalClass, a cohort learning platform for professional education teams. Budget is $45k, timeline is 6 weeks, and the goal is demos from program directors. What do you need to know before we start?",
-      "expected_behaviors": ["Asks about the buyer, proof points, and objectives", "Clarifies the main barriers to adoption", "Does not jump to channels"],
-      "autofail_triggers": ["Moves into tactics before understanding the brief", "Assumes unsupported outcomes"],
-      "rubric_criteria": [{
-        "criterion_id": "edu_brief_comprehension",
-        "description": "Uses clarifying questions to understand the launch brief",
-        "max_points": 3,
-        "dimension": "coherence",
-        "scoring_guide": {"3": "Questions surface buyer context, proof points, and goals", "2": "Questions are useful but incomplete", "1": "Questions are generic", "0": "Moves into tactics without understanding the brief"}
-      }]
+      "expected_behaviors": [
+        "Asks about the buyer, proof points, and objectives",
+        "Clarifies the main barriers to adoption",
+        "Does not jump to channels"
+      ],
+      "autofail_triggers": [
+        "Moves into tactics before understanding the brief",
+        "Assumes unsupported outcomes"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "edu_brief_comprehension",
+          "description": "Uses clarifying questions to understand the launch brief",
+          "max_points": 3,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "3": "Questions surface buyer context, proof points, and goals",
+            "2": "Questions are useful but incomplete",
+            "1": "Questions are generic",
+            "0": "Moves into tactics without understanding the brief"
+          }
+        }
+      ]
     },
     {
       "turn_number": 2,
       "stage": "insight_generation",
       "user_message": "Good questions. Our differentiator is that we show actual participation patterns and completion behavior, not survey-based course satisfaction. What insights should shape the campaign?",
-      "expected_behaviors": ["Finds a tension around engagement and accountability", "Connects the insight to the evidence-based differentiator", "Keeps the insight actionable"],
-      "autofail_triggers": ["Offers generic edtech platitudes", "Ignores the differentiator"],
-      "rubric_criteria": [{
-        "criterion_id": "edu_insight_depth",
-        "description": "Depth and specificity of audience insight",
-        "max_points": 3,
-        "dimension": "originality",
-        "scoring_guide": {"3": "Insight reflects a specific learning-ops tension", "2": "Insight is useful but familiar", "1": "Insight is generic", "0": "Insight is off-brief"}
-      }]
+      "expected_behaviors": [
+        "Finds a tension around engagement and accountability",
+        "Connects the insight to the evidence-based differentiator",
+        "Keeps the insight actionable"
+      ],
+      "autofail_triggers": [
+        "Offers generic edtech platitudes",
+        "Ignores the differentiator"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "edu_insight_depth",
+          "description": "Depth and specificity of audience insight",
+          "max_points": 3,
+          "dimension": "originality",
+          "scoring_guide": {
+            "3": "Insight reflects a specific learning-ops tension",
+            "2": "Insight is useful but familiar",
+            "1": "Insight is generic",
+            "0": "Insight is off-brief"
+          }
+        }
+      ]
     },
     {
       "turn_number": 3,
       "stage": "strategy",
       "user_message": "I like the idea that learning teams are judged on completion but rarely get useful signals early. Based on that, what should the positioning be?",
-      "expected_behaviors": ["Turns the insight into positioning", "Feels credible for the audience", "Differentiates from generic edtech messaging"],
-      "autofail_triggers": ["Positioning ignores the insight", "Uses hype or generic language"],
-      "rubric_criteria": [{
-        "criterion_id": "edu_insight_to_strategy",
-        "description": "Positioning ladders from the chosen insight",
-        "max_points": 3,
-        "dimension": "coherence",
-        "scoring_guide": {"3": "Positioning directly addresses the insight", "2": "Positioning is related but loose", "1": "Positioning is generic", "0": "Positioning ignores the insight"}
-      }]
+      "expected_behaviors": [
+        "Turns the insight into positioning",
+        "Feels credible for the audience",
+        "Differentiates from generic edtech messaging"
+      ],
+      "autofail_triggers": [
+        "Positioning ignores the insight",
+        "Uses hype or generic language"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "edu_insight_to_strategy",
+          "description": "Positioning ladders from the chosen insight",
+          "max_points": 3,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "3": "Positioning directly addresses the insight",
+            "2": "Positioning is related but loose",
+            "1": "Positioning is generic",
+            "0": "Positioning ignores the insight"
+          }
+        }
+      ]
     },
     {
       "turn_number": 4,
       "stage": "idea_generation",
       "user_message": "Good. Give me 5 campaign concepts that bring this positioning to life.",
-      "expected_behaviors": ["Generates 5 distinct concepts", "Shows range", "Keeps concepts tied to the strategy"],
-      "autofail_triggers": ["Produces fewer than 5 concepts", "Concepts are repetitive", "Uses hype-heavy language"],
-      "rubric_criteria": [{
-        "criterion_id": "edu_idea_range",
-        "description": "Concepts cover distinct territories while supporting strategy",
-        "max_points": 2,
-        "dimension": "originality",
-        "scoring_guide": {"2": "Concepts span several territories", "1": "Some range exists but concepts overlap", "0": "Concepts all feel the same"}
-      }]
+      "expected_behaviors": [
+        "Generates 5 distinct concepts",
+        "Shows range",
+        "Keeps concepts tied to the strategy"
+      ],
+      "autofail_triggers": [
+        "Produces fewer than 5 concepts",
+        "Concepts are repetitive",
+        "Uses hype-heavy language"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "edu_idea_range",
+          "description": "Concepts cover distinct territories while supporting strategy",
+          "max_points": 2,
+          "dimension": "originality",
+          "scoring_guide": {
+            "2": "Concepts span several territories",
+            "1": "Some range exists but concepts overlap",
+            "0": "Concepts all feel the same"
+          }
+        }
+      ]
     },
     {
       "turn_number": 5,
       "stage": "idea_selection",
       "user_message": "Which 2 are strongest and why? Include the trade-offs you considered.",
-      "expected_behaviors": ["Selects two concepts with clear reasoning", "Connects choices to audience and strategy", "Acknowledges trade-offs"],
-      "autofail_triggers": ["Provides no reasoning", "Reasoning contradicts the strategy"],
-      "rubric_criteria": [{
-        "criterion_id": "edu_selection_reasoning",
-        "description": "Quality of reasoning behind the selections",
-        "max_points": 3,
-        "dimension": "judgment",
-        "scoring_guide": {"3": "Reasoning is strategic and specific", "2": "Reasoning is valid but generic", "1": "Reasoning is weak", "0": "No meaningful reasoning"}
-      }]
+      "expected_behaviors": [
+        "Selects two concepts with clear reasoning",
+        "Connects choices to audience and strategy",
+        "Acknowledges trade-offs"
+      ],
+      "autofail_triggers": [
+        "Provides no reasoning",
+        "Reasoning contradicts the strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "edu_selection_reasoning",
+          "description": "Quality of reasoning behind the selections",
+          "max_points": 3,
+          "dimension": "judgment",
+          "scoring_guide": {
+            "3": "Reasoning is strategic and specific",
+            "2": "Reasoning is valid but generic",
+            "1": "Reasoning is weak",
+            "0": "No meaningful reasoning"
+          }
+        }
+      ]
+    },
+    {
+      "stage": "execution",
+      "user_message": "Assume this is a digital launch with a practical PR window. Which concept should we prototype first in week 1, and what is the minimum viable execution?",
+      "expected_behaviors": [
+        "Chooses one concept to prototype first",
+        "Keeps the plan practical for week 1",
+        "Identifies proof points or learning goals",
+        "Avoids overbuilding before feedback"
+      ],
+      "autofail_triggers": [
+        "Keeps multiple concepts alive without prioritizing",
+        "Suggests a polished campaign instead of a practical prototype"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_6_1",
+          "description": "Prioritizes one concept for the first practical execution step",
+          "max_points": 2,
+          "dimension": "judgment",
+          "scoring_guide": {
+            "2": "Clearly prioritizes one concept and explains why it should go first",
+            "1": "Makes a reasonable choice but the rationale is thin",
+            "0": "Fails to prioritize or keeps all options open"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_6_2",
+          "description": "Execution stays lean, practical, and week-one sized",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Plan is scrappy, testable, and realistic for week one",
+            "1": "Plan is somewhat practical but still heavy",
+            "0": "Plan is vague or too ambitious"
+          }
+        }
+      ],
+      "turn_number": 6
+    },
+    {
+      "stage": "execution",
+      "user_message": "Good. Break that digital prototype into the first deliverables, owner handoffs, and practical proof points we can use in PR review and internal alignment.",
+      "expected_behaviors": [
+        "Breaks the prototype into concrete deliverables",
+        "Names the proof points that matter most",
+        "Keeps the work practical for a small team",
+        "Connects deliverables to credibility and learning"
+      ],
+      "autofail_triggers": [
+        "Stays abstract instead of naming deliverables",
+        "Prioritizes polish over evidence or learning"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_7_1",
+          "description": "Execution plan names concrete deliverables and proof points",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Deliverables and proof points are concrete and clearly linked",
+            "1": "Some specifics exist but the plan is uneven",
+            "0": "Plan remains abstract"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_7_2",
+          "description": "Execution acknowledges who needs to do what next",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Plan reflects realistic handoffs and sequencing",
+            "1": "Some sequencing exists but handoffs are vague",
+            "0": "No meaningful handoff thinking appears"
+          }
+        }
+      ],
+      "turn_number": 7
+    },
+    {
+      "stage": "execution",
+      "user_message": "Before we invest more, what is the practical review checklist for the digital concept so the team, partners, and PR stakeholders can judge whether it is ready?",
+      "expected_behaviors": [
+        "Defines a review checklist with clear criteria",
+        "Keeps the checklist tied to the strategy",
+        "Includes credibility or risk checks",
+        "Uses practical language instead of generic approvals"
+      ],
+      "autofail_triggers": [
+        "Provides a generic approval list with no strategic criteria",
+        "Ignores credibility or risk questions"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_8_1",
+          "description": "Checklist uses practical criteria for readiness",
+          "max_points": 2,
+          "dimension": "judgment",
+          "scoring_guide": {
+            "2": "Checklist is specific, strategic, and usable",
+            "1": "Checklist is somewhat useful but generic",
+            "0": "Checklist lacks decision value"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_8_2",
+          "description": "Review criteria protect strategy and credibility",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Checklist clearly reflects strategy and credibility constraints",
+            "1": "Some alignment exists but misses important checks",
+            "0": "Checklist is disconnected from the brief"
+          }
+        }
+      ],
+      "turn_number": 8
+    },
+    {
+      "stage": "execution",
+      "user_message": "Assume the first response is mixed. What practical adjustments should we test next in the digital rollout before expanding PR or paid support?",
+      "expected_behaviors": [
+        "Suggests specific adjustments rather than restarting from scratch",
+        "Protects the core strategy while iterating",
+        "Keeps next steps practical and measurable",
+        "Avoids jumping immediately to larger spend"
+      ],
+      "autofail_triggers": [
+        "Abandons the strategy after early mixed feedback",
+        "Escalates budget or scope before learning enough"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_9_1",
+          "description": "Next-step adjustments are practical and strategically sound",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Adjustments are concrete, measured, and strategy-preserving",
+            "1": "Adjustments are plausible but not very specific",
+            "0": "Adjustments are vague or overreactive"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_9_2",
+          "description": "Iteration plan focuses on learning before scale",
+          "max_points": 2,
+          "dimension": "judgment",
+          "scoring_guide": {
+            "2": "Plan clearly prioritizes learning over premature scale",
+            "1": "Some learning intent exists but scale still dominates",
+            "0": "Plan pushes scale before evidence"
+          }
+        }
+      ],
+      "turn_number": 9
+    },
+    {
+      "stage": "execution",
+      "user_message": "Close this out with the practical digital launch checklist: what ships first, what gets reviewed in PR, and what learning milestone tells us the concept is worth expanding?",
+      "expected_behaviors": [
+        "Summarizes the rollout in a simple order of operations",
+        "Distinguishes what ships from what gets reviewed",
+        "Names a concrete learning milestone",
+        "Keeps the close practical and decision-oriented"
+      ],
+      "autofail_triggers": [
+        "Ends with a generic recap and no next-step sequence",
+        "Omits the learning milestone or review gate"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_10_1",
+          "description": "Closeout gives a usable order of operations",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Sequence is clear, practical, and easy to act on",
+            "1": "Sequence is present but muddy",
+            "0": "No meaningful sequence is provided"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_10_2",
+          "description": "Closeout defines the milestone that governs expansion",
+          "max_points": 2,
+          "dimension": "judgment",
+          "scoring_guide": {
+            "2": "Milestone is concrete and tied to the concept decision",
+            "1": "Milestone exists but is soft or generic",
+            "0": "No decision checkpoint is defined"
+          }
+        }
+      ],
+      "turn_number": 10
+    },
+    {
+      "stage": "execution",
+      "user_message": "What should the first partner-facing briefing include so PR partners, community allies, or channel collaborators can repeat the concept accurately without overclaiming?",
+      "expected_behaviors": [
+        "Defines a practical partner briefing",
+        "Keeps the message accurate and easy to repeat",
+        "Protects the core proof points and constraints"
+      ],
+      "autofail_triggers": [
+        "Uses hype or vague talking points",
+        "Ignores the risk of overclaiming"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_11_1",
+          "description": "Partner briefing is concrete and strategy-safe",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Briefing is clear, accurate, and strategically aligned",
+            "1": "Briefing is partly useful but generic",
+            "0": "Briefing is vague or risky"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_11_2",
+          "description": "Partner guidance protects against overclaiming",
+          "max_points": 2,
+          "dimension": "judgment",
+          "scoring_guide": {
+            "2": "Guidance clearly guards accuracy and credibility",
+            "1": "Some caution exists but is incomplete",
+            "0": "No meaningful accuracy guardrails"
+          }
+        }
+      ],
+      "turn_number": 11
+    },
+    {
+      "stage": "execution",
+      "user_message": "How should the team handle the first skeptical questions in comments, email replies, or press follow-up so the digital launch keeps credibility?",
+      "expected_behaviors": [
+        "Anticipates skeptical questions realistically",
+        "Responds with practical proof and restraint",
+        "Avoids defensive or hype-heavy language"
+      ],
+      "autofail_triggers": [
+        "Suggests evasive or defensive responses",
+        "Relies on hype instead of proof"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_12_1",
+          "description": "Response plan handles skepticism credibly",
+          "max_points": 2,
+          "dimension": "judgment",
+          "scoring_guide": {
+            "2": "Response plan is calm, specific, and credible",
+            "1": "Response plan is acceptable but generic",
+            "0": "Response plan harms credibility"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_12_2",
+          "description": "Skeptical-question handling stays on-brand and restrained",
+          "max_points": 2,
+          "dimension": "voice",
+          "scoring_guide": {
+            "2": "Tone stays calm and aligned with the brand",
+            "1": "Tone is mostly fine but uneven",
+            "0": "Tone becomes defensive or off-brand"
+          }
+        }
+      ],
+      "turn_number": 12
+    },
+    {
+      "stage": "execution",
+      "user_message": "What is the smallest measurement dashboard we need for the digital launch so the team can review traction, credibility, and learning without drowning in noise?",
+      "expected_behaviors": [
+        "Names a lean set of useful metrics",
+        "Balances traction with proof and learning",
+        "Keeps the dashboard practical for regular review"
+      ],
+      "autofail_triggers": [
+        "Adds too many vanity metrics",
+        "Ignores credibility or learning signals"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_13_1",
+          "description": "Dashboard focuses on the few metrics that matter",
+          "max_points": 2,
+          "dimension": "judgment",
+          "scoring_guide": {
+            "2": "Metrics are lean, decision-useful, and relevant",
+            "1": "Metrics are somewhat useful but cluttered",
+            "0": "Metrics are noisy or low-value"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_13_2",
+          "description": "Dashboard includes practical learning and credibility signals",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Dashboard clearly supports iteration and credibility review",
+            "1": "Some learning signals exist but are incomplete",
+            "0": "No meaningful learning loop is defined"
+          }
+        }
+      ],
+      "turn_number": 13
+    },
+    {
+      "stage": "execution",
+      "user_message": "If the concept starts working, what should we standardize next so the rollout can expand without losing the original strategic discipline?",
+      "expected_behaviors": [
+        "Identifies what to standardize after early proof",
+        "Protects the strategy while allowing scale",
+        "Keeps the recommendation practical and sequenced"
+      ],
+      "autofail_triggers": [
+        "Scales without preserving quality or proof",
+        "Gives abstract process advice with no concrete next steps"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_14_1",
+          "description": "Standardization plan supports disciplined scale",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Plan clearly protects what made the concept work",
+            "1": "Plan is plausible but misses important safeguards",
+            "0": "Plan scales recklessly or vaguely"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_14_2",
+          "description": "Expansion advice is concrete and well-sequenced",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Expansion steps are concrete and logically ordered",
+            "1": "Expansion steps exist but are muddy",
+            "0": "No practical sequence is provided"
+          }
+        }
+      ],
+      "turn_number": 14
+    },
+    {
+      "stage": "execution",
+      "user_message": "End with the one-page launch operating note: what the team is saying, what proof it must show, what gets reviewed in PR, and what would make us stop or revise the concept.",
+      "expected_behaviors": [
+        "Summarizes the operating note in a compact way",
+        "Includes messaging, proof, review, and stop/revise conditions",
+        "Keeps the closeout practical for the team"
+      ],
+      "autofail_triggers": [
+        "Leaves out stop/revise conditions",
+        "Turns the note into a generic recap with no operating value"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_15_1",
+          "description": "Operating note is practical and decision-oriented",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Note is compact, practical, and complete",
+            "1": "Note is useful but incomplete",
+            "0": "Note lacks practical decision value"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_15_2",
+          "description": "Closeout defines when to stop or revise the concept",
+          "max_points": 2,
+          "dimension": "judgment",
+          "scoring_guide": {
+            "2": "Stop/revise conditions are clear and actionable",
+            "1": "Conditions exist but are vague",
+            "0": "No meaningful stop/revise guardrail exists"
+          }
+        }
+      ],
+      "turn_number": 15
+    },
+    {
+      "stage": "execution",
+      "user_message": "What reusable launch assets should we lock after the first cycle so future PR briefs, partner notes, and digital updates stay consistent without flattening the message?",
+      "expected_behaviors": [
+        "Identifies a practical reusable asset set",
+        "Keeps consistency without making the work generic",
+        "Protects proof points and brand constraints"
+      ],
+      "autofail_triggers": [
+        "Standardizes too early without protecting quality",
+        "Suggests generic assets with no strategic value"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_16_1",
+          "description": "Reusable assets support consistency and strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Asset set is practical, consistent, and strategy-safe",
+            "1": "Asset set is somewhat useful but generic",
+            "0": "Asset set is vague or flattening"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_16_2",
+          "description": "Reusable assets preserve proof and brand discipline",
+          "max_points": 2,
+          "dimension": "judgment",
+          "scoring_guide": {
+            "2": "Assets clearly preserve what must not drift",
+            "1": "Some safeguards exist but are incomplete",
+            "0": "No meaningful safeguards are defined"
+          }
+        }
+      ],
+      "turn_number": 16
+    },
+    {
+      "stage": "execution",
+      "user_message": "If a stakeholder asks for a louder or broader version of the message, how should the team push back while keeping the digital launch collaborative?",
+      "expected_behaviors": [
+        "Shows how to push back constructively",
+        "Protects the strategy and credibility",
+        "Keeps the recommendation practical for internal collaboration"
+      ],
+      "autofail_triggers": [
+        "Escalates conflict instead of managing it",
+        "Gives away the strategic discipline to please stakeholders"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_17_1",
+          "description": "Pushback guidance protects the strategy without creating friction",
+          "max_points": 2,
+          "dimension": "judgment",
+          "scoring_guide": {
+            "2": "Advice is clear, diplomatic, and strategically sound",
+            "1": "Advice is reasonable but a bit generic",
+            "0": "Advice is risky or unhelpful"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_17_2",
+          "description": "Internal alignment plan stays practical and brand-safe",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Plan clearly balances collaboration with strategic discipline",
+            "1": "Plan has some balance but misses a safeguard",
+            "0": "Plan either caves or creates unnecessary conflict"
+          }
+        }
+      ],
+      "turn_number": 17
+    },
+    {
+      "stage": "execution",
+      "user_message": "What are the first signs that the audience understands the concept but is still hesitating, and what practical follow-up would you test in the digital funnel?",
+      "expected_behaviors": [
+        "Distinguishes comprehension from conversion hesitation",
+        "Suggests a practical follow-up test",
+        "Keeps the follow-up tied to the concept rather than random optimization"
+      ],
+      "autofail_triggers": [
+        "Confuses weak understanding with weak demand",
+        "Suggests random funnel tweaks unrelated to the strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_18_1",
+          "description": "Diagnoses hesitation signals in a useful way",
+          "max_points": 2,
+          "dimension": "judgment",
+          "scoring_guide": {
+            "2": "Signals are specific and lead to a sensible next test",
+            "1": "Signals are plausible but generic",
+            "0": "Diagnosis is vague or misleading"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_18_2",
+          "description": "Follow-up test is practical and concept-aligned",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Next test is concrete, measurable, and aligned",
+            "1": "Next test is reasonable but loose",
+            "0": "Next test is random or impractical"
+          }
+        }
+      ],
+      "turn_number": 18
+    },
+    {
+      "stage": "execution",
+      "user_message": "What should the team document from this launch cycle so the next quarter starts from real evidence instead of memory or opinion?",
+      "expected_behaviors": [
+        "Identifies what should be documented after the cycle",
+        "Focuses on evidence, decisions, and learnings",
+        "Keeps the documentation practical and reusable"
+      ],
+      "autofail_triggers": [
+        "Documents everything without prioritization",
+        "Leaves the team with vague retrospective notes"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_19_1",
+          "description": "Post-launch documentation is practical and evidence-based",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Documentation captures the key evidence, decisions, and learnings",
+            "1": "Documentation is partly useful but incomplete",
+            "0": "Documentation is vague or bloated"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_19_2",
+          "description": "Documentation helps the next cycle start stronger",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Notes clearly support future decisions and reuse",
+            "1": "Some reuse value exists but it is uneven",
+            "0": "Notes do not create practical reuse"
+          }
+        }
+      ],
+      "turn_number": 19
+    },
+    {
+      "stage": "execution",
+      "user_message": "Finish with the operator summary: what is now proven, what is still uncertain, and what exact next decision should the team make before broadening the digital launch?",
+      "expected_behaviors": [
+        "Summarizes proof, uncertainty, and the next decision cleanly",
+        "Keeps the framing practical for operators",
+        "Ends with a clear decision point rather than a general recap"
+      ],
+      "autofail_triggers": [
+        "Ends with a generic summary and no decision point",
+        "Blurs proven facts with assumptions"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_20_1",
+          "description": "Summary cleanly separates proof, uncertainty, and decision",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Summary is clear, practical, and decision-oriented",
+            "1": "Summary is useful but somewhat muddy",
+            "0": "Summary lacks a usable decision frame"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_20_2",
+          "description": "Next decision is explicit and actionable",
+          "max_points": 2,
+          "dimension": "judgment",
+          "scoring_guide": {
+            "2": "Decision is explicit, concrete, and time-relevant",
+            "1": "Decision exists but is soft",
+            "0": "No meaningful next decision is stated"
+          }
+        }
+      ],
+      "turn_number": 20
+    },
+    {
+      "stage": "execution",
+      "user_message": "What should the internal kickoff note say so product, creative, PR, and performance teams are aligned on the same digital launch thesis from day one?",
+      "expected_behaviors": [
+        "Summarizes the thesis clearly for cross-functional teams",
+        "Keeps the note practical and shared-language friendly",
+        "Preserves the strategic proof points and constraints"
+      ],
+      "autofail_triggers": [
+        "Turns the kickoff note into vague corporate language",
+        "Loses the specific proof and constraints"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_21_1",
+          "description": "Kickoff note creates practical cross-functional alignment",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Note is clear, shared-language friendly, and strategically aligned",
+            "1": "Note is useful but somewhat generic",
+            "0": "Note is vague or misaligned"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_21_2",
+          "description": "Kickoff note protects proof points and launch constraints",
+          "max_points": 2,
+          "dimension": "judgment",
+          "scoring_guide": {
+            "2": "Note clearly preserves the non-negotiables of the launch",
+            "1": "Some non-negotiables are present but incomplete",
+            "0": "Non-negotiables are missing or blurred"
+          }
+        }
+      ],
+      "turn_number": 21
+    },
+    {
+      "stage": "execution",
+      "user_message": "What is the minimum creative QA pass before anything goes live in the digital launch, and what mistakes would make you stop the release?",
+      "expected_behaviors": [
+        "Defines a lean but useful QA pass",
+        "Names the release-stopping mistakes clearly",
+        "Keeps QA tied to strategy and credibility"
+      ],
+      "autofail_triggers": [
+        "Provides a generic QA checklist with no release logic",
+        "Misses the credibility-breaking errors"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_22_1",
+          "description": "QA pass distinguishes normal edits from release-stopping issues",
+          "max_points": 2,
+          "dimension": "judgment",
+          "scoring_guide": {
+            "2": "QA guidance is practical and includes clear stop conditions",
+            "1": "QA guidance is somewhat useful but soft",
+            "0": "QA guidance lacks release discipline"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_22_2",
+          "description": "QA checks protect strategic and credibility requirements",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "QA clearly protects the critical strategic requirements",
+            "1": "Some strategic checks exist but key ones are missing",
+            "0": "QA is disconnected from the launch strategy"
+          }
+        }
+      ],
+      "turn_number": 22
+    },
+    {
+      "stage": "execution",
+      "user_message": "Which lightweight asset variants should we test first in the digital launch so we learn message sensitivity without bloating production?",
+      "expected_behaviors": [
+        "Suggests a small, focused set of variants",
+        "Keeps the variants tied to real message hypotheses",
+        "Avoids unnecessary production sprawl"
+      ],
+      "autofail_triggers": [
+        "Suggests too many variants at once",
+        "Tests variants with no hypothesis behind them"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_23_1",
+          "description": "Variant plan is lean and hypothesis-driven",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Variants are focused, useful, and production-aware",
+            "1": "Variants are plausible but still somewhat broad",
+            "0": "Variant plan is bloated or aimless"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_23_2",
+          "description": "Variants are tied to meaningful message learning",
+          "max_points": 2,
+          "dimension": "judgment",
+          "scoring_guide": {
+            "2": "Each variant clearly maps to a message learning goal",
+            "1": "Some learning intent exists but is incomplete",
+            "0": "Variants are disconnected from learning"
+          }
+        }
+      ],
+      "turn_number": 23
+    },
+    {
+      "stage": "execution",
+      "user_message": "What should the weekly launch review cover so the team can decide whether to refine, repeat, or retire the concept without defaulting to opinion?",
+      "expected_behaviors": [
+        "Defines a practical weekly review agenda",
+        "Connects the review to evidence rather than opinion",
+        "Makes the refine/repeat/retire decision process explicit"
+      ],
+      "autofail_triggers": [
+        "Uses a vague status meeting instead of a decision review",
+        "Lets opinion override the evidence loop"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_24_1",
+          "description": "Weekly review agenda is practical and decision-oriented",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Agenda is clear, evidence-based, and decision-oriented",
+            "1": "Agenda is useful but generic",
+            "0": "Agenda lacks decision value"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_24_2",
+          "description": "Review process distinguishes refine, repeat, and retire clearly",
+          "max_points": 2,
+          "dimension": "judgment",
+          "scoring_guide": {
+            "2": "Decision paths are explicit and actionable",
+            "1": "Decision logic exists but is soft",
+            "0": "Decision logic is missing or unusable"
+          }
+        }
+      ],
+      "turn_number": 24
+    },
+    {
+      "stage": "execution",
+      "user_message": "How should the team separate a weak creative execution from a weak strategic premise when the first digital results are ambiguous?",
+      "expected_behaviors": [
+        "Separates execution issues from premise issues clearly",
+        "Suggests a practical way to test the distinction",
+        "Protects the team from overreacting to noisy early results"
+      ],
+      "autofail_triggers": [
+        "Treats all weak results as a strategy failure",
+        "Gives no practical test for the distinction"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_25_1",
+          "description": "Advice clearly distinguishes execution problems from premise problems",
+          "max_points": 2,
+          "dimension": "judgment",
+          "scoring_guide": {
+            "2": "Diagnosis is clear and leads to a practical test",
+            "1": "Diagnosis is plausible but a bit vague",
+            "0": "Diagnosis is muddy or unhelpful"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_25_2",
+          "description": "Advice handles ambiguous early results with discipline",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Advice is measured and avoids overreaction to noise",
+            "1": "Advice is mostly measured but incomplete",
+            "0": "Advice overreacts or stays vague"
+          }
+        }
+      ],
+      "turn_number": 25
+    },
+    {
+      "stage": "execution",
+      "user_message": "What should the concise PR handoff include so external coverage reflects the digital launch accurately without flattening the message into category clich\u00e9s?",
+      "expected_behaviors": [
+        "Defines a focused PR handoff",
+        "Preserves nuance without making the handoff unusable",
+        "Avoids generic category clich\u00e9s"
+      ],
+      "autofail_triggers": [
+        "Reduces the launch to generic category claims",
+        "Makes the handoff too dense to use"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_26_1",
+          "description": "PR handoff is concise, useful, and nuanced",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Handoff is practical, concise, and protects nuance",
+            "1": "Handoff is useful but somewhat generic or dense",
+            "0": "Handoff is too generic or not usable"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_26_2",
+          "description": "PR handoff avoids flattening the message into clich\u00e9s",
+          "max_points": 2,
+          "dimension": "voice",
+          "scoring_guide": {
+            "2": "Language stays on-brand and avoids category clich\u00e9s",
+            "1": "Mostly on-brand but with some flattening",
+            "0": "Falls back to generic clich\u00e9 language"
+          }
+        }
+      ],
+      "turn_number": 26
+    },
+    {
+      "stage": "execution",
+      "user_message": "If the team can only keep one experiment alive next week, which one should survive and what exact evidence threshold should protect that choice?",
+      "expected_behaviors": [
+        "Prioritizes one experiment explicitly",
+        "Defines a concrete evidence threshold",
+        "Keeps the choice aligned with the strategy"
+      ],
+      "autofail_triggers": [
+        "Keeps multiple experiments alive without prioritizing",
+        "Uses a vague threshold or no threshold at all"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_27_1",
+          "description": "One experiment is prioritized clearly and strategically",
+          "max_points": 2,
+          "dimension": "judgment",
+          "scoring_guide": {
+            "2": "Choice is explicit, strategic, and well-defended",
+            "1": "Choice is reasonable but thinly defended",
+            "0": "No clear priority is made"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_27_2",
+          "description": "Evidence threshold is concrete enough to guide the decision",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Threshold is concrete and practically usable",
+            "1": "Threshold exists but is soft",
+            "0": "Threshold is missing or unusable"
+          }
+        }
+      ],
+      "turn_number": 27
+    },
+    {
+      "stage": "execution",
+      "user_message": "What should a skeptical executive hear in the shortest possible update so they understand the digital launch is learning responsibly instead of just making noise?",
+      "expected_behaviors": [
+        "Condenses the update into a short operator-friendly message",
+        "Frames progress around disciplined learning",
+        "Avoids hype or vanity framing"
+      ],
+      "autofail_triggers": [
+        "Uses hype or vanity metrics to impress",
+        "Fails to explain responsible learning"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_28_1",
+          "description": "Executive update is concise, credible, and useful",
+          "max_points": 2,
+          "dimension": "voice",
+          "scoring_guide": {
+            "2": "Update is concise, credible, and on-brand",
+            "1": "Update is useful but somewhat generic",
+            "0": "Update is hype-heavy or unclear"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_28_2",
+          "description": "Executive update frames progress around disciplined learning",
+          "max_points": 2,
+          "dimension": "judgment",
+          "scoring_guide": {
+            "2": "Learning frame is explicit and decision-useful",
+            "1": "Learning frame is present but thin",
+            "0": "No meaningful learning frame exists"
+          }
+        }
+      ],
+      "turn_number": 28
+    },
+    {
+      "stage": "execution",
+      "user_message": "What part of the launch must remain deliberately small or manual for now because scaling it too early would damage signal quality?",
+      "expected_behaviors": [
+        "Identifies the part that should stay small or manual",
+        "Explains why premature scale would hurt signal quality",
+        "Keeps the guidance practical and temporary"
+      ],
+      "autofail_triggers": [
+        "Pushes everything toward immediate scale",
+        "Fails to explain the signal-quality tradeoff"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_29_1",
+          "description": "Advice identifies where deliberate small-scale execution still matters",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Holdback area is clear and strategically justified",
+            "1": "Holdback area is plausible but weakly justified",
+            "0": "No meaningful holdback guidance is given"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_29_2",
+          "description": "Advice protects signal quality from premature scale",
+          "max_points": 2,
+          "dimension": "judgment",
+          "scoring_guide": {
+            "2": "Signal-quality risk is clear and actionable",
+            "1": "Risk is acknowledged but not very actionable",
+            "0": "Risk is ignored"
+          }
+        }
+      ],
+      "turn_number": 29
+    },
+    {
+      "stage": "execution",
+      "user_message": "Close this operating block with the decision memo headline: what have we learned from the digital launch so far, and what exact move happens next?",
+      "expected_behaviors": [
+        "Closes with a concise memo-style headline and next move",
+        "Summarizes learning without drift into generic recap",
+        "Ends with a clear operational decision"
+      ],
+      "autofail_triggers": [
+        "Ends with a generic wrap-up and no decision",
+        "Fails to convert learning into an explicit next move"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_30_1",
+          "description": "Decision memo headline is concise and operationally useful",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Headline is concise, useful, and linked to the next move",
+            "1": "Headline is useful but somewhat soft",
+            "0": "Headline is vague or not decision-oriented"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_30_2",
+          "description": "Next move is explicit and actionable",
+          "max_points": 2,
+          "dimension": "judgment",
+          "scoring_guide": {
+            "2": "Next move is explicit, concrete, and time-relevant",
+            "1": "Next move exists but is soft",
+            "0": "No meaningful next move is defined"
+          }
+        }
+      ],
+      "turn_number": 30
+    },
+    {
+      "stage": "execution",
+      "user_message": "What assumptions about audience behavior are still unresolved, and which one deserves the next smallest test in the digital launch?",
+      "expected_behaviors": [
+        "Names unresolved assumptions clearly",
+        "Chooses one assumption for the next smallest test",
+        "Keeps the recommendation disciplined and measurable"
+      ],
+      "autofail_triggers": [
+        "Treats all assumptions as equally important",
+        "Proposes a large or unfocused next test"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_31_1",
+          "description": "Unresolved assumptions are prioritized clearly",
+          "max_points": 2,
+          "dimension": "judgment",
+          "scoring_guide": {
+            "2": "Priority assumption is explicit and strategically important",
+            "1": "Priority is plausible but weakly defended",
+            "0": "No meaningful prioritization happens"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_31_2",
+          "description": "Next test stays small, practical, and measurable",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Test is focused, small, and decision-useful",
+            "1": "Test is somewhat useful but broad",
+            "0": "Test is vague or oversized"
+          }
+        }
+      ],
+      "turn_number": 31
+    },
+    {
+      "stage": "execution",
+      "user_message": "What should remain unchanged in the digital launch no matter how many optimization requests come in, because changing it would break the strategic spine?",
+      "expected_behaviors": [
+        "Identifies the strategic spine clearly",
+        "Explains why it should remain stable",
+        "Separates stable principles from changeable execution details"
+      ],
+      "autofail_triggers": [
+        "Treats everything as flexible",
+        "Freezes details that should remain adaptable"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_32_1",
+          "description": "Advice clearly protects the strategic spine of the launch",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Stable core is explicit and well-justified",
+            "1": "Stable core is plausible but somewhat muddy",
+            "0": "Stable core is missing or confused"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_32_2",
+          "description": "Advice balances stability with healthy execution flexibility",
+          "max_points": 2,
+          "dimension": "judgment",
+          "scoring_guide": {
+            "2": "Guidance clearly distinguishes fixed principles from flexible details",
+            "1": "Some distinction exists but is soft",
+            "0": "Guidance is either rigid or overly loose"
+          }
+        }
+      ],
+      "turn_number": 32
+    },
+    {
+      "stage": "execution",
+      "user_message": "If the team has to explain this launch to a new teammate in five minutes, what is the minimum context they need to avoid making strategic mistakes?",
+      "expected_behaviors": [
+        "Distills the launch into a fast, usable brief",
+        "Includes the mistakes a new teammate must avoid",
+        "Keeps the summary concrete and operational"
+      ],
+      "autofail_triggers": [
+        "Provides a vague onboarding summary",
+        "Omits the common strategic mistakes to avoid"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_33_1",
+          "description": "Five-minute briefing is concrete and operational",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Brief is concise, concrete, and prevents mistakes",
+            "1": "Brief is somewhat useful but incomplete",
+            "0": "Brief is vague or low-value"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_33_2",
+          "description": "Summary clearly calls out the mistakes a new teammate must avoid",
+          "max_points": 2,
+          "dimension": "judgment",
+          "scoring_guide": {
+            "2": "Mistakes are clear, relevant, and preventive",
+            "1": "Mistakes are mentioned but soft",
+            "0": "Mistakes are not meaningfully addressed"
+          }
+        }
+      ],
+      "turn_number": 33
+    },
+    {
+      "stage": "execution",
+      "user_message": "What would make you pause the current digital launch plan for 48 hours and re-check the premise before spending more effort?",
+      "expected_behaviors": [
+        "Names concrete pause triggers",
+        "Uses disciplined decision logic rather than panic",
+        "Connects the pause to strategic risk or signal failure"
+      ],
+      "autofail_triggers": [
+        "Uses vague or emotional pause criteria",
+        "Refuses to define any meaningful pause trigger"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_34_1",
+          "description": "Pause triggers are concrete and strategically meaningful",
+          "max_points": 2,
+          "dimension": "judgment",
+          "scoring_guide": {
+            "2": "Triggers are explicit, concrete, and decision-useful",
+            "1": "Triggers are plausible but soft",
+            "0": "Triggers are vague or missing"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_34_2",
+          "description": "Pause logic is disciplined rather than reactive",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance clearly balances caution with disciplined action",
+            "1": "Guidance is somewhat disciplined but uneven",
+            "0": "Guidance is reactive or unusable"
+          }
+        }
+      ],
+      "turn_number": 34
+    },
+    {
+      "stage": "execution",
+      "user_message": "What part of this launch should stay deliberately human-reviewed instead of automated, at least until the team sees stable signal quality?",
+      "expected_behaviors": [
+        "Identifies where human review still matters",
+        "Explains why automation is premature there",
+        "Keeps the answer practical for the current phase"
+      ],
+      "autofail_triggers": [
+        "Automates everything immediately",
+        "Fails to explain the quality risk of premature automation"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_35_1",
+          "description": "Advice identifies the right place for continued human review",
+          "max_points": 2,
+          "dimension": "judgment",
+          "scoring_guide": {
+            "2": "Human review area is clear and strategically justified",
+            "1": "Human review area is plausible but weakly justified",
+            "0": "No meaningful human review guidance is provided"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_35_2",
+          "description": "Advice shows sound timing for automation versus manual review",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Timing guidance is practical and signal-quality aware",
+            "1": "Timing guidance exists but is soft",
+            "0": "Timing guidance is reckless or absent"
+          }
+        }
+      ],
+      "turn_number": 35
+    },
+    {
+      "stage": "execution",
+      "user_message": "How should the team log decisions during the launch so later reviews can trace what changed, why it changed, and what evidence supported it?",
+      "expected_behaviors": [
+        "Defines a simple decision log approach",
+        "Links changes back to evidence and rationale",
+        "Keeps the method practical for a working team"
+      ],
+      "autofail_triggers": [
+        "Suggests heavy process with no practical use",
+        "Leaves the decision trail vague or undocumented"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_36_1",
+          "description": "Decision log approach is simple, practical, and traceable",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Log is practical and clearly supports later review",
+            "1": "Log is somewhat useful but incomplete",
+            "0": "Log is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_36_2",
+          "description": "Decision log clearly links changes back to evidence",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Evidence linkage is explicit and reusable",
+            "1": "Some linkage exists but is weak",
+            "0": "Evidence linkage is missing"
+          }
+        }
+      ],
+      "turn_number": 36
+    },
+    {
+      "stage": "execution",
+      "user_message": "What should the team do if the loudest internal opinion conflicts with the current digital evidence but still sounds persuasive in the room?",
+      "expected_behaviors": [
+        "Shows how to handle opinion-versus-evidence tension",
+        "Protects the learning loop without being combative",
+        "Gives a practical response for the team"
+      ],
+      "autofail_triggers": [
+        "Lets persuasion outrank the evidence loop",
+        "Treats disagreement as a personal conflict rather than an operating issue"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_37_1",
+          "description": "Advice handles opinion-versus-evidence tension well",
+          "max_points": 2,
+          "dimension": "judgment",
+          "scoring_guide": {
+            "2": "Advice is calm, practical, and evidence-protective",
+            "1": "Advice is reasonable but not very specific",
+            "0": "Advice gives away the evidence loop or becomes combative"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_37_2",
+          "description": "Advice stays practical for real team dynamics",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Advice is usable in a real room with real stakeholders",
+            "1": "Advice is somewhat usable but abstract",
+            "0": "Advice is not workable in practice"
+          }
+        }
+      ],
+      "turn_number": 37
+    },
+    {
+      "stage": "execution",
+      "user_message": "If this concept is still working in a month, what should we codify into the operating playbook so future launches inherit the same signal quality?",
+      "expected_behaviors": [
+        "Identifies what should be codified after proof",
+        "Focuses on preserving signal quality",
+        "Keeps the playbook advice practical and selective"
+      ],
+      "autofail_triggers": [
+        "Codifies everything without selectivity",
+        "Ignores the reason the concept worked in the first place"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_38_1",
+          "description": "Playbook guidance codifies the right things selectively",
+          "max_points": 2,
+          "dimension": "judgment",
+          "scoring_guide": {
+            "2": "Codification is selective, practical, and quality-preserving",
+            "1": "Codification is plausible but broad",
+            "0": "Codification is bloated or indiscriminate"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_38_2",
+          "description": "Playbook guidance preserves signal quality for future launches",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly protects the launch qualities that mattered",
+            "1": "Protection exists but is somewhat vague",
+            "0": "Signal-quality protection is missing"
+          }
+        }
+      ],
+      "turn_number": 38
+    },
+    {
+      "stage": "execution",
+      "user_message": "What would you want the team to remember from this launch six months from now if they forget everything except one operating lesson?",
+      "expected_behaviors": [
+        "Distills one operating lesson clearly",
+        "Keeps the lesson tied to evidence and strategic discipline",
+        "Avoids generic inspiration-speak"
+      ],
+      "autofail_triggers": [
+        "Offers a generic motivational lesson",
+        "Disconnects the lesson from how the launch actually operated"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_39_1",
+          "description": "The one retained lesson is concrete and operationally useful",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Lesson is concrete, memorable, and operationally useful",
+            "1": "Lesson is somewhat useful but generic",
+            "0": "Lesson is vague or platitudinous"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_39_2",
+          "description": "Lesson reinforces evidence and strategic discipline",
+          "max_points": 2,
+          "dimension": "judgment",
+          "scoring_guide": {
+            "2": "Lesson clearly reinforces the right operating behavior",
+            "1": "Lesson is directionally right but soft",
+            "0": "Lesson does not reinforce useful discipline"
+          }
+        }
+      ],
+      "turn_number": 39
+    },
+    {
+      "stage": "execution",
+      "user_message": "End this with the final operating sentence for the team: what are we doing next, what evidence will decide it, and what are we refusing to compromise?",
+      "expected_behaviors": [
+        "Ends with a concise operating sentence",
+        "Includes the next move, evidence gate, and non-negotiable",
+        "Keeps the sentence practical rather than theatrical"
+      ],
+      "autofail_triggers": [
+        "Omits the evidence gate or non-negotiable",
+        "Ends with a vague or dramatic statement instead of an operating sentence"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_40_1",
+          "description": "Final operating sentence is concise and practical",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Sentence is concise, practical, and complete",
+            "1": "Sentence is useful but slightly soft",
+            "0": "Sentence is vague or incomplete"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_40_2",
+          "description": "Final sentence includes the evidence gate and non-negotiable clearly",
+          "max_points": 2,
+          "dimension": "judgment",
+          "scoring_guide": {
+            "2": "Evidence gate and non-negotiable are explicit and actionable",
+            "1": "One is present but weak",
+            "0": "Critical operating constraints are missing"
+          }
+        }
+      ],
+      "turn_number": 40
+    },
+    {
+      "turn_number": 41,
+      "stage": "execution",
+      "user_message": "What is the next practical launch checkpoint before broader rollout?",
+      "expected_behaviors": [
+        "Keeps the next step practical and measurable",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Becomes vague or scales too early",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_41_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_41_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 42,
+      "stage": "execution",
+      "user_message": "Which launch detail still needs human judgment before we trust the pattern enough to standardize it?",
+      "expected_behaviors": [
+        "Names where human judgment still matters",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Standardizes too early without judgment",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_42_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_42_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 43,
+      "stage": "execution",
+      "user_message": "What evidence would tell us this checkpoint worked well enough to keep, not just to discuss?",
+      "expected_behaviors": [
+        "Defines a usable evidence threshold",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Uses vague or non-decision-ready evidence",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_43_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_43_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 44,
+      "stage": "execution",
+      "user_message": "What is the smallest follow-up move after this checkpoint if the signal is positive but still noisy?",
+      "expected_behaviors": [
+        "Keeps the follow-up small and signal-aware",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Overreacts to noisy early results",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_44_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_44_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 45,
+      "stage": "execution",
+      "user_message": "What should the team avoid changing at this checkpoint so they do not corrupt the learning signal?",
+      "expected_behaviors": [
+        "Protects the learning signal from avoidable drift",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Allows unnecessary changes that blur the signal",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_45_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_45_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 46,
+      "stage": "execution",
+      "user_message": "If this checkpoint underperforms, what is the first disciplined question to ask before changing the whole launch?",
+      "expected_behaviors": [
+        "Uses a disciplined diagnosis before broad changes",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Jumps straight to broad changes without diagnosis",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_46_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_46_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 47,
+      "stage": "execution",
+      "user_message": "What should be written down from this checkpoint so the next review uses evidence instead of memory?",
+      "expected_behaviors": [
+        "Captures the evidence from the checkpoint clearly",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Leaves the checkpoint undocumented",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_47_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_47_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 48,
+      "stage": "execution",
+      "user_message": "What is the one thing the team should look at first when reviewing this checkpoint next week?",
+      "expected_behaviors": [
+        "Prioritizes the first review lens clearly",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Leaves the review order vague",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_48_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_48_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 49,
+      "stage": "execution",
+      "user_message": "What would make this checkpoint worth repeating once more before we move on?",
+      "expected_behaviors": [
+        "Defines a repeat threshold clearly",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Repeats without a threshold",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_49_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_49_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 50,
+      "stage": "execution",
+      "user_message": "What should stay deliberately simple at this checkpoint so the team learns faster?",
+      "expected_behaviors": [
+        "Keeps the checkpoint deliberately simple",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Adds unnecessary complexity",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_50_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_50_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 51,
+      "stage": "execution",
+      "user_message": "How should the team explain this checkpoint internally in one sentence so everyone understands why it exists?",
+      "expected_behaviors": [
+        "Condenses the checkpoint into a clear internal explanation",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Explains the checkpoint vaguely",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_51_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_51_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 52,
+      "stage": "execution",
+      "user_message": "What is the next practical launch checkpoint before broader rollout?",
+      "expected_behaviors": [
+        "Keeps the next step practical and measurable",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Becomes vague or scales too early",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_52_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_52_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 53,
+      "stage": "execution",
+      "user_message": "Which signal here is tempting but misleading, and how should the team avoid overvaluing it?",
+      "expected_behaviors": [
+        "Identifies and defuses a misleading signal",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Treats a misleading signal as decisive",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_53_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_53_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 54,
+      "stage": "execution",
+      "user_message": "What part of this checkpoint is still an assumption rather than a fact, and how should that shape the next move?",
+      "expected_behaviors": [
+        "Separates assumptions from facts clearly",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Blurs assumptions and facts",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_54_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_54_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 55,
+      "stage": "execution",
+      "user_message": "What would convince you to retire this checkpoint entirely instead of refining it again?",
+      "expected_behaviors": [
+        "Defines a clear retire threshold",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Refuses to define a retire condition",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_55_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_55_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 56,
+      "stage": "execution",
+      "user_message": "What should the team preserve if this checkpoint becomes part of the standing launch playbook?",
+      "expected_behaviors": [
+        "Preserves what matters if the checkpoint is reused",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Codifies it without protecting quality",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_56_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_56_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 57,
+      "stage": "execution",
+      "user_message": "What is the cleanest operator summary for this checkpoint: what happened, what it means, and what happens next?",
+      "expected_behaviors": [
+        "Summarizes the checkpoint operationally",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Ends with a vague recap",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_57_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_57_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 58,
+      "stage": "execution",
+      "user_message": "What would you want the team to remember from this checkpoint one month from now?",
+      "expected_behaviors": [
+        "Distills a durable lesson from the checkpoint",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Provides a generic lesson",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_58_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_58_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 59,
+      "stage": "execution",
+      "user_message": "What is the next practical launch checkpoint before broader rollout?",
+      "expected_behaviors": [
+        "Keeps the next step practical and measurable",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Becomes vague or scales too early",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_59_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_59_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 60,
+      "stage": "execution",
+      "user_message": "What exact decision is this checkpoint supposed to unlock if the team reviews it honestly?",
+      "expected_behaviors": [
+        "Connects the checkpoint to a concrete decision",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Leaves the checkpoint detached from decisions",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_60_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_60_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 61,
+      "stage": "execution",
+      "user_message": "What is the next practical launch checkpoint before broader rollout?",
+      "expected_behaviors": [
+        "Keeps the next step practical and measurable",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Becomes vague or scales too early",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_61_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_61_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 62,
+      "stage": "execution",
+      "user_message": "Which launch detail still needs human judgment before we trust the pattern enough to standardize it?",
+      "expected_behaviors": [
+        "Names where human judgment still matters",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Standardizes too early without judgment",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_62_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_62_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 63,
+      "stage": "execution",
+      "user_message": "What evidence would tell us this checkpoint worked well enough to keep, not just to discuss?",
+      "expected_behaviors": [
+        "Defines a usable evidence threshold",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Uses vague or non-decision-ready evidence",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_63_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_63_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 64,
+      "stage": "execution",
+      "user_message": "What is the smallest follow-up move after this checkpoint if the signal is positive but still noisy?",
+      "expected_behaviors": [
+        "Keeps the follow-up small and signal-aware",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Overreacts to noisy early results",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_64_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_64_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 65,
+      "stage": "execution",
+      "user_message": "What should the team avoid changing at this checkpoint so they do not corrupt the learning signal?",
+      "expected_behaviors": [
+        "Protects the learning signal from avoidable drift",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Allows unnecessary changes that blur the signal",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_65_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_65_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 66,
+      "stage": "execution",
+      "user_message": "If this checkpoint underperforms, what is the first disciplined question to ask before changing the whole launch?",
+      "expected_behaviors": [
+        "Uses a disciplined diagnosis before broad changes",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Jumps straight to broad changes without diagnosis",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_66_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_66_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 67,
+      "stage": "execution",
+      "user_message": "What should be written down from this checkpoint so the next review uses evidence instead of memory?",
+      "expected_behaviors": [
+        "Captures the evidence from the checkpoint clearly",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Leaves the checkpoint undocumented",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_67_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_67_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 68,
+      "stage": "execution",
+      "user_message": "What is the one thing the team should look at first when reviewing this checkpoint next week?",
+      "expected_behaviors": [
+        "Prioritizes the first review lens clearly",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Leaves the review order vague",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_68_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_68_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 69,
+      "stage": "execution",
+      "user_message": "What would make this checkpoint worth repeating once more before we move on?",
+      "expected_behaviors": [
+        "Defines a repeat threshold clearly",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Repeats without a threshold",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_69_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_69_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 70,
+      "stage": "execution",
+      "user_message": "What should stay deliberately simple at this checkpoint so the team learns faster?",
+      "expected_behaviors": [
+        "Keeps the checkpoint deliberately simple",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Adds unnecessary complexity",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_70_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_70_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 71,
+      "stage": "execution",
+      "user_message": "How should the team explain this checkpoint internally in one sentence so everyone understands why it exists?",
+      "expected_behaviors": [
+        "Condenses the checkpoint into a clear internal explanation",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Explains the checkpoint vaguely",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_71_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_71_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 72,
+      "stage": "execution",
+      "user_message": "Which signal here is tempting but misleading, and how should the team avoid overvaluing it?",
+      "expected_behaviors": [
+        "Identifies and defuses a misleading signal",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Treats a misleading signal as decisive",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_72_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_72_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 73,
+      "stage": "execution",
+      "user_message": "What part of this checkpoint is still an assumption rather than a fact, and how should that shape the next move?",
+      "expected_behaviors": [
+        "Separates assumptions from facts clearly",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Blurs assumptions and facts",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_73_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_73_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 74,
+      "stage": "execution",
+      "user_message": "What would convince you to retire this checkpoint entirely instead of refining it again?",
+      "expected_behaviors": [
+        "Defines a clear retire threshold",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Refuses to define a retire condition",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_74_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_74_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 75,
+      "stage": "execution",
+      "user_message": "What should the team preserve if this checkpoint becomes part of the standing launch playbook?",
+      "expected_behaviors": [
+        "Preserves what matters if the checkpoint is reused",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Codifies it without protecting quality",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_75_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_75_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 76,
+      "stage": "execution",
+      "user_message": "What is the cleanest operator summary for this checkpoint: what happened, what it means, and what happens next?",
+      "expected_behaviors": [
+        "Summarizes the checkpoint operationally",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Ends with a vague recap",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_76_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_76_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 77,
+      "stage": "execution",
+      "user_message": "What would you want the team to remember from this checkpoint one month from now?",
+      "expected_behaviors": [
+        "Distills a durable lesson from the checkpoint",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Provides a generic lesson",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_77_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_77_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 78,
+      "stage": "execution",
+      "user_message": "What exact decision is this checkpoint supposed to unlock if the team reviews it honestly?",
+      "expected_behaviors": [
+        "Connects the checkpoint to a concrete decision",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Leaves the checkpoint detached from decisions",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_78_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_78_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 79,
+      "stage": "execution",
+      "user_message": "What assumptions about audience behavior are still unresolved, and which one deserves the next smallest test in the digital launch?",
+      "expected_behaviors": [
+        "Prioritizes one unresolved assumption for a small test",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Treats all assumptions as equally important",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_79_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_79_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 80,
+      "stage": "execution",
+      "user_message": "What should remain unchanged in the digital launch no matter how many optimization requests come in, because changing it would break the strategic spine?",
+      "expected_behaviors": [
+        "Protects the strategic spine explicitly",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Treats everything as flexible",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_80_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_80_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 81,
+      "stage": "execution",
+      "user_message": "If the team has to explain this launch to a new teammate in five minutes, what is the minimum context they need to avoid making strategic mistakes?",
+      "expected_behaviors": [
+        "Distills a fast, mistake-preventing brief",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Provides a vague onboarding summary",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_81_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_81_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 82,
+      "stage": "execution",
+      "user_message": "What would make you pause the current digital launch plan for 48 hours and re-check the premise before spending more effort?",
+      "expected_behaviors": [
+        "Defines concrete pause triggers",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Uses vague or emotional pause criteria",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_82_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_82_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 83,
+      "stage": "execution",
+      "user_message": "What part of this launch should stay deliberately human-reviewed instead of automated, at least until the team sees stable signal quality?",
+      "expected_behaviors": [
+        "Identifies where human review still matters",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Automates everything immediately",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_83_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_83_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 84,
+      "stage": "execution",
+      "user_message": "How should the team log decisions during the launch so later reviews can trace what changed, why it changed, and what evidence supported it?",
+      "expected_behaviors": [
+        "Defines a practical decision log",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Leaves the decision trail vague or undocumented",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_84_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_84_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 85,
+      "stage": "execution",
+      "user_message": "What should the team do if the loudest internal opinion conflicts with the current digital evidence but still sounds persuasive in the room?",
+      "expected_behaviors": [
+        "Handles opinion-versus-evidence tension practically",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Lets persuasion outrank the evidence loop",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_85_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_85_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 86,
+      "stage": "execution",
+      "user_message": "If this concept is still working in a month, what should we codify into the operating playbook so future launches inherit the same signal quality?",
+      "expected_behaviors": [
+        "Selectively codifies what preserves signal quality",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Codifies everything without selectivity",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_86_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_86_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 87,
+      "stage": "execution",
+      "user_message": "What would you want the team to remember from this launch six months from now if they forget everything except one operating lesson?",
+      "expected_behaviors": [
+        "Distills one concrete operating lesson",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Offers a generic motivational lesson",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_87_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_87_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 88,
+      "stage": "execution",
+      "user_message": "What should the internal kickoff note say so product, creative, PR, and performance teams are aligned on the same digital launch thesis from day one?",
+      "expected_behaviors": [
+        "Creates practical cross-functional alignment",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Turns the kickoff note into vague corporate language",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_88_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_88_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 89,
+      "stage": "execution",
+      "user_message": "What is the minimum creative QA pass before anything goes live in the digital launch, and what mistakes would make you stop the release?",
+      "expected_behaviors": [
+        "Defines a lean but useful QA pass",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Provides a generic QA checklist with no release logic",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_89_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_89_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 90,
+      "stage": "execution",
+      "user_message": "Which lightweight asset variants should we test first in the digital launch so we learn message sensitivity without bloating production?",
+      "expected_behaviors": [
+        "Keeps variants lean and hypothesis-driven",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Suggests too many variants at once",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_90_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_90_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 91,
+      "stage": "execution",
+      "user_message": "What should the weekly launch review cover so the team can decide whether to refine, repeat, or retire the concept without defaulting to opinion?",
+      "expected_behaviors": [
+        "Defines a practical weekly decision review",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Uses a vague status meeting instead of a decision review",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_91_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_91_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 92,
+      "stage": "execution",
+      "user_message": "How should the team separate a weak creative execution from a weak strategic premise when the first digital results are ambiguous?",
+      "expected_behaviors": [
+        "Separates execution issues from premise issues clearly",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Treats all weak results as a strategy failure",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_92_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_92_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 93,
+      "stage": "execution",
+      "user_message": "What should the concise PR handoff include so external coverage reflects the digital launch accurately without flattening the message into category clich\u00e9s?",
+      "expected_behaviors": [
+        "Defines a focused PR handoff",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Reduces the launch to generic category claims",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_93_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_93_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 94,
+      "stage": "execution",
+      "user_message": "If the team can only keep one experiment alive next week, which one should survive and what exact evidence threshold should protect that choice?",
+      "expected_behaviors": [
+        "Prioritizes one experiment with a concrete threshold",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Keeps multiple experiments alive without prioritizing",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_94_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_94_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 95,
+      "stage": "execution",
+      "user_message": "What should a skeptical executive hear in the shortest possible update so they understand the digital launch is learning responsibly instead of just making noise?",
+      "expected_behaviors": [
+        "Condenses the update into a concise evidence-first message",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Uses hype or vanity metrics to impress",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_95_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_95_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 96,
+      "stage": "execution",
+      "user_message": "What part of the launch must remain deliberately small or manual for now because scaling it too early would damage signal quality?",
+      "expected_behaviors": [
+        "Protects a small or manual area until signal quality stabilizes",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Pushes everything toward immediate scale",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_96_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_96_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 97,
+      "stage": "execution",
+      "user_message": "What reusable launch assets should we lock after the first cycle so future PR briefs, partner notes, and digital updates stay consistent without flattening the message?",
+      "expected_behaviors": [
+        "Identifies a practical reusable asset set",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Suggests generic assets with no strategic value",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_97_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_97_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 98,
+      "stage": "execution",
+      "user_message": "If a stakeholder asks for a louder or broader version of the message, how should the team push back while keeping the digital launch collaborative?",
+      "expected_behaviors": [
+        "Shows how to push back constructively",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Gives away the strategic discipline to please stakeholders",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_98_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_98_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 99,
+      "stage": "execution",
+      "user_message": "What are the first signs that the audience understands the concept but is still hesitating, and what practical follow-up would you test in the digital funnel?",
+      "expected_behaviors": [
+        "Distinguishes comprehension from hesitation clearly",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Suggests random funnel tweaks unrelated to the strategy",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_99_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_99_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 100,
+      "stage": "execution",
+      "user_message": "What should the team document from this launch cycle so the next quarter starts from real evidence instead of memory or opinion?",
+      "expected_behaviors": [
+        "Identifies practical post-launch documentation",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Documents everything without prioritization",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_100_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_100_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 101,
+      "stage": "execution",
+      "user_message": "What is the next practical launch checkpoint before broader rollout?",
+      "expected_behaviors": [
+        "Keeps the next step practical and measurable",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Becomes vague or scales too early",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_101_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_101_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 102,
+      "stage": "execution",
+      "user_message": "Which launch detail still needs human judgment before we trust the pattern enough to standardize it?",
+      "expected_behaviors": [
+        "Names where human judgment still matters",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Standardizes too early without judgment",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_102_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_102_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 103,
+      "stage": "execution",
+      "user_message": "What evidence would tell us this checkpoint worked well enough to keep, not just to discuss?",
+      "expected_behaviors": [
+        "Defines a usable evidence threshold",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Uses vague or non-decision-ready evidence",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_103_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_103_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 104,
+      "stage": "execution",
+      "user_message": "What is the smallest follow-up move after this checkpoint if the signal is positive but still noisy?",
+      "expected_behaviors": [
+        "Keeps the follow-up small and signal-aware",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Overreacts to noisy early results",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_104_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_104_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 105,
+      "stage": "execution",
+      "user_message": "What should the team avoid changing at this checkpoint so they do not corrupt the learning signal?",
+      "expected_behaviors": [
+        "Protects the learning signal from avoidable drift",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Allows unnecessary changes that blur the signal",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_105_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_105_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 106,
+      "stage": "execution",
+      "user_message": "If this checkpoint underperforms, what is the first disciplined question to ask before changing the whole launch?",
+      "expected_behaviors": [
+        "Uses a disciplined diagnosis before broad changes",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Jumps straight to broad changes without diagnosis",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_106_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_106_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 107,
+      "stage": "execution",
+      "user_message": "What should be written down from this checkpoint so the next review uses evidence instead of memory?",
+      "expected_behaviors": [
+        "Captures the evidence from the checkpoint clearly",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Leaves the checkpoint undocumented",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_107_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_107_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 108,
+      "stage": "execution",
+      "user_message": "What is the one thing the team should look at first when reviewing this checkpoint next week?",
+      "expected_behaviors": [
+        "Prioritizes the first review lens clearly",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Leaves the review order vague",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_108_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_108_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 109,
+      "stage": "execution",
+      "user_message": "What would make this checkpoint worth repeating once more before we move on?",
+      "expected_behaviors": [
+        "Defines a repeat threshold clearly",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Repeats without a threshold",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_109_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_109_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 110,
+      "stage": "execution",
+      "user_message": "What should stay deliberately simple at this checkpoint so the team learns faster?",
+      "expected_behaviors": [
+        "Keeps the checkpoint deliberately simple",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Adds unnecessary complexity",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_110_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_110_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 111,
+      "stage": "execution",
+      "user_message": "How should the team explain this checkpoint internally in one sentence so everyone understands why it exists?",
+      "expected_behaviors": [
+        "Condenses the checkpoint into a clear internal explanation",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Explains the checkpoint vaguely",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_111_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_111_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 112,
+      "stage": "execution",
+      "user_message": "Which signal here is tempting but misleading, and how should the team avoid overvaluing it?",
+      "expected_behaviors": [
+        "Identifies and defuses a misleading signal",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Treats a misleading signal as decisive",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_112_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_112_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 113,
+      "stage": "execution",
+      "user_message": "What part of this checkpoint is still an assumption rather than a fact, and how should that shape the next move?",
+      "expected_behaviors": [
+        "Separates assumptions from facts clearly",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Blurs assumptions and facts",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_113_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_113_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 114,
+      "stage": "execution",
+      "user_message": "What would convince you to retire this checkpoint entirely instead of refining it again?",
+      "expected_behaviors": [
+        "Defines a clear retire threshold",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Refuses to define a retire condition",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_114_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_114_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 115,
+      "stage": "execution",
+      "user_message": "What should the team preserve if this checkpoint becomes part of the standing launch playbook?",
+      "expected_behaviors": [
+        "Preserves what matters if the checkpoint is reused",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Codifies it without protecting quality",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_115_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_115_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 116,
+      "stage": "execution",
+      "user_message": "What is the cleanest operator summary for this checkpoint: what happened, what it means, and what happens next?",
+      "expected_behaviors": [
+        "Summarizes the checkpoint operationally",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Ends with a vague recap",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_116_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_116_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 117,
+      "stage": "execution",
+      "user_message": "What would you want the team to remember from this checkpoint one month from now?",
+      "expected_behaviors": [
+        "Distills a durable lesson from the checkpoint",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Provides a generic lesson",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_117_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_117_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 118,
+      "stage": "execution",
+      "user_message": "What exact decision is this checkpoint supposed to unlock if the team reviews it honestly?",
+      "expected_behaviors": [
+        "Connects the checkpoint to a concrete decision",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Leaves the checkpoint detached from decisions",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_118_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_118_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 119,
+      "stage": "execution",
+      "user_message": "What assumptions about audience behavior are still unresolved, and which one deserves the next smallest test in the digital launch?",
+      "expected_behaviors": [
+        "Prioritizes one unresolved assumption for a small test",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Treats all assumptions as equally important",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_119_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_119_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
+    },
+    {
+      "turn_number": 120,
+      "stage": "execution",
+      "user_message": "What should remain unchanged in the digital launch no matter how many optimization requests come in, because changing it would break the strategic spine?",
+      "expected_behaviors": [
+        "Protects the strategic spine explicitly",
+        "Keeps the checkpoint tied to the launch strategy"
+      ],
+      "autofail_triggers": [
+        "Treats everything as flexible",
+        "Disconnects the checkpoint from the launch strategy"
+      ],
+      "rubric_criteria": [
+        {
+          "criterion_id": "education_platform_launch_turn_120_1",
+          "description": "Checkpoint guidance stays practical and decision-useful",
+          "max_points": 2,
+          "dimension": "adaptation",
+          "scoring_guide": {
+            "2": "Guidance is practical, specific, and usable",
+            "1": "Guidance is somewhat useful but soft",
+            "0": "Guidance is vague or impractical"
+          }
+        },
+        {
+          "criterion_id": "education_platform_launch_turn_120_2",
+          "description": "Checkpoint guidance stays aligned with the launch strategy",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Guidance clearly supports the strategic direction",
+            "1": "Guidance is mostly aligned but a bit generic",
+            "0": "Guidance drifts from the strategic direction"
+          }
+        }
+      ]
     }
   ],
-  "metadata": {"category": "campaign_development", "difficulty": "medium", "estimated_cost": 0.15, "author": "amadad", "version": "1.0"}
+  "metadata": {
+    "category": "campaign_development",
+    "difficulty": "medium",
+    "estimated_cost": 0.15,
+    "author": "amadad",
+    "version": "1.0"
+  }
 }

@@ -1,52 +1,52 @@
 {
-  "scenario_id": "tier1_campaign_006",
+  "scenario_id": "tier1_campaign_016",
   "tier": "tier_1",
-  "title": "Telehealth Service Launch - Care Navigation",
+  "title": "Restaurant Rebrand - Fast Casual Group",
   "brand": {
     "name": "add audience because but confidence, debates defend. explain facts feel gut-feel makes making most need opinion. pressure replaces shared team tension that they tools trust under useful watched.",
-    "voice": "calm, practical, no hype",
+    "voice": "warm, practical, neighborhood-first",
     "tone_keywords": [
       "evidence",
       "restrained"
     ],
-    "audience": "care coordinators and operations leads at telehealth providers",
+    "audience": "loyal diners, local press, and neighborhood customers following digital recommendations",
     "constraints": [
-      "no inflated health claims",
-      "no urgency tactics",
-      "no vague wellness language"
+      "no lifestyle cliches",
+      "no fake heritage claims",
+      "no forced trend language"
     ],
     "competitors": [
-      "Teladoc",
-      "Included Health"
+      "sweetgreen",
+      "CAVA"
     ],
     "banned_phrases": [
-      "transform care overnight",
-      "miracle results",
-      "best-in-class platform"
+      "crave-worthy",
+      "culinary revolution",
+      "viral menu drop"
     ]
   },
   "turns": [
     {
       "turn_number": 1,
       "stage": "brief_intake",
-      "user_message": "We're launching ClarityCare, a care navigation service for telehealth providers. Budget is $60k, timeline is 7 weeks, and the goal is pipeline from operations leads. What do you need to know before we start?",
+      "user_message": "We are preparing a digital launch with a modest budget, a practical timeline, and clear PR scrutiny from the market. What do you need to understand before we shape the campaign?",
       "expected_behaviors": [
-        "Asks about the buyer, trust barriers, and constraints",
-        "Clarifies proof points and objectives",
-        "Does not jump to tactics"
+        "Asks clarifying questions about the audience and trust barriers",
+        "Clarifies proof points, timeline, and success metrics",
+        "Does not jump immediately into tactics"
       ],
       "autofail_triggers": [
         "Moves into tactics before understanding the brief",
-        "Assumes unsupported outcomes"
+        "Assumes proof points or capabilities not provided"
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "care_brief_comprehension",
+          "criterion_id": "restaurant_group_rebrand_turn_1_1",
           "description": "Uses clarifying questions to understand the launch brief",
           "max_points": 3,
           "dimension": "coherence",
           "scoring_guide": {
-            "3": "Questions surface buyer context, proof points, and goals",
+            "3": "Questions surface audience, proof, constraints, and success measures",
             "2": "Questions are useful but incomplete",
             "1": "Questions are generic",
             "0": "Moves into tactics without understanding the brief"
@@ -57,27 +57,38 @@
     {
       "turn_number": 2,
       "stage": "insight_generation",
-      "user_message": "Good questions. Our differentiator is that we show actual care-navigation outcomes and handoff timing data, not survey-based patient sentiment summaries. What insights should shape the campaign?",
+      "user_message": "Good questions. Our differentiator is that we can show actual operational evidence and digital behavior patterns, not survey-based sentiment. What insights should shape the launch?",
       "expected_behaviors": [
-        "Finds a tension around trust and operational clarity",
-        "Connects the insight to the data-driven differentiator",
-        "Keeps the insight actionable"
+        "Finds a specific audience tension",
+        "Connects the insight to the evidence-based differentiator",
+        "Keeps the insight actionable for creative development"
       ],
       "autofail_triggers": [
-        "Offers generic healthcare platitudes",
-        "Ignores the differentiator"
+        "Offers generic category platitudes",
+        "Ignores the evidence-based differentiator"
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "care_insight_depth",
-          "description": "Depth and specificity of audience insight",
+          "criterion_id": "restaurant_group_rebrand_turn_2_1",
+          "description": "Depth and specificity of the audience insight",
           "max_points": 3,
           "dimension": "originality",
           "scoring_guide": {
-            "3": "Insight reflects a specific care-operations tension",
+            "3": "Insight reflects a specific audience tension that can shape creative work",
             "2": "Insight is useful but familiar",
             "1": "Insight is generic",
             "0": "Insight is off-brief"
+          }
+        },
+        {
+          "criterion_id": "restaurant_group_rebrand_turn_2_2",
+          "description": "Insight clearly informs campaign direction",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "Insight points clearly toward positioning and creative territory",
+            "1": "Insight is interesting but weakly connected to execution",
+            "0": "Insight does not help shape the campaign"
           }
         }
       ]
@@ -85,24 +96,24 @@
     {
       "turn_number": 3,
       "stage": "strategy",
-      "user_message": "I like the idea that care teams need proof of follow-through, not more promises. Based on that, what should the positioning be?",
+      "user_message": "I like the idea that the audience trusts practical proof more than category noise. Based on that, what should the positioning be?",
       "expected_behaviors": [
-        "Turns the insight into positioning",
-        "Feels credible for the audience",
-        "Differentiates from generic healthcare messaging"
+        "Turns the insight into clear positioning",
+        "Keeps the positioning credible for the audience",
+        "Differentiates from generic category language"
       ],
       "autofail_triggers": [
         "Positioning ignores the insight",
-        "Uses hype or vague healthcare language"
+        "Uses hype or generic category language"
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "care_insight_to_strategy",
+          "criterion_id": "restaurant_group_rebrand_turn_3_1",
           "description": "Positioning ladders from the chosen insight",
           "max_points": 3,
           "dimension": "coherence",
           "scoring_guide": {
-            "3": "Positioning directly addresses the insight",
+            "3": "Positioning directly addresses the insight tension",
             "2": "Positioning is related but loose",
             "1": "Positioning is generic",
             "0": "Positioning ignores the insight"
@@ -113,20 +124,19 @@
     {
       "turn_number": 4,
       "stage": "idea_generation",
-      "user_message": "Good. Give me 5 campaign concepts that bring this positioning to life.",
+      "user_message": "Good. Give me 5 campaign concepts that bring this positioning to life across the digital launch.",
       "expected_behaviors": [
         "Generates 5 distinct concepts",
-        "Shows range",
-        "Keeps concepts tied to the strategy"
+        "Shows real range rather than slight variations",
+        "Keeps the concepts tied to the positioning"
       ],
       "autofail_triggers": [
         "Produces fewer than 5 concepts",
-        "Concepts are repetitive",
-        "Uses hype-heavy language"
+        "Concepts are repetitive or off-strategy"
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "care_idea_range",
+          "criterion_id": "restaurant_group_rebrand_turn_4_1",
           "description": "Concepts cover distinct territories while supporting strategy",
           "max_points": 2,
           "dimension": "originality",
@@ -135,33 +145,44 @@
             "1": "Some range exists but concepts overlap",
             "0": "Concepts all feel the same"
           }
+        },
+        {
+          "criterion_id": "restaurant_group_rebrand_turn_4_2",
+          "description": "Concepts clearly support the positioning",
+          "max_points": 2,
+          "dimension": "coherence",
+          "scoring_guide": {
+            "2": "All concepts clearly ladder to the strategy",
+            "1": "Most connect but one or two drift",
+            "0": "Concepts do not reflect the strategy"
+          }
         }
       ]
     },
     {
       "turn_number": 5,
       "stage": "idea_selection",
-      "user_message": "Which 2 are strongest and why? Include the trade-offs you considered.",
+      "user_message": "Which 2 are strongest and why? Include the trade-offs you considered for the practical rollout.",
       "expected_behaviors": [
         "Selects two concepts with clear reasoning",
-        "Connects choices to audience and strategy",
-        "Acknowledges trade-offs"
+        "Connects the reasoning to audience and strategy",
+        "Acknowledges trade-offs and practical constraints"
       ],
       "autofail_triggers": [
-        "Provides no reasoning",
+        "Gives no reasoning for the selections",
         "Reasoning contradicts the strategy"
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "care_selection_reasoning",
+          "criterion_id": "restaurant_group_rebrand_turn_5_1",
           "description": "Quality of reasoning behind the selections",
           "max_points": 3,
           "dimension": "judgment",
           "scoring_guide": {
-            "3": "Reasoning is strategic and specific",
+            "3": "Reasoning is clear, strategic, and audience-aware",
             "2": "Reasoning is valid but generic",
             "1": "Reasoning is weak",
-            "0": "No meaningful reasoning"
+            "0": "No meaningful reasoning is given"
           }
         }
       ]
@@ -181,7 +202,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_6_1",
+          "criterion_id": "restaurant_group_rebrand_turn_6_1",
           "description": "Prioritizes one concept for the first practical execution step",
           "max_points": 2,
           "dimension": "judgment",
@@ -192,7 +213,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_6_2",
+          "criterion_id": "restaurant_group_rebrand_turn_6_2",
           "description": "Execution stays lean, practical, and week-one sized",
           "max_points": 2,
           "dimension": "adaptation",
@@ -220,7 +241,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_7_1",
+          "criterion_id": "restaurant_group_rebrand_turn_7_1",
           "description": "Execution plan names concrete deliverables and proof points",
           "max_points": 2,
           "dimension": "coherence",
@@ -231,7 +252,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_7_2",
+          "criterion_id": "restaurant_group_rebrand_turn_7_2",
           "description": "Execution acknowledges who needs to do what next",
           "max_points": 2,
           "dimension": "adaptation",
@@ -259,7 +280,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_8_1",
+          "criterion_id": "restaurant_group_rebrand_turn_8_1",
           "description": "Checklist uses practical criteria for readiness",
           "max_points": 2,
           "dimension": "judgment",
@@ -270,7 +291,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_8_2",
+          "criterion_id": "restaurant_group_rebrand_turn_8_2",
           "description": "Review criteria protect strategy and credibility",
           "max_points": 2,
           "dimension": "coherence",
@@ -298,7 +319,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_9_1",
+          "criterion_id": "restaurant_group_rebrand_turn_9_1",
           "description": "Next-step adjustments are practical and strategically sound",
           "max_points": 2,
           "dimension": "adaptation",
@@ -309,7 +330,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_9_2",
+          "criterion_id": "restaurant_group_rebrand_turn_9_2",
           "description": "Iteration plan focuses on learning before scale",
           "max_points": 2,
           "dimension": "judgment",
@@ -337,7 +358,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_10_1",
+          "criterion_id": "restaurant_group_rebrand_turn_10_1",
           "description": "Closeout gives a usable order of operations",
           "max_points": 2,
           "dimension": "coherence",
@@ -348,7 +369,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_10_2",
+          "criterion_id": "restaurant_group_rebrand_turn_10_2",
           "description": "Closeout defines the milestone that governs expansion",
           "max_points": 2,
           "dimension": "judgment",
@@ -375,7 +396,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_11_1",
+          "criterion_id": "restaurant_group_rebrand_turn_11_1",
           "description": "Partner briefing is concrete and strategy-safe",
           "max_points": 2,
           "dimension": "coherence",
@@ -386,7 +407,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_11_2",
+          "criterion_id": "restaurant_group_rebrand_turn_11_2",
           "description": "Partner guidance protects against overclaiming",
           "max_points": 2,
           "dimension": "judgment",
@@ -413,7 +434,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_12_1",
+          "criterion_id": "restaurant_group_rebrand_turn_12_1",
           "description": "Response plan handles skepticism credibly",
           "max_points": 2,
           "dimension": "judgment",
@@ -424,7 +445,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_12_2",
+          "criterion_id": "restaurant_group_rebrand_turn_12_2",
           "description": "Skeptical-question handling stays on-brand and restrained",
           "max_points": 2,
           "dimension": "voice",
@@ -451,7 +472,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_13_1",
+          "criterion_id": "restaurant_group_rebrand_turn_13_1",
           "description": "Dashboard focuses on the few metrics that matter",
           "max_points": 2,
           "dimension": "judgment",
@@ -462,7 +483,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_13_2",
+          "criterion_id": "restaurant_group_rebrand_turn_13_2",
           "description": "Dashboard includes practical learning and credibility signals",
           "max_points": 2,
           "dimension": "adaptation",
@@ -489,7 +510,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_14_1",
+          "criterion_id": "restaurant_group_rebrand_turn_14_1",
           "description": "Standardization plan supports disciplined scale",
           "max_points": 2,
           "dimension": "adaptation",
@@ -500,7 +521,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_14_2",
+          "criterion_id": "restaurant_group_rebrand_turn_14_2",
           "description": "Expansion advice is concrete and well-sequenced",
           "max_points": 2,
           "dimension": "coherence",
@@ -527,7 +548,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_15_1",
+          "criterion_id": "restaurant_group_rebrand_turn_15_1",
           "description": "Operating note is practical and decision-oriented",
           "max_points": 2,
           "dimension": "coherence",
@@ -538,7 +559,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_15_2",
+          "criterion_id": "restaurant_group_rebrand_turn_15_2",
           "description": "Closeout defines when to stop or revise the concept",
           "max_points": 2,
           "dimension": "judgment",
@@ -565,7 +586,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_16_1",
+          "criterion_id": "restaurant_group_rebrand_turn_16_1",
           "description": "Reusable assets support consistency and strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -576,7 +597,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_16_2",
+          "criterion_id": "restaurant_group_rebrand_turn_16_2",
           "description": "Reusable assets preserve proof and brand discipline",
           "max_points": 2,
           "dimension": "judgment",
@@ -603,7 +624,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_17_1",
+          "criterion_id": "restaurant_group_rebrand_turn_17_1",
           "description": "Pushback guidance protects the strategy without creating friction",
           "max_points": 2,
           "dimension": "judgment",
@@ -614,7 +635,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_17_2",
+          "criterion_id": "restaurant_group_rebrand_turn_17_2",
           "description": "Internal alignment plan stays practical and brand-safe",
           "max_points": 2,
           "dimension": "adaptation",
@@ -641,7 +662,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_18_1",
+          "criterion_id": "restaurant_group_rebrand_turn_18_1",
           "description": "Diagnoses hesitation signals in a useful way",
           "max_points": 2,
           "dimension": "judgment",
@@ -652,7 +673,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_18_2",
+          "criterion_id": "restaurant_group_rebrand_turn_18_2",
           "description": "Follow-up test is practical and concept-aligned",
           "max_points": 2,
           "dimension": "adaptation",
@@ -679,7 +700,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_19_1",
+          "criterion_id": "restaurant_group_rebrand_turn_19_1",
           "description": "Post-launch documentation is practical and evidence-based",
           "max_points": 2,
           "dimension": "coherence",
@@ -690,7 +711,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_19_2",
+          "criterion_id": "restaurant_group_rebrand_turn_19_2",
           "description": "Documentation helps the next cycle start stronger",
           "max_points": 2,
           "dimension": "adaptation",
@@ -717,7 +738,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_20_1",
+          "criterion_id": "restaurant_group_rebrand_turn_20_1",
           "description": "Summary cleanly separates proof, uncertainty, and decision",
           "max_points": 2,
           "dimension": "coherence",
@@ -728,7 +749,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_20_2",
+          "criterion_id": "restaurant_group_rebrand_turn_20_2",
           "description": "Next decision is explicit and actionable",
           "max_points": 2,
           "dimension": "judgment",
@@ -755,7 +776,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_21_1",
+          "criterion_id": "restaurant_group_rebrand_turn_21_1",
           "description": "Kickoff note creates practical cross-functional alignment",
           "max_points": 2,
           "dimension": "coherence",
@@ -766,7 +787,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_21_2",
+          "criterion_id": "restaurant_group_rebrand_turn_21_2",
           "description": "Kickoff note protects proof points and launch constraints",
           "max_points": 2,
           "dimension": "judgment",
@@ -793,7 +814,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_22_1",
+          "criterion_id": "restaurant_group_rebrand_turn_22_1",
           "description": "QA pass distinguishes normal edits from release-stopping issues",
           "max_points": 2,
           "dimension": "judgment",
@@ -804,7 +825,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_22_2",
+          "criterion_id": "restaurant_group_rebrand_turn_22_2",
           "description": "QA checks protect strategic and credibility requirements",
           "max_points": 2,
           "dimension": "coherence",
@@ -831,7 +852,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_23_1",
+          "criterion_id": "restaurant_group_rebrand_turn_23_1",
           "description": "Variant plan is lean and hypothesis-driven",
           "max_points": 2,
           "dimension": "adaptation",
@@ -842,7 +863,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_23_2",
+          "criterion_id": "restaurant_group_rebrand_turn_23_2",
           "description": "Variants are tied to meaningful message learning",
           "max_points": 2,
           "dimension": "judgment",
@@ -869,7 +890,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_24_1",
+          "criterion_id": "restaurant_group_rebrand_turn_24_1",
           "description": "Weekly review agenda is practical and decision-oriented",
           "max_points": 2,
           "dimension": "coherence",
@@ -880,7 +901,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_24_2",
+          "criterion_id": "restaurant_group_rebrand_turn_24_2",
           "description": "Review process distinguishes refine, repeat, and retire clearly",
           "max_points": 2,
           "dimension": "judgment",
@@ -907,7 +928,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_25_1",
+          "criterion_id": "restaurant_group_rebrand_turn_25_1",
           "description": "Advice clearly distinguishes execution problems from premise problems",
           "max_points": 2,
           "dimension": "judgment",
@@ -918,7 +939,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_25_2",
+          "criterion_id": "restaurant_group_rebrand_turn_25_2",
           "description": "Advice handles ambiguous early results with discipline",
           "max_points": 2,
           "dimension": "adaptation",
@@ -945,7 +966,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_26_1",
+          "criterion_id": "restaurant_group_rebrand_turn_26_1",
           "description": "PR handoff is concise, useful, and nuanced",
           "max_points": 2,
           "dimension": "coherence",
@@ -956,7 +977,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_26_2",
+          "criterion_id": "restaurant_group_rebrand_turn_26_2",
           "description": "PR handoff avoids flattening the message into clich\u00e9s",
           "max_points": 2,
           "dimension": "voice",
@@ -983,7 +1004,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_27_1",
+          "criterion_id": "restaurant_group_rebrand_turn_27_1",
           "description": "One experiment is prioritized clearly and strategically",
           "max_points": 2,
           "dimension": "judgment",
@@ -994,7 +1015,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_27_2",
+          "criterion_id": "restaurant_group_rebrand_turn_27_2",
           "description": "Evidence threshold is concrete enough to guide the decision",
           "max_points": 2,
           "dimension": "adaptation",
@@ -1021,7 +1042,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_28_1",
+          "criterion_id": "restaurant_group_rebrand_turn_28_1",
           "description": "Executive update is concise, credible, and useful",
           "max_points": 2,
           "dimension": "voice",
@@ -1032,7 +1053,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_28_2",
+          "criterion_id": "restaurant_group_rebrand_turn_28_2",
           "description": "Executive update frames progress around disciplined learning",
           "max_points": 2,
           "dimension": "judgment",
@@ -1059,7 +1080,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_29_1",
+          "criterion_id": "restaurant_group_rebrand_turn_29_1",
           "description": "Advice identifies where deliberate small-scale execution still matters",
           "max_points": 2,
           "dimension": "adaptation",
@@ -1070,7 +1091,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_29_2",
+          "criterion_id": "restaurant_group_rebrand_turn_29_2",
           "description": "Advice protects signal quality from premature scale",
           "max_points": 2,
           "dimension": "judgment",
@@ -1097,7 +1118,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_30_1",
+          "criterion_id": "restaurant_group_rebrand_turn_30_1",
           "description": "Decision memo headline is concise and operationally useful",
           "max_points": 2,
           "dimension": "coherence",
@@ -1108,7 +1129,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_30_2",
+          "criterion_id": "restaurant_group_rebrand_turn_30_2",
           "description": "Next move is explicit and actionable",
           "max_points": 2,
           "dimension": "judgment",
@@ -1135,7 +1156,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_31_1",
+          "criterion_id": "restaurant_group_rebrand_turn_31_1",
           "description": "Unresolved assumptions are prioritized clearly",
           "max_points": 2,
           "dimension": "judgment",
@@ -1146,7 +1167,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_31_2",
+          "criterion_id": "restaurant_group_rebrand_turn_31_2",
           "description": "Next test stays small, practical, and measurable",
           "max_points": 2,
           "dimension": "adaptation",
@@ -1173,7 +1194,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_32_1",
+          "criterion_id": "restaurant_group_rebrand_turn_32_1",
           "description": "Advice clearly protects the strategic spine of the launch",
           "max_points": 2,
           "dimension": "coherence",
@@ -1184,7 +1205,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_32_2",
+          "criterion_id": "restaurant_group_rebrand_turn_32_2",
           "description": "Advice balances stability with healthy execution flexibility",
           "max_points": 2,
           "dimension": "judgment",
@@ -1211,7 +1232,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_33_1",
+          "criterion_id": "restaurant_group_rebrand_turn_33_1",
           "description": "Five-minute briefing is concrete and operational",
           "max_points": 2,
           "dimension": "coherence",
@@ -1222,7 +1243,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_33_2",
+          "criterion_id": "restaurant_group_rebrand_turn_33_2",
           "description": "Summary clearly calls out the mistakes a new teammate must avoid",
           "max_points": 2,
           "dimension": "judgment",
@@ -1249,7 +1270,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_34_1",
+          "criterion_id": "restaurant_group_rebrand_turn_34_1",
           "description": "Pause triggers are concrete and strategically meaningful",
           "max_points": 2,
           "dimension": "judgment",
@@ -1260,7 +1281,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_34_2",
+          "criterion_id": "restaurant_group_rebrand_turn_34_2",
           "description": "Pause logic is disciplined rather than reactive",
           "max_points": 2,
           "dimension": "adaptation",
@@ -1287,7 +1308,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_35_1",
+          "criterion_id": "restaurant_group_rebrand_turn_35_1",
           "description": "Advice identifies the right place for continued human review",
           "max_points": 2,
           "dimension": "judgment",
@@ -1298,7 +1319,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_35_2",
+          "criterion_id": "restaurant_group_rebrand_turn_35_2",
           "description": "Advice shows sound timing for automation versus manual review",
           "max_points": 2,
           "dimension": "adaptation",
@@ -1325,7 +1346,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_36_1",
+          "criterion_id": "restaurant_group_rebrand_turn_36_1",
           "description": "Decision log approach is simple, practical, and traceable",
           "max_points": 2,
           "dimension": "coherence",
@@ -1336,7 +1357,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_36_2",
+          "criterion_id": "restaurant_group_rebrand_turn_36_2",
           "description": "Decision log clearly links changes back to evidence",
           "max_points": 2,
           "dimension": "adaptation",
@@ -1363,7 +1384,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_37_1",
+          "criterion_id": "restaurant_group_rebrand_turn_37_1",
           "description": "Advice handles opinion-versus-evidence tension well",
           "max_points": 2,
           "dimension": "judgment",
@@ -1374,7 +1395,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_37_2",
+          "criterion_id": "restaurant_group_rebrand_turn_37_2",
           "description": "Advice stays practical for real team dynamics",
           "max_points": 2,
           "dimension": "adaptation",
@@ -1401,7 +1422,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_38_1",
+          "criterion_id": "restaurant_group_rebrand_turn_38_1",
           "description": "Playbook guidance codifies the right things selectively",
           "max_points": 2,
           "dimension": "judgment",
@@ -1412,7 +1433,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_38_2",
+          "criterion_id": "restaurant_group_rebrand_turn_38_2",
           "description": "Playbook guidance preserves signal quality for future launches",
           "max_points": 2,
           "dimension": "coherence",
@@ -1439,7 +1460,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_39_1",
+          "criterion_id": "restaurant_group_rebrand_turn_39_1",
           "description": "The one retained lesson is concrete and operationally useful",
           "max_points": 2,
           "dimension": "coherence",
@@ -1450,7 +1471,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_39_2",
+          "criterion_id": "restaurant_group_rebrand_turn_39_2",
           "description": "Lesson reinforces evidence and strategic discipline",
           "max_points": 2,
           "dimension": "judgment",
@@ -1477,7 +1498,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_40_1",
+          "criterion_id": "restaurant_group_rebrand_turn_40_1",
           "description": "Final operating sentence is concise and practical",
           "max_points": 2,
           "dimension": "coherence",
@@ -1488,7 +1509,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_40_2",
+          "criterion_id": "restaurant_group_rebrand_turn_40_2",
           "description": "Final sentence includes the evidence gate and non-negotiable clearly",
           "max_points": 2,
           "dimension": "judgment",
@@ -1515,7 +1536,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_41_1",
+          "criterion_id": "restaurant_group_rebrand_turn_41_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -1526,7 +1547,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_41_2",
+          "criterion_id": "restaurant_group_rebrand_turn_41_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -1552,7 +1573,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_42_1",
+          "criterion_id": "restaurant_group_rebrand_turn_42_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -1563,7 +1584,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_42_2",
+          "criterion_id": "restaurant_group_rebrand_turn_42_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -1589,7 +1610,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_43_1",
+          "criterion_id": "restaurant_group_rebrand_turn_43_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -1600,7 +1621,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_43_2",
+          "criterion_id": "restaurant_group_rebrand_turn_43_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -1626,7 +1647,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_44_1",
+          "criterion_id": "restaurant_group_rebrand_turn_44_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -1637,7 +1658,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_44_2",
+          "criterion_id": "restaurant_group_rebrand_turn_44_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -1663,7 +1684,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_45_1",
+          "criterion_id": "restaurant_group_rebrand_turn_45_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -1674,7 +1695,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_45_2",
+          "criterion_id": "restaurant_group_rebrand_turn_45_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -1700,7 +1721,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_46_1",
+          "criterion_id": "restaurant_group_rebrand_turn_46_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -1711,7 +1732,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_46_2",
+          "criterion_id": "restaurant_group_rebrand_turn_46_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -1737,7 +1758,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_47_1",
+          "criterion_id": "restaurant_group_rebrand_turn_47_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -1748,7 +1769,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_47_2",
+          "criterion_id": "restaurant_group_rebrand_turn_47_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -1774,7 +1795,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_48_1",
+          "criterion_id": "restaurant_group_rebrand_turn_48_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -1785,7 +1806,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_48_2",
+          "criterion_id": "restaurant_group_rebrand_turn_48_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -1811,7 +1832,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_49_1",
+          "criterion_id": "restaurant_group_rebrand_turn_49_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -1822,7 +1843,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_49_2",
+          "criterion_id": "restaurant_group_rebrand_turn_49_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -1848,7 +1869,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_50_1",
+          "criterion_id": "restaurant_group_rebrand_turn_50_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -1859,7 +1880,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_50_2",
+          "criterion_id": "restaurant_group_rebrand_turn_50_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -1885,7 +1906,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_51_1",
+          "criterion_id": "restaurant_group_rebrand_turn_51_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -1896,7 +1917,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_51_2",
+          "criterion_id": "restaurant_group_rebrand_turn_51_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -1922,7 +1943,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_52_1",
+          "criterion_id": "restaurant_group_rebrand_turn_52_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -1933,7 +1954,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_52_2",
+          "criterion_id": "restaurant_group_rebrand_turn_52_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -1959,7 +1980,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_53_1",
+          "criterion_id": "restaurant_group_rebrand_turn_53_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -1970,7 +1991,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_53_2",
+          "criterion_id": "restaurant_group_rebrand_turn_53_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -1996,7 +2017,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_54_1",
+          "criterion_id": "restaurant_group_rebrand_turn_54_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -2007,7 +2028,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_54_2",
+          "criterion_id": "restaurant_group_rebrand_turn_54_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -2033,7 +2054,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_55_1",
+          "criterion_id": "restaurant_group_rebrand_turn_55_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -2044,7 +2065,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_55_2",
+          "criterion_id": "restaurant_group_rebrand_turn_55_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -2070,7 +2091,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_56_1",
+          "criterion_id": "restaurant_group_rebrand_turn_56_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -2081,7 +2102,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_56_2",
+          "criterion_id": "restaurant_group_rebrand_turn_56_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -2107,7 +2128,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_57_1",
+          "criterion_id": "restaurant_group_rebrand_turn_57_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -2118,7 +2139,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_57_2",
+          "criterion_id": "restaurant_group_rebrand_turn_57_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -2144,7 +2165,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_58_1",
+          "criterion_id": "restaurant_group_rebrand_turn_58_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -2155,7 +2176,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_58_2",
+          "criterion_id": "restaurant_group_rebrand_turn_58_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -2181,7 +2202,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_59_1",
+          "criterion_id": "restaurant_group_rebrand_turn_59_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -2192,7 +2213,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_59_2",
+          "criterion_id": "restaurant_group_rebrand_turn_59_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -2218,7 +2239,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_60_1",
+          "criterion_id": "restaurant_group_rebrand_turn_60_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -2229,7 +2250,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_60_2",
+          "criterion_id": "restaurant_group_rebrand_turn_60_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -2255,7 +2276,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_61_1",
+          "criterion_id": "restaurant_group_rebrand_turn_61_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -2266,7 +2287,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_61_2",
+          "criterion_id": "restaurant_group_rebrand_turn_61_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -2292,7 +2313,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_62_1",
+          "criterion_id": "restaurant_group_rebrand_turn_62_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -2303,7 +2324,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_62_2",
+          "criterion_id": "restaurant_group_rebrand_turn_62_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -2329,7 +2350,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_63_1",
+          "criterion_id": "restaurant_group_rebrand_turn_63_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -2340,7 +2361,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_63_2",
+          "criterion_id": "restaurant_group_rebrand_turn_63_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -2366,7 +2387,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_64_1",
+          "criterion_id": "restaurant_group_rebrand_turn_64_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -2377,7 +2398,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_64_2",
+          "criterion_id": "restaurant_group_rebrand_turn_64_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -2403,7 +2424,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_65_1",
+          "criterion_id": "restaurant_group_rebrand_turn_65_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -2414,7 +2435,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_65_2",
+          "criterion_id": "restaurant_group_rebrand_turn_65_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -2440,7 +2461,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_66_1",
+          "criterion_id": "restaurant_group_rebrand_turn_66_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -2451,7 +2472,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_66_2",
+          "criterion_id": "restaurant_group_rebrand_turn_66_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -2477,7 +2498,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_67_1",
+          "criterion_id": "restaurant_group_rebrand_turn_67_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -2488,7 +2509,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_67_2",
+          "criterion_id": "restaurant_group_rebrand_turn_67_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -2514,7 +2535,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_68_1",
+          "criterion_id": "restaurant_group_rebrand_turn_68_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -2525,7 +2546,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_68_2",
+          "criterion_id": "restaurant_group_rebrand_turn_68_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -2551,7 +2572,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_69_1",
+          "criterion_id": "restaurant_group_rebrand_turn_69_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -2562,7 +2583,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_69_2",
+          "criterion_id": "restaurant_group_rebrand_turn_69_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -2588,7 +2609,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_70_1",
+          "criterion_id": "restaurant_group_rebrand_turn_70_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -2599,7 +2620,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_70_2",
+          "criterion_id": "restaurant_group_rebrand_turn_70_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -2625,7 +2646,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_71_1",
+          "criterion_id": "restaurant_group_rebrand_turn_71_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -2636,7 +2657,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_71_2",
+          "criterion_id": "restaurant_group_rebrand_turn_71_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -2662,7 +2683,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_72_1",
+          "criterion_id": "restaurant_group_rebrand_turn_72_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -2673,7 +2694,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_72_2",
+          "criterion_id": "restaurant_group_rebrand_turn_72_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -2699,7 +2720,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_73_1",
+          "criterion_id": "restaurant_group_rebrand_turn_73_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -2710,7 +2731,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_73_2",
+          "criterion_id": "restaurant_group_rebrand_turn_73_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -2736,7 +2757,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_74_1",
+          "criterion_id": "restaurant_group_rebrand_turn_74_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -2747,7 +2768,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_74_2",
+          "criterion_id": "restaurant_group_rebrand_turn_74_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -2773,7 +2794,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_75_1",
+          "criterion_id": "restaurant_group_rebrand_turn_75_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -2784,7 +2805,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_75_2",
+          "criterion_id": "restaurant_group_rebrand_turn_75_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -2810,7 +2831,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_76_1",
+          "criterion_id": "restaurant_group_rebrand_turn_76_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -2821,7 +2842,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_76_2",
+          "criterion_id": "restaurant_group_rebrand_turn_76_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -2847,7 +2868,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_77_1",
+          "criterion_id": "restaurant_group_rebrand_turn_77_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -2858,7 +2879,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_77_2",
+          "criterion_id": "restaurant_group_rebrand_turn_77_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -2884,7 +2905,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_78_1",
+          "criterion_id": "restaurant_group_rebrand_turn_78_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -2895,7 +2916,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_78_2",
+          "criterion_id": "restaurant_group_rebrand_turn_78_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -2921,7 +2942,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_79_1",
+          "criterion_id": "restaurant_group_rebrand_turn_79_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -2932,7 +2953,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_79_2",
+          "criterion_id": "restaurant_group_rebrand_turn_79_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -2958,7 +2979,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_80_1",
+          "criterion_id": "restaurant_group_rebrand_turn_80_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -2969,7 +2990,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_80_2",
+          "criterion_id": "restaurant_group_rebrand_turn_80_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -2995,7 +3016,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_81_1",
+          "criterion_id": "restaurant_group_rebrand_turn_81_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -3006,7 +3027,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_81_2",
+          "criterion_id": "restaurant_group_rebrand_turn_81_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -3032,7 +3053,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_82_1",
+          "criterion_id": "restaurant_group_rebrand_turn_82_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -3043,7 +3064,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_82_2",
+          "criterion_id": "restaurant_group_rebrand_turn_82_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -3069,7 +3090,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_83_1",
+          "criterion_id": "restaurant_group_rebrand_turn_83_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -3080,7 +3101,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_83_2",
+          "criterion_id": "restaurant_group_rebrand_turn_83_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -3106,7 +3127,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_84_1",
+          "criterion_id": "restaurant_group_rebrand_turn_84_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -3117,7 +3138,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_84_2",
+          "criterion_id": "restaurant_group_rebrand_turn_84_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -3143,7 +3164,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_85_1",
+          "criterion_id": "restaurant_group_rebrand_turn_85_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -3154,7 +3175,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_85_2",
+          "criterion_id": "restaurant_group_rebrand_turn_85_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -3180,7 +3201,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_86_1",
+          "criterion_id": "restaurant_group_rebrand_turn_86_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -3191,7 +3212,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_86_2",
+          "criterion_id": "restaurant_group_rebrand_turn_86_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -3217,7 +3238,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_87_1",
+          "criterion_id": "restaurant_group_rebrand_turn_87_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -3228,7 +3249,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_87_2",
+          "criterion_id": "restaurant_group_rebrand_turn_87_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -3254,7 +3275,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_88_1",
+          "criterion_id": "restaurant_group_rebrand_turn_88_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -3265,7 +3286,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_88_2",
+          "criterion_id": "restaurant_group_rebrand_turn_88_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -3291,7 +3312,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_89_1",
+          "criterion_id": "restaurant_group_rebrand_turn_89_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -3302,7 +3323,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_89_2",
+          "criterion_id": "restaurant_group_rebrand_turn_89_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -3328,7 +3349,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_90_1",
+          "criterion_id": "restaurant_group_rebrand_turn_90_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -3339,7 +3360,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_90_2",
+          "criterion_id": "restaurant_group_rebrand_turn_90_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -3365,7 +3386,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_91_1",
+          "criterion_id": "restaurant_group_rebrand_turn_91_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -3376,7 +3397,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_91_2",
+          "criterion_id": "restaurant_group_rebrand_turn_91_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -3402,7 +3423,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_92_1",
+          "criterion_id": "restaurant_group_rebrand_turn_92_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -3413,7 +3434,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_92_2",
+          "criterion_id": "restaurant_group_rebrand_turn_92_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -3439,7 +3460,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_93_1",
+          "criterion_id": "restaurant_group_rebrand_turn_93_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -3450,7 +3471,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_93_2",
+          "criterion_id": "restaurant_group_rebrand_turn_93_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -3476,7 +3497,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_94_1",
+          "criterion_id": "restaurant_group_rebrand_turn_94_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -3487,7 +3508,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_94_2",
+          "criterion_id": "restaurant_group_rebrand_turn_94_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -3513,7 +3534,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_95_1",
+          "criterion_id": "restaurant_group_rebrand_turn_95_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -3524,7 +3545,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_95_2",
+          "criterion_id": "restaurant_group_rebrand_turn_95_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -3550,7 +3571,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_96_1",
+          "criterion_id": "restaurant_group_rebrand_turn_96_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -3561,7 +3582,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_96_2",
+          "criterion_id": "restaurant_group_rebrand_turn_96_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -3587,7 +3608,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_97_1",
+          "criterion_id": "restaurant_group_rebrand_turn_97_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -3598,7 +3619,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_97_2",
+          "criterion_id": "restaurant_group_rebrand_turn_97_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -3624,7 +3645,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_98_1",
+          "criterion_id": "restaurant_group_rebrand_turn_98_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -3635,7 +3656,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_98_2",
+          "criterion_id": "restaurant_group_rebrand_turn_98_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -3661,7 +3682,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_99_1",
+          "criterion_id": "restaurant_group_rebrand_turn_99_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -3672,7 +3693,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_99_2",
+          "criterion_id": "restaurant_group_rebrand_turn_99_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -3698,7 +3719,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_100_1",
+          "criterion_id": "restaurant_group_rebrand_turn_100_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -3709,7 +3730,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_100_2",
+          "criterion_id": "restaurant_group_rebrand_turn_100_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -3735,7 +3756,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_101_1",
+          "criterion_id": "restaurant_group_rebrand_turn_101_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -3746,7 +3767,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_101_2",
+          "criterion_id": "restaurant_group_rebrand_turn_101_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -3772,7 +3793,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_102_1",
+          "criterion_id": "restaurant_group_rebrand_turn_102_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -3783,7 +3804,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_102_2",
+          "criterion_id": "restaurant_group_rebrand_turn_102_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -3809,7 +3830,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_103_1",
+          "criterion_id": "restaurant_group_rebrand_turn_103_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -3820,7 +3841,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_103_2",
+          "criterion_id": "restaurant_group_rebrand_turn_103_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -3846,7 +3867,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_104_1",
+          "criterion_id": "restaurant_group_rebrand_turn_104_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -3857,7 +3878,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_104_2",
+          "criterion_id": "restaurant_group_rebrand_turn_104_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -3883,7 +3904,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_105_1",
+          "criterion_id": "restaurant_group_rebrand_turn_105_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -3894,7 +3915,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_105_2",
+          "criterion_id": "restaurant_group_rebrand_turn_105_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -3920,7 +3941,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_106_1",
+          "criterion_id": "restaurant_group_rebrand_turn_106_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -3931,7 +3952,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_106_2",
+          "criterion_id": "restaurant_group_rebrand_turn_106_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -3957,7 +3978,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_107_1",
+          "criterion_id": "restaurant_group_rebrand_turn_107_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -3968,7 +3989,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_107_2",
+          "criterion_id": "restaurant_group_rebrand_turn_107_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -3994,7 +4015,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_108_1",
+          "criterion_id": "restaurant_group_rebrand_turn_108_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -4005,7 +4026,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_108_2",
+          "criterion_id": "restaurant_group_rebrand_turn_108_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -4031,7 +4052,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_109_1",
+          "criterion_id": "restaurant_group_rebrand_turn_109_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -4042,7 +4063,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_109_2",
+          "criterion_id": "restaurant_group_rebrand_turn_109_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -4068,7 +4089,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_110_1",
+          "criterion_id": "restaurant_group_rebrand_turn_110_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -4079,7 +4100,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_110_2",
+          "criterion_id": "restaurant_group_rebrand_turn_110_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -4105,7 +4126,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_111_1",
+          "criterion_id": "restaurant_group_rebrand_turn_111_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -4116,7 +4137,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_111_2",
+          "criterion_id": "restaurant_group_rebrand_turn_111_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -4142,7 +4163,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_112_1",
+          "criterion_id": "restaurant_group_rebrand_turn_112_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -4153,7 +4174,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_112_2",
+          "criterion_id": "restaurant_group_rebrand_turn_112_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -4179,7 +4200,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_113_1",
+          "criterion_id": "restaurant_group_rebrand_turn_113_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -4190,7 +4211,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_113_2",
+          "criterion_id": "restaurant_group_rebrand_turn_113_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -4216,7 +4237,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_114_1",
+          "criterion_id": "restaurant_group_rebrand_turn_114_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -4227,7 +4248,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_114_2",
+          "criterion_id": "restaurant_group_rebrand_turn_114_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -4253,7 +4274,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_115_1",
+          "criterion_id": "restaurant_group_rebrand_turn_115_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -4264,7 +4285,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_115_2",
+          "criterion_id": "restaurant_group_rebrand_turn_115_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -4290,7 +4311,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_116_1",
+          "criterion_id": "restaurant_group_rebrand_turn_116_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -4301,7 +4322,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_116_2",
+          "criterion_id": "restaurant_group_rebrand_turn_116_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -4327,7 +4348,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_117_1",
+          "criterion_id": "restaurant_group_rebrand_turn_117_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -4338,7 +4359,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_117_2",
+          "criterion_id": "restaurant_group_rebrand_turn_117_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -4364,7 +4385,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_118_1",
+          "criterion_id": "restaurant_group_rebrand_turn_118_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -4375,7 +4396,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_118_2",
+          "criterion_id": "restaurant_group_rebrand_turn_118_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -4401,7 +4422,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_119_1",
+          "criterion_id": "restaurant_group_rebrand_turn_119_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -4412,7 +4433,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_119_2",
+          "criterion_id": "restaurant_group_rebrand_turn_119_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -4438,7 +4459,7 @@
       ],
       "rubric_criteria": [
         {
-          "criterion_id": "telehealth_service_launch_turn_120_1",
+          "criterion_id": "restaurant_group_rebrand_turn_120_1",
           "description": "Checkpoint guidance stays practical and decision-useful",
           "max_points": 2,
           "dimension": "adaptation",
@@ -4449,7 +4470,7 @@
           }
         },
         {
-          "criterion_id": "telehealth_service_launch_turn_120_2",
+          "criterion_id": "restaurant_group_rebrand_turn_120_2",
           "description": "Checkpoint guidance stays aligned with the launch strategy",
           "max_points": 2,
           "dimension": "coherence",
@@ -4465,8 +4486,8 @@
   "metadata": {
     "category": "campaign_development",
     "difficulty": "medium",
-    "estimated_cost": 0.15,
-    "author": "amadad",
+    "estimated_cost": 0.16,
+    "author": "codex",
     "version": "1.0"
   }
 }
