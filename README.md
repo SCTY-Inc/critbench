@@ -138,13 +138,40 @@ uv pip install -e ".[all]"
 # Set API key for multi-judge scoring
 echo "OPENROUTER_API_KEY=sk-or-v1-..." > .env
 
+# Validate environment + filesystem
+critbench doctor
+
 # Run tier 0 (smoke test)
 python benchmark/scripts/validation/run_minimal.py -y
 
-# Score a transcript
-python -m benchmark.critbench.cli \
+# Score a transcript (writes full result to <transcript-dir>/result.json)
+critbench score \
   --scenario benchmark/scenarios/tier1/campaign/saas_launch.json \
   --transcript path/to/transcript.jsonl
+```
+
+---
+
+## CLI
+
+CritBench ships an agent-friendly `critbench` CLI. All commands accept `--json`
+for machine-readable output (a `{status, command, data}` envelope on stdout);
+omit it for Rich-formatted tables. `NO_COLOR` is honored.
+
+| Command | Purpose |
+|---|---|
+| `critbench doctor` | Validate `OPENROUTER_API_KEY`, scenarios dir, results dir writability |
+| `critbench run --scenario <path> --model <id>` | Run a model through a scenario; writes `transcript.jsonl` and scores it |
+| `critbench score --scenario <path> --transcript <path>` | Score an existing transcript; writes full result to `<transcript-dir>/result.json` and prints the path to stderr. Stdout keeps a per-dimension summary (or JSON envelope with `--json`) |
+| `critbench leaderboard --results <dir>` | Aggregate results across runs |
+| `critbench get --run-id <id> [--full]` | Fetch a single result by run id (recursive search under `results/`). Default payload is `{run_id, model, overall, timestamp}`; use `--full` for the complete record |
+
+```bash
+# JSON envelope example
+critbench run --scenario benchmark/scenarios/tier0/... --model openai/gpt-4o --json
+
+# Fetch a specific run
+critbench get --run-id 2026-04-11T00-00_abc123
 ```
 
 ---
