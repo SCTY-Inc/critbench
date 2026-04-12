@@ -18,6 +18,6 @@ Public API:
 
 __version__ = "0.1.0"
 
-from critbench.score import score, score_with_rewards
+from .score import score, score_with_rewards
 
 __all__ = ["score", "score_with_rewards", "__version__"]

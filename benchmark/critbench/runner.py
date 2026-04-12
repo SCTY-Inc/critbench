@@ -6,8 +6,8 @@ import logging
 from pathlib import Path
 from typing import Any
 
-from critbench.api import ModelAPIClient
-from critbench.models import Scenario
+from .api import ModelAPIClient
+from .models import Scenario
 
 logger = logging.getLogger(__name__)
 

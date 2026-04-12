@@ -7,9 +7,10 @@ Supports multiple providers for robust multi-judge scoring:
 from __future__ import annotations
 
 import os
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
-import httpx
+if TYPE_CHECKING:
+    import httpx
 
 
 class ModelAPIClient:
@@ -29,7 +30,14 @@ class ModelAPIClient:
                 "Set via environment variable or pass to constructor."
             )
 
-        self._client = httpx.Client(timeout=timeout)
+        try:
+            import httpx
+        except ModuleNotFoundError as exc:
+            raise RuntimeError(
+                "httpx is required for LLM judging. Install critbench with its runtime dependencies."
+            ) from exc
+
+        self._client: httpx.Client = httpx.Client(timeout=timeout)
 
     def call_model(
         self,
@@ -83,14 +91,14 @@ class ModelAPIClient:
             "usage": data.get("usage", {}),
         }
 
-    def close(self):
+    def close(self) -> None:
         """Close the HTTP client."""
         self._client.close()
 
-    def __enter__(self):
+    def __enter__(self) -> ModelAPIClient:
         return self
 
-    def __exit__(self, *args):
+    def __exit__(self, *args: object) -> None:
         self.close()
 
 

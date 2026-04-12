@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import json
+import subprocess
+import sys
 from pathlib import Path
 
 from critbench.cli import app
@@ -46,3 +48,15 @@ def test_leaderboard_reads_saved_scores(tmp_path: Path) -> None:
 
     assert result.exit_code == 0, result.stdout
     assert "82.5%" in result.stdout
+
+
+def test_repo_local_module_execution_works() -> None:
+    result = subprocess.run(
+        [sys.executable, "-m", "benchmark.critbench.cli", "--help"],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+
+    assert result.returncode == 0, result.stderr
+    assert "CritBench creative benchmark" in result.stdout

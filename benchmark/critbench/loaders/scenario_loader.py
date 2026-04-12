@@ -3,8 +3,8 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from critbench.loaders.yaml_loader import YAMLLoader
-from critbench.models import Scenario
+from ..models import Scenario
+from .yaml_loader import YAMLLoader
 
 
 class ScenarioLoader:

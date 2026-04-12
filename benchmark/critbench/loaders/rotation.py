@@ -17,7 +17,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
-from critbench.loaders import load_serialized_file
+from . import load_serialized_file
 
 
 @dataclass

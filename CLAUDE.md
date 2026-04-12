@@ -53,17 +53,14 @@ black benchmark
 ```
 benchmark/critbench/
 ├── __init__.py       # Public API: score, score_with_rewards
-├── score.py          # Main scoring function
-├── models/           # Brand, Turn, Campaign, Scenario dataclasses
+├── score.py          # Rubric-driven scoring, weight normalization, contract checks
+├── models/           # Brand normalization + Scenario/Turn dataclasses
 ├── evaluation/
-│   ├── orchestrator.py
-│   └── scorers/      # Per-dimension scorers
-│       ├── coherence.py    # insight→strategy→creative
-│       ├── judgment.py     # idea selection quality
-│       ├── voice.py        # brand consistency
-│       ├── originality.py  # non-obvious creative
-│       ├── ethics.py       # no dark patterns
-│       └── adaptation.py   # feedback integration
+│   ├── debate/       # Optional judge debate helpers
+│   ├── metrics/      # Reliability / bias / CoT utilities
+│   ├── preprocessing/
+│   └── scorers/
+│       └── ethics.py # Dark-pattern endorsement autofail
 ├── api/
 │   └── client.py     # Multi-model ensemble client
 ├── loaders/
@@ -99,15 +96,26 @@ turns:
     user_message: We're launching CodeFlow...
     expected_behaviors: [asks clarifying questions]
     autofail_triggers: [jumps to tactics without understanding]
+    rubric_criteria:
+      - criterion_id: brief_comprehension
+        description: asks useful clarifying questions
+        max_points: 2
+        dimension: coherence
+        scoring_guide:
+          "2": asks 2+ relevant questions
+          "1": asks 1 relevant question
+          "0": jumps ahead without clarifying
 ```
+
+`score()` evaluates the scenario's own `rubric_criteria` and `expected_behaviors`. Dimensions without rubric criteria are skipped and the overall score is renormalized over the applicable dimensions.
 
 ## Multi-Judge Scoring
 
-Uses 3-model ensemble to reduce bias:
-- Claude, GPT-4, Gemini score same rubric
-- Majority vote for binary decisions
-- Mean + confidence for numeric scores
-- Disagreement flags for human review
+When LLM judging is enabled, multiple judge models score the same rubric:
+- Claude, GPT-4, Gemini can score the same scenario rubric
+- Per-dimension scores are averaged across successful judges
+- Reliability/bias utilities consume real per-judge scores
+- If every judge call fails, scoring falls back explicitly to the deterministic rubric path
 
 ## Current Validation Coverage
 
@@ -119,7 +127,7 @@ Uses 3-model ensemble to reduce bias:
 - Type hints required
 - Docstrings for public methods
 - pytest for tests
-- Pydantic for data models
+- Dataclasses for scenario and brand models
 
 ## Environment
 

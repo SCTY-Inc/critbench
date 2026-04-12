@@ -1,11 +1,43 @@
-"""
-Data models for CritBench scenarios, turns, and brands.
-"""
+"""Data models for CritBench scenarios, turns, and brands."""
 from __future__ import annotations
 
 from dataclasses import dataclass, field
 from enum import Enum
 from typing import Any
+
+
+def _flatten_text(value: Any) -> str:
+    """Turn nested brand metadata into a readable single string."""
+    if value is None:
+        return ""
+    if isinstance(value, str):
+        return value.strip()
+    if isinstance(value, (int, float, bool)):
+        return str(value)
+    if isinstance(value, list):
+        items = [_flatten_text(item) for item in value]
+        return ", ".join(part for part in items if part)
+    if isinstance(value, dict):
+        parts: list[str] = []
+        for item in value.values():
+            text = _flatten_text(item)
+            if text and text not in parts:
+                parts.append(text)
+        return "; ".join(parts)
+    return str(value)
+
+
+def normalize_brand_dict(data: dict[str, Any]) -> dict[str, Any]:
+    """Normalize brand data into the flat shape used by the runtime."""
+    normalized = dict(data)
+    normalized["voice"] = _flatten_text(data.get("voice", ""))
+    normalized["audience"] = _flatten_text(data.get("audience", ""))
+    normalized.setdefault("constraints", [])
+    normalized.setdefault("competitors", [])
+    normalized.setdefault("banned_phrases", [])
+    normalized.setdefault("tone_keywords", [])
+    normalized.setdefault("examples", {})
+    return normalized
 
 
 class TierLevel(Enum):
@@ -54,15 +86,16 @@ class Brand:
 
     @classmethod
     def from_dict(cls, data: dict[str, Any]) -> Brand:
+        normalized = normalize_brand_dict(data)
         return cls(
-            name=data["name"],
-            voice=data["voice"],
-            audience=data["audience"],
-            constraints=data.get("constraints", []),
-            competitors=data.get("competitors", []),
-            banned_phrases=data.get("banned_phrases", []),
-            tone_keywords=data.get("tone_keywords", []),
-            examples=data.get("examples", {}),
+            name=normalized["name"],
+            voice=normalized["voice"],
+            audience=normalized["audience"],
+            constraints=normalized["constraints"],
+            competitors=normalized["competitors"],
+            banned_phrases=normalized["banned_phrases"],
+            tone_keywords=normalized["tone_keywords"],
+            examples=normalized["examples"],
         )
 
 

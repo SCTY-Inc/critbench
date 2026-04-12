@@ -1,13 +1,13 @@
 """Evaluation orchestration for CritBench."""
 from __future__ import annotations
 
-from critbench.evaluation import scorers
-from critbench.evaluation.debate import (
+from . import scorers
+from .debate import (
     DebateOrchestrator,
     DebateResult,
     run_debate,
 )
-from critbench.evaluation.metrics import (
+from .metrics import (
     BiasDetector,
     CoTAnalyzer,
     ReliabilityMetrics,
@@ -16,7 +16,7 @@ from critbench.evaluation.metrics import (
     calculate_krippendorff_alpha,
     detect_biases,
 )
-from critbench.evaluation.preprocessing import (
+from .preprocessing import (
     Anonymizer,
     anonymize_content,
     anonymize_transcript,

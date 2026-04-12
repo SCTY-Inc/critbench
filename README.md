@@ -55,7 +55,7 @@ The selection/judgment stage is where real creative directors live. Models that 
 |---|---|---|
 | **Question** | "Which LLM?" | "Is this campaign coherent?" |
 | **Tests** | Output quality | Process quality |
-| **Format** | Single-shot | 12-turn campaign development |
+| **Format** | Single-shot | Scenario-defined multi-turn workflow |
 | **Method** | Pairwise "which is better" | Rubric: did insight→strategy→creative ladder? |
 | **Judgment** | None | Tests idea selection, not just generation |
 | **Feedback** | None | Tests refinement and learning |
@@ -101,27 +101,29 @@ The selection/judgment stage is where real creative directors live. Models that 
 
 ## Autofail Conditions
 
-Hard failures that zero the score:
+Hard failures that currently zero the score:
 
-- **Off-brand tone** — violates voice spec
-- **Dark patterns** — fake scarcity, manipulation
-- **Strategic contradiction** — creative undermines positioning
-- **Ignored feedback** — doesn't adapt when corrected
-- **Competitor mention** — names banned competitors
+- **Endorsed dark patterns** — fake scarcity, fake urgency, manipulative pressure
+- **Banned phrase usage** — explicit banned language from the brand spec
+- **Competitor mention** — names banned competitors from the brand spec
+- **Quoted brand-constraint violations** — e.g. forbidden phrases called out directly in constraints
+- **Clear structural trigger failures** — e.g. no questions on a brief-intake turn that explicitly requires questions, too few requested concepts, or no CTA when the scenario explicitly requires one
+
+Scoring is driven by each scenario's `rubric_criteria` and `expected_behaviors`. If a dimension has no rubric criteria in the scenario, it is skipped and weights are renormalized over the applicable dimensions.
 
 ---
 
 ## Multi-Judge Scoring
 
-3-model ensemble reduces single-judge bias:
+Optional multi-judge scoring reduces single-judge bias:
 
 ```
 Output ──► Claude    ──┐
-       ──► GPT-4     ──┼──► Consensus ──► Score
-       ──► Gemini    ──┘    (voting)
+       ──► GPT-4     ──┼──► Mean score + judge spread
+       ──► Gemini    ──┘
 ```
 
-Each judge scores the same rubric independently. Disagreement flags for review.
+Each judge scores the same scenario rubric independently. Reliability and bias utilities consume the real per-judge scores, and if every judge call fails the scorer falls back explicitly to the deterministic rubric path.
 
 Research shows ensemble judging achieves higher human agreement than single LLM-as-judge (which Springboard found "doesn't work for creative").
 
@@ -161,6 +163,8 @@ print(result["overall_percentage"])
 PY
 ```
 
+`score()` grades the scenario's own `rubric_criteria` and renormalizes weights over only the dimensions that are actually present in that scenario.
+
 ---
 
 ## Scenario Example
@@ -184,6 +188,15 @@ turns:
     user_message: "We're launching CodeFlow. Budget $50k, 6 weeks. What do you need to know?"
     expected_behaviors: [asks_clarifying_questions, identifies_gaps]
     autofail_triggers: [jumps_to_tactics_without_understanding]
+    rubric_criteria:
+      - criterion_id: brief_comprehension
+        description: asks useful clarifying questions before moving on
+        max_points: 2
+        dimension: coherence
+        scoring_guide:
+          "2": asks 2+ relevant questions
+          "1": asks 1 relevant question
+          "0": jumps ahead without clarifying
 
   - turn_number: 5
     stage: idea_selection

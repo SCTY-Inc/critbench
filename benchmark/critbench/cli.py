@@ -10,9 +10,9 @@ import typer
 from rich.console import Console
 from rich.table import Table
 
-from critbench import score as score_fn
-from critbench.loaders import ScenarioLoader
-from critbench.runner import ScenarioRunner
+from .loaders import ScenarioLoader
+from .runner import ScenarioRunner
+from .score import score as score_fn
 
 app = typer.Typer(help="CritBench creative benchmark")
 console = Console()

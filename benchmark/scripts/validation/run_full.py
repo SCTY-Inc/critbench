@@ -137,16 +137,23 @@ def build_stage_response(
         )
 
     if stage == "execution":
-        return "See where engineering time actually goes with real git and PR data."
+        return (
+            "See where engineering time actually goes with real git and PR data. "
+            "Set up your first profile to see the patterns in your own workflow."
+        )
 
     if stage == "feedback":
         return (
-            "Understood. I will make the message more concrete, keep the tone understated, "
-            "and preserve the evidence-first positioning."
+            "You are already juggling enough, so HealthCo helps you keep your family's essentials in one place "
+            "without adding more work. Set up your first health profile and you'll have a simple starting point "
+            "for the routines and reminders that matter most."
         )
 
     if stage == "revision":
-        return f"Revised direction: help {audience} replace guesswork with evidence they can explain to leadership and the team."
+        return (
+            f"Revised direction: help {audience} replace guesswork with evidence they can explain to leadership and the team. "
+            "See the docs for the proof and the next step."
+        )
 
     if stage == "pressure_test":
         return (

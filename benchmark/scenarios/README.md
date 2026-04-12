@@ -48,6 +48,10 @@ metadata:
   version: "1.0"
 ```
 
+`score()` only counts dimensions that actually have `rubric_criteria` in the scenario. Missing dimensions are skipped and the overall score is renormalized over the applicable ones.
+
+`brand.voice` and `brand.audience` may be strings or nested mappings in YAML; loading normalizes them into the flat internal schema used by scoring.
+
 ## Stages
 
 | Stage | Purpose |
@@ -67,7 +71,7 @@ metadata:
 
 1. Create a JSON or YAML file in the appropriate tier directory
 2. Follow the format above
-3. Include rubric criteria for key evaluation points
+3. Include rubric criteria for every dimension you want counted in the overall score
 4. Add autofail triggers for hard failures
 5. Test with the validation runners or the Python `score(...)` API shown in the repo README
 

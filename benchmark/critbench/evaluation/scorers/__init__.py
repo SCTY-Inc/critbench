@@ -1,14 +1,3 @@
-"""Scoring modules for creative evaluation dimensions.
+"""Compatibility package for the remaining explicit scorer modules."""
 
-Each submodule provides a `score(...)` function returning
-a structured result for that dimension.
-"""
-
-__all__ = [
-    "coherence",
-    "judgment",
-    "voice",
-    "originality",
-    "ethics",
-    "adaptation",
-]
+__all__ = ["ethics"]

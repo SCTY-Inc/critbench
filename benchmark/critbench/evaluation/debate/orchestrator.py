@@ -12,7 +12,7 @@ import statistics
 from dataclasses import dataclass, field
 from typing import Any
 
-from critbench.api import ModelAPIClient
+from ...api import ModelAPIClient
 
 
 @dataclass
