@@ -40,6 +40,9 @@ class ScenarioRunner:
 
         try:
             system_prompt = self._build_system_prompt()
+            # Accumulate full conversation history across turns
+            history: list[dict[str, str]] = [{"role": "system", "content": system_prompt}]
+
             for turn in self.scenario.turns:
                 transcript.append(
                     {
@@ -49,11 +52,11 @@ class ScenarioRunner:
                         "content": turn.user_message,
                     }
                 )
+                history.append({"role": "user", "content": turn.user_message})
 
                 assistant_message, error = self._call_with_retries(
                     client=client,
-                    system_prompt=system_prompt,
-                    user_message=turn.user_message,
+                    messages=history,
                     turn_number=turn.turn_number,
                 )
                 transcript.append(
@@ -65,6 +68,7 @@ class ScenarioRunner:
                         **({"error": error} if error else {}),
                     }
                 )
+                history.append({"role": "assistant", "content": assistant_message})
 
             return transcript
         finally:
@@ -86,8 +90,7 @@ class ScenarioRunner:
     def _call_with_retries(
         self,
         client: ModelAPIClient,
-        system_prompt: str,
-        user_message: str,
+        messages: list[dict[str, str]],
         turn_number: int,
     ) -> tuple[str, str | None]:
         last_error: str | None = None
@@ -96,10 +99,7 @@ class ScenarioRunner:
             try:
                 result = client.call_model(
                     model=self.model,
-                    messages=[
-                        {"role": "system", "content": system_prompt},
-                        {"role": "user", "content": user_message},
-                    ],
+                    messages=messages,
                     temperature=0.7,
                     max_tokens=2000,
                 )

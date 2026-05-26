@@ -223,7 +223,6 @@ def run_scenario(scenario_path: Path) -> float:
             scenario_path=str(scenario_path),
             scoring_config_path=str(SCORING_CONFIG_PATH),
             enable_llm=False,
-            enable_debate=False,
             enable_anonymization=False,
             enable_bias_detection=False,
             enable_reliability_metrics=False,

@@ -100,25 +100,3 @@ class ModelAPIClient:
 
     def __exit__(self, *args: object) -> None:
         self.close()
-
-
-def resolve_scorer_model(
-    client: ModelAPIClient,
-    scorer_name: str,
-    default: str | None = None,
-) -> str:
-    """Resolve which model to use for a given scorer.
-
-    Can be extended to support per-scorer model configuration.
-    """
-    # Default models for different scorers
-    defaults = {
-        "coherence": "claude-sonnet-4-20250514",
-        "judgment": "claude-sonnet-4-20250514",
-        "voice": "gpt-4.1",
-        "originality": "gemini-2.0-flash",
-        "ethics": "claude-sonnet-4-20250514",
-        "adaptation": "gpt-4.1",
-    }
-
-    return defaults.get(scorer_name, default or "claude-sonnet-4-20250514")

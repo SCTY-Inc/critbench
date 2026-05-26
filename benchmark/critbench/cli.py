@@ -58,7 +58,6 @@ def run(
     out: str | None = typer.Option(None, "--out", help="Output directory for run artifacts."),
     dry_run: bool = typer.Option(False, "--dry-run", help="Show the scenario without calling an API."),
     no_score: bool = typer.Option(False, "--no-score", help="Skip post-run scoring."),
-    debate: bool = typer.Option(False, "--debate", help="Enable debate during scoring."),
     anonymous: bool = typer.Option(False, "--anonymous", help="Anonymize transcript before scoring."),
 ) -> None:
     """Run a model through a scenario and optionally score the transcript."""
@@ -87,7 +86,6 @@ def run(
         transcript_path=str(transcript_path),
         scenario_path=scenario,
         enable_llm=True,
-        enable_debate=debate,
         enable_anonymization=anonymous,
     )
     result["metadata"] = {
@@ -107,7 +105,6 @@ def score(
     transcript: str = typer.Option(..., "--transcript", help="Transcript JSONL file."),
     scenario: str = typer.Option(..., "--scenario", help="Scenario JSON or YAML file."),
     out: str | None = typer.Option(None, "--out", help="Optional path for the score JSON."),
-    debate: bool = typer.Option(False, "--debate", help="Enable debate during scoring."),
     anonymous: bool = typer.Option(False, "--anonymous", help="Anonymize transcript before scoring."),
 ) -> None:
     """Score an existing transcript."""
@@ -115,7 +112,6 @@ def score(
         transcript_path=transcript,
         scenario_path=scenario,
         enable_llm=True,
-        enable_debate=debate,
         enable_anonymization=anonymous,
     )
 

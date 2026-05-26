@@ -147,7 +147,6 @@ turns:
         transcript_path=str(transcript_path),
         scenario_path=str(scenario_path),
         enable_llm=False,
-        enable_debate=False,
         enable_anonymization=False,
         enable_bias_detection=False,
         enable_reliability_metrics=False,

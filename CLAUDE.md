@@ -33,6 +33,9 @@ from critbench import score
 result = score(
     transcript_path="path/to/transcript.jsonl",
     scenario_path="benchmark/scenarios/tier1/campaign/saas_launch.json",  # JSON or YAML
+    # enable_llm=True           # set False for offline/deterministic-only
+    # enable_verifier_mode=True # LLM-as-a-Verifier: K-repeated + continuous scores
+    # verifier_k_repeats=3      # verifications per criterion per judge
 )
 
 print(result["overall_percentage"])
@@ -53,7 +56,10 @@ black benchmark
 ```
 benchmark/critbench/
 ├── __init__.py       # Public API: score, score_with_rewards
-├── score.py          # Rubric-driven scoring, weight normalization, contract checks
+├── score.py          # Thin orchestrator: loaders, dimension dispatch, weight normalization
+├── _heuristics.py    # Deterministic scoring heuristics + NLP helpers
+├── _contract.py      # Banned phrases, competitor checks, autofail trigger matching
+├── _llm_judge.py     # LLM judge calls, verifier mode, prompt building, JSON parsing
 ├── models/           # Brand normalization + Scenario/Turn dataclasses
 ├── evaluation/
 │   ├── debate/       # Optional judge debate helpers
@@ -62,7 +68,7 @@ benchmark/critbench/
 │   └── scorers/
 │       └── ethics.py # Dark-pattern endorsement autofail
 ├── api/
-│   └── client.py     # Multi-model ensemble client
+│   └── client.py     # Multi-model ensemble client (OpenRouter)
 ├── loaders/
 └── utils/
 ```
@@ -114,8 +120,12 @@ turns:
 When LLM judging is enabled, multiple judge models score the same rubric:
 - Claude, GPT-4, Gemini can score the same scenario rubric
 - Per-dimension scores are averaged across successful judges
-- Reliability/bias utilities consume real per-judge scores
+- Per-criterion scores (not per-dimension aggregates) are stored for reliability metrics
 - If every judge call fails, scoring falls back explicitly to the deterministic rubric path
+
+**Verifier mode** (`enable_verifier_mode=True`): uses the LLM-as-a-Verifier approach — K=3 independent verification calls per criterion per judge, averaged. Produces continuous scores and populates `verifier_distributions` per criterion. Improves Krippendorff's alpha / ICC validity by generating multiple items per rater. `verifier_k_repeats` controls K (default 3).
+
+**Runner**: `ScenarioRunner` maintains full conversation history across turns so multi-turn scenarios have correct context at each call.
 
 ## Current Validation Coverage
 

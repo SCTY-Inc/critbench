@@ -115,7 +115,7 @@ class RubricCriterion:
             description=data["description"],
             max_points=data["max_points"],
             dimension=DimensionType(data["dimension"]),
-            scoring_guide=data["scoring_guide"],
+            scoring_guide={str(k): str(v) for k, v in data["scoring_guide"].items()},
         )
 
 

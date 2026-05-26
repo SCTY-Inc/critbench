@@ -219,9 +219,10 @@ class ScenarioRotator:
             )
             rotated["brand"]["constraints"] = new_constraints
 
-        # Rotate numeric targets
+        # Rotate numeric targets in human-facing text fields only
         if self.config.rotate_numeric_targets:
-            rotated = self._rotate_numbers(rotated, local_rng)
+            for field in ("title", "user_message", "description"):
+                rotated = self._rotate_numbers_in_field(rotated, field, local_rng)
 
         new_id = f"{scenario_id}_v{usage_count}_r{rotation_seed % 1000}"
         rotated["scenario_id"] = new_id
@@ -260,6 +261,23 @@ class ScenarioRotator:
         """Rotate audience description while keeping structure."""
         modifier, _ = rng.choice(self.AUDIENCE_MODIFIERS)
         return f"{modifier} {new_base}"
+
+    def _rotate_numbers_in_field(
+        self,
+        obj: Any,
+        field_name: str,
+        rng: random.Random,
+        variance: float = 0.2,
+    ) -> Any:
+        """Rotate numbers only inside a specific named field, recursively."""
+        if isinstance(obj, dict):
+            return {
+                k: (self._rotate_numbers(v, rng, variance) if k == field_name else self._rotate_numbers_in_field(v, field_name, rng, variance))
+                for k, v in obj.items()
+            }
+        if isinstance(obj, list):
+            return [self._rotate_numbers_in_field(item, field_name, rng, variance) for item in obj]
+        return obj
 
     def _rotate_numbers(
         self,
