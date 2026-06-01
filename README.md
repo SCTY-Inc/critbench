@@ -141,17 +141,17 @@ uv pip install -e ".[all]"
 echo "OPENROUTER_API_KEY=sk-or-v1-..." > .env
 
 # Run tier 0 validation (offline smoke test)
-python3 benchmark/scripts/validation/run_minimal.py -y
+uv run python benchmark/scripts/validation/run_minimal.py -y
 
 # Run tier 0 + tier 1 validation (offline smoke test)
 # Current suite: 12 tier1 campaign scenarios + 3 tier0 scenarios
-python3 benchmark/scripts/validation/run_full.py -y
+uv run python benchmark/scripts/validation/run_full.py -y
 
 # Preview validation scenarios and estimated cost
-python3 benchmark/scripts/validation/run_minimal.py --dry-run
+uv run python benchmark/scripts/validation/run_minimal.py --dry-run
 
 # Score a transcript from Python
-python3 - <<'PY'
+uv run python - <<'PY'
 from critbench import score
 
 result = score(

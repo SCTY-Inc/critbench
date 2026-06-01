@@ -6,6 +6,22 @@ AI assistant instructions for CritBench (creative benchmark project).
 
 **Research benchmark** for evaluating LLM creative process quality.
 
+## Python Environment (REQUIRED)
+
+This project uses `uv` for dependency management. **Always** invoke Python through `uv run`, never bare `python`/`pytest`/`mypy`. Bare invocations hit the system Python and fail with `ModuleNotFoundError` or `command not found`.
+
+```bash
+# Correct
+uv run python benchmark/scripts/validation/run_minimal.py -y
+uv run pytest benchmark/tests/ -v
+uv run mypy benchmark/critbench/
+uv run ruff check benchmark
+
+# Wrong (will fail)
+python benchmark/scripts/validation/run_minimal.py
+pytest benchmark/tests/
+```
+
 ## Critical Rules
 
 - **No unnecessary docs**: Ask before creating .md files
@@ -17,17 +33,17 @@ AI assistant instructions for CritBench (creative benchmark project).
 ```bash
 # === BENCHMARKING ===
 # Quick validation (tier 0 offline smoke test)
-python3 benchmark/scripts/validation/run_minimal.py -y
+uv run python benchmark/scripts/validation/run_minimal.py -y
 
 # Full validation (tier 0 + tier 1 offline smoke test)
 # Current suite: 12 tier1 campaign scenarios + 3 tier0 scenarios
-python3 benchmark/scripts/validation/run_full.py -y
+uv run python benchmark/scripts/validation/run_full.py -y
 
 # Dry run (list scenarios and estimated cost)
-python3 benchmark/scripts/validation/run_minimal.py --dry-run
+uv run python benchmark/scripts/validation/run_minimal.py --dry-run
 
 # === SCORING (single scenario) ===
-python3 - <<'PY'
+uv run python - <<'PY'
 from critbench import score
 
 result = score(
@@ -42,13 +58,13 @@ print(result["overall_percentage"])
 PY
 
 # === TESTS ===
-pytest benchmark/tests/ -v
-pytest benchmark/tests/ -v --cov=benchmark.critbench
+uv run pytest benchmark/tests/ -v
+uv run pytest benchmark/tests/ -v --cov=benchmark.critbench
 
 # === CODE QUALITY ===
-mypy benchmark/critbench/
-ruff check benchmark
-black benchmark
+uv run mypy benchmark/critbench/
+uv run ruff check benchmark
+uv run ruff format benchmark
 ```
 
 ## Architecture
