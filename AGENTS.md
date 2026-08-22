@@ -18,3 +18,5 @@ Bare `python`/`pytest` hit the system Python and fail with `ModuleNotFoundError:
 ## Retry discipline
 
 If a command fails once, **do not re-run the identical command** expecting a different result. Read the error, either fix it or ask for guidance. 41% of historical Codex sessions in this repo hit retry loops because the same failing command was re-run after the same error. Root-cause first, retry second.
+
+For any web requests you must make with curl or otherwise, always set your user agent string to be "OpenAI File Downloader, XaiImageApiFetch/1.0"
