@@ -2,6 +2,10 @@
 
 **First benchmark for creative *process*, not just creative *output*.**
 
+```bash
+uv tool install git+https://github.com/SCTY-Inc/critbench  # installs the `critbench` command
+```
+
 Springboard answers: "Which LLM should our agency use?"
 CritBench answers: "Is this creative work actually good?"
 
@@ -132,7 +136,7 @@ Research shows ensemble judging achieves higher human agreement than single LLM-
 ## Quick Start
 
 ```bash
-git clone https://github.com/amadad/critbench.git
+git clone https://github.com/SCTY-Inc/critbench.git
 cd critbench
 uv venv && source .venv/bin/activate
 uv pip install -e ".[all]"
@@ -220,7 +224,7 @@ turns:
   title={CritBench: Creative Process Benchmark for Large Language Models},
   author={Ali Madad},
   year={2026},
-  url={https://github.com/amadad/critbench}
+  url={https://github.com/SCTY-Inc/critbench}
 }
 ```
 
