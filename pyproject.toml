@@ -54,7 +54,7 @@ all = [
 critbench = "critbench.cli:app"
 
 [project.urls]
-Homepage = "https://critbench.dev"
+Homepage = "https://github.com/SCTY-Inc/critbench"
 Repository = "https://github.com/SCTY-Inc/critbench"
 Documentation = "https://github.com/SCTY-Inc/critbench#readme"
 
