@@ -6,10 +6,10 @@ Test scenarios organized by tier complexity.
 
 | Tier | Turns | Purpose |
 |------|-------|---------|
-| **tier0** | 1-2 | Smoke tests, single outputs | |
-| **tier1** | 3-5 | Brief refinement, idea selection | |
-| **tier2** | 8-12 | Campaign consistency, multi-format (no scenarios yet) | |
-| **tier3** | 15+ | Longitudinal with feedback injection (no scenarios yet) | |
+| **tier0** | 1-2 | Smoke tests, single outputs |
+| **tier1** | 3-5 | Brief refinement, idea selection |
+| **tier2** | 8-12 | Campaign consistency, multi-format (no scenarios yet) |
+| **tier3** | 15+ | Longitudinal with feedback injection (no scenarios yet) |
 
 ## Scenario Format
 
