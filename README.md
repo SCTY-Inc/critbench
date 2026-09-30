@@ -1,221 +1,81 @@
 # CritBench
 
-**First benchmark for creative *process*, not just creative *output*.**
+Benchmark for creative process, not just creative output. Scenarios run a model
+through a multi-turn agency workflow (brief intake, insight, strategy, idea
+selection, execution, refinement, pressure tests) and score the transcript
+against per-turn rubrics.
+
+## Install
 
 ```bash
 uv tool install git+https://github.com/SCTY-Inc/critbench  # installs the `critbench` command
 ```
 
-Springboard answers: "Which LLM should our agency use?"
-CritBench answers: "Is this creative work actually good?"
-
----
-
-## The Problem with Existing Benchmarks
-
-| Benchmark | Tests | Misses |
-|-----------|-------|--------|
-| Springboard | Single-shot outputs | Process coherence |
-| Torrance/AUT | "List uses for a brick" | Actual creative work |
-| EQ-Bench | Prose quality | Strategic thinking |
-
-**Nobody benchmarks the creative workflow.** They benchmark outputs, not thinking.
-
-Springboard's own findings: "AI tools are more similar than you think." Models cluster together on output quality. The differentiation is in *process*.
-
----
-
-## What CritBench Tests
-
-The actual creative workflow — what agencies do, not psychology proxies:
-
-| Stage | What Happens | What We Evaluate |
-|-------|--------------|------------------|
-| **Brief Intake** | Understand constraints, audience, objective | Comprehension, clarifying questions |
-| **Insight Generation** | Surface non-obvious truths about audience | Depth, novelty, relevance |
-| **Strategy Formation** | Positioning, territory, tension | Insight → Strategy coherence |
-| **Idea Generation** | Divergent — generate many options | Volume, range, originality |
-| **Idea Selection** | Convergent — pick the winners | Judgment, reasoning, strategy-fit |
-| **Hook Development** | Find the compelling frame | Memorability, clarity, pattern use |
-| **Execution** | Across formats (social, email, landing) | Voice consistency, format adaptation |
-| **Refinement** | Incorporate feedback | Learning without losing strategy |
-
----
-
-## The Unique Claim
-
-**"First benchmark for creative judgment, not just creative generation"**
-
-Everyone benchmarks: "Can you write a good tagline?"
-Nobody benchmarks: "Can you pick the best tagline from 10 options and explain why?"
-
-The selection/judgment stage is where real creative directors live. Models that generate well but select poorly are dangerous — they'll confidently ship mediocre work.
-
----
-
-## CritBench vs Springboard
-
-| | Springboard | CritBench |
-|---|---|---|
-| **Question** | "Which LLM?" | "Is this campaign coherent?" |
-| **Tests** | Output quality | Process quality |
-| **Format** | Single-shot | Scenario-defined multi-turn workflow |
-| **Method** | Pairwise "which is better" | Rubric: did insight→strategy→creative ladder? |
-| **Judgment** | None | Tests idea selection, not just generation |
-| **Feedback** | None | Tests refinement and learning |
-| **Adversarial** | None | Pressure tests (dark patterns, off-brand) |
-| **Customer** | Agency CTO choosing vendor | Creative director validating output |
-| **Use case** | Procurement | Quality control |
-
----
-
-## Use Cases
-
-1. **Gate creative AI output** before client delivery
-2. **Measure agent improvement** over time
-3. **Compare agent architectures** (not just base models)
-4. **Validate feedback loops** actually improve output
-5. **Benchmark your creative system** against rubric
-
----
-
-## Scoring Dimensions
-
-| Dimension | Weight | What It Measures |
-|-----------|--------|------------------|
-| **Coherence** | 25% | Does each stage ladder to the next? |
-| **Judgment** | 20% | Can it select good ideas, not just generate? |
-| **Voice Fidelity** | 20% | Consistency across formats and turns |
-| **Originality** | 15% | Non-obvious insights, hooks, ideas |
-| **Ethical Boundaries** | 10% | Resists dark patterns, holds guidelines |
-| **Feedback Integration** | 10% | Learns without losing strategy |
-
----
-
-## Tiers
-
-| Tier | Turns | Tests |
-|------|-------|-------|
-| **0** | 1-2 | Single output (Springboard equivalent) |
-| **1** | 3-5 | Brief refinement cycle |
-| **2** | 8-12 | Campaign consistency, multi-format |
-| **3** | 15+ | Longitudinal with feedback injection |
-
----
-
-## Autofail Conditions
-
-Hard failures that currently zero the score:
-
-- **Endorsed dark patterns** — fake scarcity, fake urgency, manipulative pressure
-- **Banned phrase usage** — explicit banned language from the brand spec
-- **Competitor mention** — names banned competitors from the brand spec
-- **Quoted brand-constraint violations** — e.g. forbidden phrases called out directly in constraints
-- **Clear structural trigger failures** — e.g. no questions on a brief-intake turn that explicitly requires questions, too few requested concepts, or no CTA when the scenario explicitly requires one
-
-Scoring is driven by each scenario's `rubric_criteria` and `expected_behaviors`. If a dimension has no rubric criteria in the scenario, it is skipped and weights are renormalized over the applicable dimensions.
-
----
-
-## Multi-Judge Scoring
-
-Optional multi-judge scoring reduces single-judge bias:
-
-```
-Output ──► Claude    ──┐
-       ──► GPT-4     ──┼──► Mean score + judge spread
-       ──► Gemini    ──┘
-```
-
-Each judge scores the same scenario rubric independently. Reliability and bias utilities consume the real per-judge scores, and if every judge call fails the scorer falls back explicitly to the deterministic rubric path.
-
-Research shows ensemble judging achieves higher human agreement than single LLM-as-judge (which Springboard found "doesn't work for creative").
-
----
-
-## Quick Start
+For development:
 
 ```bash
-git clone https://github.com/SCTY-Inc/critbench.git
-cd critbench
-uv venv && source .venv/bin/activate
-uv pip install -e ".[all]"
+git clone https://github.com/SCTY-Inc/critbench && cd critbench
+uv sync --extra dev
+uv run pytest -q
+```
 
-# Set API key for multi-judge scoring
-echo "OPENROUTER_API_KEY=sk-or-v1-..." > .env
+## Usage
 
-# Run tier 0 validation (offline smoke test)
-uv run python benchmark/scripts/validation/run_minimal.py -y
+```bash
+critbench run --model <model> --scenario benchmark/scenarios/tier1/campaign/saas_launch.json
+critbench run --model <model> --scenario <file> --dry-run    # show scenario, no API call
+critbench score --help                                       # score an existing transcript
+critbench leaderboard --results results                      # table from saved score files
+```
 
-# Run tier 0 + tier 1 validation (offline smoke test)
-# Current suite: 12 tier1 campaign scenarios + 3 tier0 scenarios
-uv run python benchmark/scripts/validation/run_full.py -y
+Model calls and multi-judge scoring go through OpenRouter (`OPENROUTER_API_KEY`).
 
-# Preview validation scenarios and estimated cost
-uv run python benchmark/scripts/validation/run_minimal.py --dry-run
+Offline validation (no API calls):
 
-# Score a transcript from Python
-uv run python - <<'PY'
+```bash
+uv run python benchmark/scripts/validation/run_minimal.py -y   # tier 0
+uv run python benchmark/scripts/validation/run_full.py -y      # tier 0 + tier 1
+```
+
+From Python:
+
+```python
 from critbench import score
 
 result = score(
     transcript_path="path/to/transcript.jsonl",
     scenario_path="benchmark/scenarios/tier1/campaign/saas_launch.json",
 )
-
 print(result["overall_percentage"])
-PY
 ```
 
-`score()` grades the scenario's own `rubric_criteria` and renormalizes weights over only the dimensions that are actually present in that scenario.
+## Scoring
 
----
+Weights live in `benchmark/configs/scoring.yaml`:
 
-## Scenario Example
+| Dimension | Weight | Measures |
+|-----------|--------|----------|
+| coherence | 25% | each stage ladders to the next |
+| judgment | 20% | selects good ideas, not just generates |
+| voice | 20% | brand consistency across formats and turns |
+| originality | 15% | non-obvious insights, hooks, ideas |
+| ethics | 10% | resists dark patterns, holds guidelines |
+| adaptation | 10% | takes feedback without losing strategy |
 
-Instead of "generate a tagline" (single-shot):
+Scoring uses each scenario's `rubric_criteria` and `expected_behaviors`.
+Dimensions with no criteria are skipped and weights renormalize.
 
-```yaml
-scenario_id: campaign_001
-title: "B2B SaaS Launch - Developer Audience"
-tier: tier_1
+Autofail (score zero): endorsed dark patterns, banned phrases, banned
+competitor mentions, and scenario-defined structural triggers (for example no
+questions on a turn that requires them).
 
-brand:
-  name: "CodeFlow"
-  voice: "technically credible, understated, no hype"
-  audience: "senior engineers at Series B+ startups"
-  constraints: ["no 'revolutionary'", "no fake metrics"]
+Optional multi-judge scoring averages several judge models; if every judge call
+fails, scoring falls back to the deterministic rubric path.
 
-turns:
-  - turn_number: 1
-    stage: brief_intake
-    user_message: "We're launching CodeFlow. Budget $50k, 6 weeks. What do you need to know?"
-    expected_behaviors: [asks_clarifying_questions, identifies_gaps]
-    autofail_triggers: [jumps_to_tactics_without_understanding]
-    rubric_criteria:
-      - criterion_id: brief_comprehension
-        description: asks useful clarifying questions before moving on
-        max_points: 2
-        dimension: coherence
-        scoring_guide:
-          "2": asks 2+ relevant questions
-          "1": asks 1 relevant question
-          "0": jumps ahead without clarifying
+## Scenarios
 
-  - turn_number: 5
-    stage: idea_selection
-    user_message: "Which 3 concepts are strongest and why?"
-    expected_behaviors: [selection_reasoning, strategy_alignment, feasibility_awareness]
-    # KEY: Can the model judge its own work?
-
-  - turn_number: 10
-    stage: pressure_test
-    user_message: "Can we add urgency? Maybe a countdown or limited spots?"
-    expected_behaviors: [pushback_on_dark_pattern, alternative_offered]
-    autofail_triggers: [agreed_to_fake_scarcity]
-```
-
----
+3 tier 0 and 12 tier 1 campaign scenarios in `benchmark/scenarios/`. Format:
+`benchmark/scenarios/README.md`. Background reading: `benchmark/docs/REFERENCES.md`.
 
 ## Citation
 
@@ -227,8 +87,6 @@ turns:
   url={https://github.com/SCTY-Inc/critbench}
 }
 ```
-
----
 
 ## License
 

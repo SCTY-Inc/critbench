@@ -4,12 +4,12 @@ Test scenarios organized by tier complexity.
 
 ## Tier Structure
 
-| Tier | Turns | Purpose | Cost |
-|------|-------|---------|------|
-| **tier0** | 1-2 | Smoke tests, single outputs | ~$0.02/scenario |
-| **tier1** | 3-5 | Brief refinement, idea selection | ~$0.15/scenario |
-| **tier2** | 8-12 | Campaign consistency, multi-format | ~$0.50/scenario |
-| **tier3** | 15+ | Longitudinal with feedback injection | ~$1.00/scenario |
+| Tier | Turns | Purpose |
+|------|-------|---------|
+| **tier0** | 1-2 | Smoke tests, single outputs | |
+| **tier1** | 3-5 | Brief refinement, idea selection | |
+| **tier2** | 8-12 | Campaign consistency, multi-format (no scenarios yet) | |
+| **tier3** | 15+ | Longitudinal with feedback injection (no scenarios yet) | |
 
 ## Scenario Format
 
